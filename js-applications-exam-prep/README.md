@@ -24,6 +24,7 @@
 -   Mocha and playwright-chromium for testing
 
 ## Example images from the final exam:
+
 - Home Page:
 ![image](https://github.com/user-attachments/assets/46f3dda9-7882-490e-9391-4d35f68eddd7)
 
