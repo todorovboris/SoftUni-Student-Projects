@@ -22,3 +22,5 @@
 -   Page.js for routing
 -   Lit-html for templating
 -   Mocha and playwright-chromium for testing
+
+## Example images from the final exam:
