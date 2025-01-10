@@ -16,7 +16,7 @@
 -   Page with details for the separate items
 -   Editing and Delete Items
 
-## Each application emphasizes exercise with(Tech-stack):
+## Each application emphasizes exercise with(Tech Stack):
 
 -   Vanilla JS
 -   Page.js for routing
