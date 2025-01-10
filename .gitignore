@@ -129,5 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 coock-book/.DS_Store
+cat-shelter/.DS_Store
 .DS_Store
 .DS_Store
