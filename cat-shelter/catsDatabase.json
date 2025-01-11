@@ -40,5 +40,12 @@
     "description": "from Jerry",
     "imageUrl": "https://miro.medium.com/v2/resize:fit:646/1*BxTA9zYVYtTwwWdSm7drOw.jpeg",
     "breed": "American Bobtail Cat"
+  },
+  {
+    "id": "fc05a762-465c-418c-bb5d-cd0a77f3ee06",
+    "name": "Niya",
+    "description": "Lonely and lazy cat seek for a hospitable owner",
+    "imageUrl": "https://www.thesprucepets.com/thmb/rGHMbBtaCIBzjOQJaFEeDG3ViHs=/2941x0/filters:no_upscale():strip_icc()/persian-cats-gallery-4121944-hero-f5c237b8c6404655afb1e1bbae219ba5.jpg",
+    "breed": "Persian cat"
   }
 ]
