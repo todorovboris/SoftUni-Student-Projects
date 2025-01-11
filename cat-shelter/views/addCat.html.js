@@ -28,8 +28,8 @@ export default () => `<!DOCTYPE html>
             <input name="name" type="text" id="name">
             <label for="description">Description</label>
             <textarea name="description" id="description"></textarea>
-            <label for="image">Image</label>
-            <input name="upload" type="file" id="image">
+            <label for="image">Image URL</label>
+            <input name="upload" type="text" id="image">
             <label for="group">Breed</label>
             <select name="breed" id="group">
                 <option value="Fluffy Cat">Fluffy Cat</option>
