@@ -22,14 +22,14 @@ export default () => `<!DOCTYPE html>
         <h1>Cat Shelter</h1>
     </header>
     <main>
-        <form action="/cats/add-cat" method="POST" class="cat-form" enctype="multipart/form-data">
+        <form action="/cats/add-cat" method="POST" class="cat-form"
             <h2>Add Cat</h2>
             <label for="name">Name</label>
             <input name="name" type="text" id="name">
             <label for="description">Description</label>
             <textarea name="description" id="description"></textarea>
-            <label for="image">Image URL</label>
-            <input name="imageURL" type="text" id="image">
+            <label for="image">Image Url</label>
+            <input name="imageUrl" type="text" id="image">
             <label for="group">Breed</label>
             <select name="breed" id="group">
                 <option value="Bombay Cat">Bombay Cat</option>

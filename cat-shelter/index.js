@@ -45,6 +45,32 @@ const cats = [
 ];
 
 const server = http.createServer((req, res) => {
+    // POST Request
+    if (req.method === 'POST') {
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            const data = new URLSearchParams(body);
+
+            cats.push({
+                id: cats.length + 1,
+                ...Object.fromEntries(data.entries()),
+            });
+
+            console.log(cats);
+
+            res.writeHead(302, {
+                location: '/',
+            });
+            res.end();
+        });
+        return;
+    }
+
     // Load assets
     if (req.url === '/styles/site.css') {
         res.writeHead(200, {
