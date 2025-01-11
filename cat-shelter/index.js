@@ -9,12 +9,14 @@ import addBreedPage from './views/addBreed.html.js';
 import addCatPage from './views/addCat.html.js';
 
 let cats = [];
+let breeds = [];
 
 showCatsFromJson();
+showBreedsFromJson();
 
 const server = http.createServer((req, res) => {
-    // POST Request
-    if (req.method === 'POST') {
+    // POST Request for Adding Cats
+    if (req.method === 'POST' && req.url === '/cats/add-cat') {
         let body = '';
 
         req.on('data', (chunk) => {
@@ -30,6 +32,32 @@ const server = http.createServer((req, res) => {
             });
 
             addNewCatsToJson();
+
+            res.writeHead(302, {
+                location: '/',
+            });
+            res.end();
+        });
+        return;
+    }
+
+    // POST Request for Adding Breeds
+    if (req.method === 'POST' && req.url === '/cats/add-breed') {
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            const data = new URLSearchParams(body);
+
+            breeds.push({
+                id: uuid(),
+                ...Object.fromEntries(data.entries()),
+            });
+
+            addBreedsToJson();
 
             res.writeHead(302, {
                 location: '/',
@@ -67,7 +95,7 @@ const server = http.createServer((req, res) => {
 
         case '/cats/add-cat':
             // res.write(addCatPage());
-            responseBody = addCatPage();
+            responseBody = addCatPage(breeds);
             break;
 
         default:
@@ -100,6 +128,26 @@ async function addNewCatsToJson() {
     try {
         const catsData = JSON.stringify(cats, null, 2);
         await fs.writeFile('./catsDatabase.json', catsData, 'utf-8');
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// read breeds from JSON file
+async function showBreedsFromJson() {
+    try {
+        const breedsJson = await fs.readFile('./breedsDatabase.json', { encoding: 'utf-8' });
+        breeds = JSON.parse(breedsJson);
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
+// write the new array with breeds to the JSON file
+async function addBreedsToJson() {
+    try {
+        const breedsData = JSON.stringify(breeds, null, 2);
+        await fs.writeFile('./breedsDatabase.json', breedsData, 'utf-8');
     } catch (err) {
         console.log(err.message);
     }

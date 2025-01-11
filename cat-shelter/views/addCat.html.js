@@ -1,4 +1,6 @@
-export default () => `<!DOCTYPE html>
+import breedHtml from './breed.html.js';
+
+export default (breeds) => `<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,11 +34,7 @@ export default () => `<!DOCTYPE html>
             <input name="imageUrl" type="text" id="image">
             <label for="group">Breed</label>
             <select name="breed" id="group">
-                <option value="Bombay Cat">Bombay Cat</option>
-				<option value="American Bobtail Cat">American Bobtail Cat</option>
-				<option value="Bengal Cat">Bengal Cat</option>
-				<option value="British Shorthair Cat">British Shorthair Cat</option>
-				<option value="Unknown">Unknown</option>
+                ${breeds.map((breed) => breedHtml(breed)).join('\n')}
 			</select>
             <button type="submit">Add Cat</button>
         </form>
