@@ -29,13 +29,15 @@ export default () => `<!DOCTYPE html>
             <label for="description">Description</label>
             <textarea name="description" id="description"></textarea>
             <label for="image">Image URL</label>
-            <input name="upload" type="text" id="image">
+            <input name="imageURL" type="text" id="image">
             <label for="group">Breed</label>
             <select name="breed" id="group">
-                <option value="Fluffy Cat">Fluffy Cat</option>
-				<option value="Fluffy Cat">Fluffy Cat</option>
-				<option value="Fluffy Cat">Fluffy Cat</option>
-            </select>
+                <option value="Bombay Cat">Bombay Cat</option>
+				<option value="American Bobtail Cat">American Bobtail Cat</option>
+				<option value="Bengal Cat">Bengal Cat</option>
+				<option value="British Shorthair Cat">British Shorthair Cat</option>
+				<option value="Unknown">Unknown</option>
+			</select>
             <button type="submit">Add Cat</button>
         </form>
     </main>
