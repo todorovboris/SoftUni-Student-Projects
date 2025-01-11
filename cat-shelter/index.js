@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
                 ...Object.fromEntries(data.entries()),
             });
 
-            addNewCatToJson(cats);
+            addNewCatsToJson(cats);
 
             res.writeHead(302, {
                 location: '/',
@@ -96,7 +96,7 @@ async function showCatsFromJson() {
 }
 
 // write the new array with cats to the JSON file
-function addNewCatToJson(cats) {
+function addNewCatsToJson(cats) {
     const catsData = JSON.stringify(cats);
     fs.writeFile('./catsDatabase.json', catsData, 'utf-8', (err) => {
         if (err) {
