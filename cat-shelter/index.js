@@ -116,7 +116,7 @@ const server = http.createServer((req, res) => {
 // read cats from JSON file
 async function showCatsFromJson() {
     try {
-        const catsJson = await fs.readFile('./catsDatabase.json', { encoding: 'utf-8' });
+        const catsJson = await fs.readFile('./data/catsDatabase.json', { encoding: 'utf-8' });
         cats = JSON.parse(catsJson);
     } catch (err) {
         console.log(err.message);
@@ -127,7 +127,7 @@ async function showCatsFromJson() {
 async function addNewCatsToJson() {
     try {
         const catsData = JSON.stringify(cats, null, 2);
-        await fs.writeFile('./catsDatabase.json', catsData, 'utf-8');
+        await fs.writeFile('./data/catsDatabase.json', catsData, 'utf-8');
     } catch (err) {
         console.log(err.message);
     }
@@ -136,7 +136,7 @@ async function addNewCatsToJson() {
 // read breeds from JSON file
 async function showBreedsFromJson() {
     try {
-        const breedsJson = await fs.readFile('./breedsDatabase.json', { encoding: 'utf-8' });
+        const breedsJson = await fs.readFile('./data/breedsDatabase.json', { encoding: 'utf-8' });
         breeds = JSON.parse(breedsJson);
     } catch (err) {
         console.log(err.message);
@@ -147,7 +147,7 @@ async function showBreedsFromJson() {
 async function addBreedsToJson() {
     try {
         const breedsData = JSON.stringify(breeds, null, 2);
-        await fs.writeFile('./breedsDatabase.json', breedsData, 'utf-8');
+        await fs.writeFile('./data/breedsDatabase.json', breedsData, 'utf-8');
     } catch (err) {
         console.log(err.message);
     }
