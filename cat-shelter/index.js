@@ -60,7 +60,7 @@ const server = http.createServer((req, res) => {
             addBreedsToJson();
 
             res.writeHead(302, {
-                location: '/cats/add-breed',
+                location: '/',
             });
             res.end();
         });
