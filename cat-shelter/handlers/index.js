@@ -1,3 +1,3 @@
-import { homeHadler } from './home.js';
+import homeHadler from './home.js';
 
 export default [homeHadler];
