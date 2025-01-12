@@ -1,14 +1,21 @@
 import http from 'http';
 import { v4 as uuid } from 'uuid';
 import fs from 'fs/promises';
+import hendlers from './handlers';
 
 const server = http.createServer((req, res) => {
-    res.writeHead(200, {
-        'content-type': 'text/plain',
-    });
+    for (let hendler of hendlers) {
+        if (!hendler(req, res)) {
+            break;
+        }
+    }
 
-    res.write('Hello WORLD!');
-    res.end();
+    // res.writeHead(200, {
+    //     'content-type': 'text/plain',
+    // });
+
+    // res.write('Hello WORLD!');
+    // res.end();
 });
 
 server.listen(4000);
