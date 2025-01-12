@@ -28,6 +28,8 @@ export const catHandler = (req, res) => {
             res.write(data);
             res.end();
         });
+    } else if (pathname === '/cats/add-cat' && req.method === 'POST') {
+        // TODO ...
     }
 
     // Showing ADD Breed HTML
@@ -46,6 +48,8 @@ export const catHandler = (req, res) => {
             res.write(data);
             res.end();
         });
+    } else if (pathname === '/cats/add-breed' && req.method === 'POST') {
+        let breedData = '';
     } else {
         return true;
     }
