@@ -25,7 +25,25 @@ export const catHandler = async (req, res) => {
             res.write('404 Not Found');
             res.end();
         }
-    } else if (pathname === '/cats/add-cat' && req.method === 'POST') {
+    }
+
+    // Showing ADD Breed HTML
+    if (pathname === '/cats/add-breed' && req.method === 'GET') {
+        try {
+            const filePath = path.normalize(path.join(__dirname, '../views/addBreed.html'));
+            const data = await fs.readFile(filePath);
+
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            res.end();
+        } catch (err) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.write('404 Not Found');
+            res.end();
+        }
+    }
+    // ADD NEW CATS to the market
+    if (pathname === '/cats/add-cat' && req.method === 'POST') {
         let body = '';
 
         req.on('data', (chunk) => {
@@ -56,21 +74,8 @@ export const catHandler = async (req, res) => {
         });
     }
 
-    // Showing ADD Breed HTML
-    if (pathname === '/cats/add-breed' && req.method === 'GET') {
-        try {
-            const filePath = path.normalize(path.join(__dirname, '../views/addBreed.html'));
-            const data = await fs.readFile(filePath);
-
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(data);
-            res.end();
-        } catch (err) {
-            res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.write('404 Not Found');
-            res.end();
-        }
-    } else if (pathname === '/cats/add-breed' && req.method === 'POST') {
+    // ADD NEW BREEDS
+    if (pathname === '/cats/add-breed' && req.method === 'POST') {
         let body = '';
 
         req.on('data', (chunk) => {
