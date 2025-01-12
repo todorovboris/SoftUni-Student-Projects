@@ -5,8 +5,8 @@ import path from 'path';
 function getContentType(url) {
     if (url.endsWith('css')) {
         return 'text/css';
-    } else if ('TODO...') {
-        // TODO...
+    } else if (url.endsWith('ico')) {
+        return 'text/ico';
     }
 }
 
