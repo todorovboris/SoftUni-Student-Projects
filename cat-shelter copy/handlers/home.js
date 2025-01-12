@@ -1,10 +1,15 @@
 import url from 'url';
 import fs from 'fs';
 import path from 'path';
-import cats from '../data/cats.json';
-import breeds from '../data/breeds.json';
+import { fileURLToPath } from 'url';
 
-export const handler = (req, res) => {
+const cats = JSON.parse(fs.readFileSync('./data/cats.json', 'utf-8'));
+const breeds = JSON.parse(fs.readFileSync('./data/breeds.json', 'utf-8'));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export const homeHandler = (req, res) => {
     const pathname = url.parse(req.url).pathname;
 
     // showing HOME html

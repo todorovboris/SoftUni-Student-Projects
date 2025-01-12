@@ -1,7 +1,7 @@
 import http from 'http';
 import { v4 as uuid } from 'uuid';
-import fs from 'fs/promises';
-import hendlers from './handlers';
+import fs from 'fs';
+import hendlers from './handlers/index.js';
 
 const server = http.createServer((req, res) => {
     for (let hendler of hendlers) {
