@@ -3,6 +3,7 @@ import fs from 'fs/promises'; // Използваме fs.promises за асин�
 import path from 'path';
 import { fileURLToPath } from 'url';
 import qs from 'querystring';
+import { v4 as uuid } from 'uuid';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,7 +26,34 @@ export const catHandler = async (req, res) => {
             res.end();
         }
     } else if (pathname === '/cats/add-cat' && req.method === 'POST') {
-        // TODO...
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', async () => {
+            const data = new URLSearchParams(body);
+
+            try {
+                const catsFromJson = await fs.readFile('./data/cats.json', { encoding: 'utf-8' });
+                const catsArr = JSON.parse(catsFromJson);
+
+                catsArr.push({
+                    id: uuid(),
+                    ...Object.fromEntries(data.entries()),
+                });
+                const catsData = JSON.stringify(catsArr, null, 2);
+                await fs.writeFile('./data/cats.json', catsData, { encoding: 'utf-8' });
+
+                res.writeHead(302, { location: '/' });
+                res.end();
+            } catch (err) {
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.write('Error saving cat data');
+                res.end();
+            }
+        });
     }
 
     // Showing ADD Breed HTML
@@ -46,7 +74,7 @@ export const catHandler = async (req, res) => {
         let body = '';
 
         req.on('data', (chunk) => {
-            body += chunk;
+            body += chunk.toString();
         });
 
         req.on('end', async () => {
@@ -54,12 +82,12 @@ export const catHandler = async (req, res) => {
 
             try {
                 const breedsFromJson = await fs.readFile('./data/breeds.json', { encoding: 'utf-8' });
-                const breeds = JSON.parse(breedsFromJson);
+                const breedsArr = JSON.parse(breedsFromJson);
 
-                breeds.push(data.breed);
-                const jsonData = JSON.stringify(breeds);
+                breedsArr.push(data.breed);
+                const breedsData = JSON.stringify(breedsArr, null, 2);
 
-                await fs.writeFile('./data/breeds.json', jsonData);
+                await fs.writeFile('./data/breeds.json', breedsData, { encoding: 'utf-8' });
 
                 res.writeHead(302, { location: '/' });
                 res.end();
