@@ -1,6 +1,5 @@
-export default () => `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,6 @@ export default () => `<!DOCTYPE html>
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <title>Cat Shelter</title>
 </head>
-
 <body>
     <header>
         <nav>
@@ -22,13 +20,20 @@ export default () => `<!DOCTYPE html>
         <h1>Cat Shelter</h1>
     </header>
     <main>
-        <form action="/cats/add-breed" method="POST" class="cat-form">
-            <h2>Add Cat Breed</h2>
-            <label for="breed-name">Breed Name</label>
-            <input name="breed" type="text" id="breed-name">
-            <button type="submit">Add Breed</button>
+        <form action="/cats/add-cat" method="POST" class="cat-form"
+            <h2>Add Cat</h2>
+            <label for="name">Name</label>
+            <input name="name" type="text" id="name">
+            <label for="description">Description</label>
+            <textarea name="description" id="description"></textarea>
+            <label for="image">Image Url</label>
+            <input name="imageUrl" type="text" id="image">
+            <label for="group">Breed</label>
+            <select name="breed" id="group">
+                ${breeds.map((breed) => breedHtml(breed)).join('\n')}
+			</select>
+            <button type="submit">Add Cat</button>
         </form>
     </main>
 </body>
-
-</html>`;
+</html>
