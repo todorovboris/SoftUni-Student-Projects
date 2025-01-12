@@ -43,20 +43,20 @@ export const catHandler = async (req, res) => {
             res.end();
         }
     } else if (pathname === '/cats/add-breed' && req.method === 'POST') {
-        let formData = '';
+        let body = '';
 
         req.on('data', (chunk) => {
-            formData += chunk;
+            body += chunk;
         });
 
         req.on('end', async () => {
-            let body = qs.parse(formData);
+            let data = qs.parse(body);
 
             try {
                 const breedsFromJson = await fs.readFile('./data/breeds.json', { encoding: 'utf-8' });
                 const breeds = JSON.parse(breedsFromJson);
 
-                breeds.push(body.breed);
+                breeds.push(data.breed);
                 const jsonData = JSON.stringify(breeds);
 
                 await fs.writeFile('./data/breeds.json', jsonData);
