@@ -4,10 +4,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import qs from 'querystring';
 import { v4 as uuid } from 'uuid';
-// import { breeds } from '../data/breeds.json';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const catsPath = path.resolve(__dirname, '../data/cats.json');
+const breedsPath = path.resolve(__dirname, '../data/breeds.json');
+
+const cats = JSON.parse(await fs.readFile(catsPath, 'utf-8'));
+const breeds = JSON.parse(await fs.readFile(breedsPath, 'utf-8'));
 
 export const catHandler = async (req, res) => {
     const pathname = url.parse(req.url).pathname;
@@ -18,15 +23,16 @@ export const catHandler = async (req, res) => {
             const filePath = path.normalize(path.join(__dirname, '../views/addCat.html'));
             const data = await fs.readFile(filePath);
 
-            let catBreedPlaceholder = data.map((breed) => `<option value="${breed}">${breed}</option>`);
-            let modifiedData = data.toString;
+            let catBreedPlaceholder = breeds.map((breed) => `<option value="${breed}">${breed}</option>`);
+            let modifiedData = data.toString().replace('{{catBreeds}}', catBreedPlaceholder);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(data);
+            // res.write(data);
+            res.write(modifiedData);
             res.end();
         } catch (err) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
-            res.write('404 Not Found');
+            res.write('404 Page Not Found');
             res.end();
         }
     }
