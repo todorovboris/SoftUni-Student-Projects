@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 export const catHandler = async (req, res) => {
     const pathname = url.parse(req.url).pathname;
 
-    // showing ADD CAT HTML
+    // Showing ADD CAT HTML
     if (pathname === '/cats/add-cat' && req.method === 'GET') {
         try {
             const filePath = path.normalize(path.join(__dirname, '../views/addCat.html'));
