@@ -8,7 +8,7 @@ import { v4 as uuid } from 'uuid';
 const addCatView = new URL('../views/addCat.html', import.meta.url);
 const addBreedView = new URL('../views/addBreed.html', import.meta.url);
 const editCatView = new URL('../views/editCat.html', import.meta.url);
-const deleteCatView = new URL('../views/catShelter.html', import.meta.url);
+const catShelterView = new URL('../views/catShelter.html', import.meta.url);
 
 const catsPath = new URL('../data/cats.json', import.meta.url);
 const breedsPath = new URL('../data/breeds.json', import.meta.url);
@@ -20,10 +20,10 @@ export const catHandler = async (req, res) => {
     // Showing ADD CAT Page
     if (req.url === '/cats/add-cat' && req.method === 'GET') {
         try {
-            const addCatHtmlData = await fs.readFile(addCatView, { encoding: 'utf-8' });
+            const htmlData = await fs.readFile(addCatView, { encoding: 'utf-8' });
 
             let catBreedPlaceholder = breeds.map((breed) => `<option value="${breed}">${breed}</option>`);
-            let modifiedData = addCatHtmlData.toString().replace('{{catBreeds}}', catBreedPlaceholder);
+            let modifiedData = htmlData.toString().replace('{{catBreeds}}', catBreedPlaceholder);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             // res.write(data);
@@ -39,10 +39,10 @@ export const catHandler = async (req, res) => {
     // Showing ADD Breed Page
     if (req.url === '/cats/add-breed' && req.method === 'GET') {
         try {
-            const addBreedHtmlData = await fs.readFile(addBreedView, { encoding: 'utf-8' });
+            const htmlData = await fs.readFile(addBreedView, { encoding: 'utf-8' });
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(addBreedHtmlData);
+            res.write(htmlData);
             res.end();
         } catch (err) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -116,22 +116,47 @@ export const catHandler = async (req, res) => {
     // Showing EDIT Cat Page
     if (req.url.includes('/cats-edit') && req.method === 'GET') {
         try {
-            const editCatHtmlData = await fs.readFile(editCatView, { encoding: 'utf-8' });
+            const htmlData = await fs.readFile(editCatView, { encoding: 'utf-8' });
 
             const catId = req.url.split('/').pop();
             const currentCat = cats.find((cat) => cat.id === catId);
 
-            let modifiedData = editCatHtmlData.toString().replace('{{id}}', catId);
+            let modifiedData = htmlData.toString().replace('{{id}}', catId);
             modifiedData = modifiedData.replace('{{name}}', currentCat.name);
             modifiedData = modifiedData.replace('{{description}}', currentCat.description);
             modifiedData = modifiedData.replace('{{imageUrl}}', currentCat.imageUrl);
 
             const breedsAsOptions = breeds.map((b) => `<option value="${b}">${b}</option>`);
             modifiedData = modifiedData.replace('{{catBreeds}}', breedsAsOptions.join('/'));
-            modifiedData = modifiedData.replace('{{breed}}', currentCat.breed);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(modifiedData);
+            res.end();
+        } catch (err) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.write('404 Page Not Found');
+            res.end();
+        }
+    }
+
+    // Showing Cat SHELTER Page
+    if (req.url.includes('/cats-find-new-home') && req.method === 'GET') {
+        try {
+            const htmlData = await fs.readFile(catShelterView, { encoding: 'utf-8' });
+
+            // const catId = req.url.split('/').pop();
+            // const currentCat = cats.find((cat) => cat.id === catId);
+
+            // let modifiedData = htmlData.toString().replace('{{id}}', catId);
+            // modifiedData = modifiedData.replace('{{name}}', currentCat.name);
+            // modifiedData = modifiedData.replace('{{description}}', currentCat.description);
+            // modifiedData = modifiedData.replace('{{imageUrl}}', currentCat.imageUrl);
+
+            // const breedsAsOptions = breeds.map((b) => `<option value="${b}">${b}</option>`);
+            // modifiedData = modifiedData.replace('{{catBreeds}}', breedsAsOptions.join('/'));
+
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(htmlData);
             res.end();
         } catch (err) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
