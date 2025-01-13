@@ -5,6 +5,8 @@ import { fileURLToPath } from 'url';
 import qs from 'querystring';
 import { v4 as uuid } from 'uuid';
 
+const viewsPath = new URL('../views/home/index.html', import.meta.url);
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -21,10 +23,10 @@ export const catHandler = async (req, res) => {
     if (pathname === '/cats/add-cat' && req.method === 'GET') {
         try {
             const filePath = path.normalize(path.join(__dirname, '../views/addCat.html'));
-            const data = await fs.readFile(filePath);
+            const addCatHtmlData = await fs.readFile(filePath);
 
             let catBreedPlaceholder = breeds.map((breed) => `<option value="${breed}">${breed}</option>`);
-            let modifiedData = data.toString().replace('{{catBreeds}}', catBreedPlaceholder);
+            let modifiedData = addCatHtmlData.toString().replace('{{catBreeds}}', catBreedPlaceholder);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             // res.write(data);
@@ -41,10 +43,10 @@ export const catHandler = async (req, res) => {
     if (pathname === '/cats/add-breed' && req.method === 'GET') {
         try {
             const filePath = path.normalize(path.join(__dirname, '../views/addBreed.html'));
-            const data = await fs.readFile(filePath);
+            const addBreedHtmlData = await fs.readFile(filePath);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write(data);
+            res.write(addBreedHtmlData);
             res.end();
         } catch (err) {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
@@ -62,7 +64,7 @@ export const catHandler = async (req, res) => {
         });
 
         req.on('end', async () => {
-            const data = new URLSearchParams(body);
+            const formData = new URLSearchParams(body);
 
             try {
                 const catsFromJson = await fs.readFile('./data/cats.json', { encoding: 'utf-8' });
@@ -70,7 +72,7 @@ export const catHandler = async (req, res) => {
 
                 catsArr.push({
                     id: uuid(),
-                    ...Object.fromEntries(data.entries()),
+                    ...Object.fromEntries(formData.entries()),
                 });
                 const catsData = JSON.stringify(catsArr, null, 2);
                 await fs.writeFile('./data/cats.json', catsData, { encoding: 'utf-8' });
@@ -94,13 +96,13 @@ export const catHandler = async (req, res) => {
         });
 
         req.on('end', async () => {
-            let data = qs.parse(body);
+            let formData = qs.parse(body);
 
             try {
                 const breedsFromJson = await fs.readFile('./data/breeds.json', { encoding: 'utf-8' });
                 const breedsArr = JSON.parse(breedsFromJson);
 
-                breedsArr.push(data.breed);
+                breedsArr.push(formData.breed);
                 const breedsData = JSON.stringify(breedsArr, null, 2);
 
                 await fs.writeFile('./data/breeds.json', breedsData, { encoding: 'utf-8' });
