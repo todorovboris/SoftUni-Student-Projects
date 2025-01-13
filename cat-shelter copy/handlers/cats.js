@@ -7,6 +7,8 @@ import { v4 as uuid } from 'uuid';
 
 const addCatView = new URL('../views/addCat.html', import.meta.url);
 const addBreedView = new URL('../views/addBreed.html', import.meta.url);
+const editCatView = new URL('../views/editCat.html', import.meta.url);
+const deleteCatView = new URL('../views/catShelter.html', import.meta.url);
 
 const catsPath = new URL('../data/cats.json', import.meta.url);
 const breedsPath = new URL('../data/breeds.json', import.meta.url);
@@ -112,8 +114,30 @@ export const catHandler = async (req, res) => {
     }
 
     // Showing EDIT Cat Page
-    if (req.url === '/cats-edit') {
-        //
+    if (req.url.includes('/cats-edit') && req.method === 'GET') {
+        try {
+            const editCatHtmlData = await fs.readFile(editCatView, { encoding: 'utf-8' });
+
+            const catId = req.url.split('/').pop();
+            const currentCat = cats.find((cat) => cat.id === catId);
+
+            let modifiedData = editCatHtmlData.toString().replace('{{id}}', catId);
+            modifiedData = modifiedData.replace('{{name}}', currentCat.name);
+            modifiedData = modifiedData.replace('{{description}}', currentCat.description);
+            modifiedData = modifiedData.replace('{{imageUrl}}', currentCat.imageUrl);
+
+            const breedsAsOptions = breeds.map((b) => `<option value="${b}">${b}</option>`);
+            modifiedData = modifiedData.replace('{{catBreeds}}', breedsAsOptions.join('/'));
+            modifiedData = modifiedData.replace('{{breed}}', currentCat.breed);
+
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(modifiedData);
+            res.end();
+        } catch (err) {
+            res.writeHead(404, { 'Content-Type': 'text/plain' });
+            res.write('404 Page Not Found');
+            res.end();
+        }
     }
 
     return true;

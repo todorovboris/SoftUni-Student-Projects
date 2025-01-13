@@ -10,7 +10,7 @@ const cats = JSON.parse(await fs.readFile(catsPath, 'utf-8'));
 export const homeHandler = async (req, res) => {
     if (req.url === '/' && req.method === 'GET') {
         try {
-            const homePageHtml = await fs.readFile(viewsPath, { encoding: 'utf-8' });
+            const homePageHtmlData = await fs.readFile(viewsPath, { encoding: 'utf-8' });
 
             const catsTemplate = cats
                 .map(
@@ -27,7 +27,7 @@ export const homeHandler = async (req, res) => {
                 )
                 .join('');
 
-            const modifiedHomePageHtml = homePageHtml.replace('{{cats}}', catsTemplate);
+            const modifiedHomePageHtml = homePageHtmlData.replace('{{cats}}', catsTemplate);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(modifiedHomePageHtml);
