@@ -5,16 +5,14 @@ import { fileURLToPath } from 'url';
 import qs from 'querystring';
 import { v4 as uuid } from 'uuid';
 
-const viewsPath = new URL('../views/home/index.html', import.meta.url);
+const addCatView = new URL('../views/addCat.html', import.meta.url);
+const addBreedView = new URL('../views/addBreed.html', import.meta.url);
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const catsPath = new URL('../data/cats.json', import.meta.url);
+const breedsPath = new URL('../data/breeds.json', import.meta.url);
 
-const catsPath = path.resolve(__dirname, '../data/cats.json');
-const breedsPath = path.resolve(__dirname, '../data/breeds.json');
-
-const cats = JSON.parse(await fs.readFile(catsPath, 'utf-8'));
-const breeds = JSON.parse(await fs.readFile(breedsPath, 'utf-8'));
+const cats = JSON.parse(await fs.readFile(catsPath, { encoding: 'utf-8' }));
+const breeds = JSON.parse(await fs.readFile(breedsPath, { encoding: 'utf-8' }));
 
 export const catHandler = async (req, res) => {
     const pathname = url.parse(req.url).pathname;
@@ -22,8 +20,7 @@ export const catHandler = async (req, res) => {
     // Showing ADD CAT HTML
     if (pathname === '/cats/add-cat' && req.method === 'GET') {
         try {
-            const filePath = path.normalize(path.join(__dirname, '../views/addCat.html'));
-            const addCatHtmlData = await fs.readFile(filePath);
+            const addCatHtmlData = await fs.readFile(addCatView, { encoding: 'utf-8' });
 
             let catBreedPlaceholder = breeds.map((breed) => `<option value="${breed}">${breed}</option>`);
             let modifiedData = addCatHtmlData.toString().replace('{{catBreeds}}', catBreedPlaceholder);
@@ -42,8 +39,7 @@ export const catHandler = async (req, res) => {
     // Showing ADD Breed HTML
     if (pathname === '/cats/add-breed' && req.method === 'GET') {
         try {
-            const filePath = path.normalize(path.join(__dirname, '../views/addBreed.html'));
-            const addBreedHtmlData = await fs.readFile(filePath);
+            const addBreedHtmlData = await fs.readFile(addBreedView, { encoding: 'utf-8' });
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(addBreedHtmlData);
