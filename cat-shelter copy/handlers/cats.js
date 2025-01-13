@@ -52,6 +52,7 @@ export const catHandler = async (req, res) => {
             res.end();
         }
     }
+
     // ADD NEW CATS to the market
     if (pathname === '/cats/add-cat' && req.method === 'POST') {
         let body = '';
