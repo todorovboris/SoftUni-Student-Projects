@@ -3,11 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const cats = JSON.parse(fs.readFileSync('./data/cats.json', 'utf-8'));
-const breeds = JSON.parse(fs.readFileSync('./data/breeds.json', 'utf-8'));
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const cats = JSON.parse(fs.readFileSync('./data/cats.json', 'utf-8'));
+const breeds = JSON.parse(fs.readFileSync('./data/breeds.json', 'utf-8'));
 
 export const homeHandler = (req, res) => {
     const pathname = url.parse(req.url).pathname;
