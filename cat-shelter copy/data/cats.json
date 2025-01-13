@@ -5,5 +5,12 @@
     "description": "from Jerry",
     "upload": "https://miro.medium.com/v2/resize:fit:646/1*BxTA9zYVYtTwwWdSm7drOw.jpeg",
     "breed": "Unknown Breed"
+  },
+  {
+    "id": "6dde96e9-cf1e-4a5b-9241-4cdb09466ced",
+    "name": "Pritty Kitty",
+    "description": "description",
+    "upload": "image",
+    "breed": "Persian cat"
   }
 ]

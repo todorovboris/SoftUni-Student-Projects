@@ -53,7 +53,7 @@ export const catHandler = async (req, res) => {
         }
     }
 
-    // ADD NEW CATS to the market
+    // ADD NEW CATS to the JSON
     if (pathname === '/cats/add-cat' && req.method === 'POST') {
         let body = '';
 
@@ -85,7 +85,7 @@ export const catHandler = async (req, res) => {
         });
     }
 
-    // ADD NEW BREEDS
+    // ADD NEW BREEDS to the JSON
     if (pathname === '/cats/add-breed' && req.method === 'POST') {
         let body = '';
 
