@@ -15,10 +15,8 @@ const cats = JSON.parse(await fs.readFile(catsPath, { encoding: 'utf-8' }));
 const breeds = JSON.parse(await fs.readFile(breedsPath, { encoding: 'utf-8' }));
 
 export const catHandler = async (req, res) => {
-    const pathname = url.parse(req.url).pathname;
-
-    // Showing ADD CAT HTML
-    if (pathname === '/cats/add-cat' && req.method === 'GET') {
+    // Showing ADD CAT Page
+    if (req.url === '/cats/add-cat' && req.method === 'GET') {
         try {
             const addCatHtmlData = await fs.readFile(addCatView, { encoding: 'utf-8' });
 
@@ -36,8 +34,8 @@ export const catHandler = async (req, res) => {
         }
     }
 
-    // Showing ADD Breed HTML
-    if (pathname === '/cats/add-breed' && req.method === 'GET') {
+    // Showing ADD Breed Page
+    if (req.url === '/cats/add-breed' && req.method === 'GET') {
         try {
             const addBreedHtmlData = await fs.readFile(addBreedView, { encoding: 'utf-8' });
 
@@ -52,7 +50,7 @@ export const catHandler = async (req, res) => {
     }
 
     // ADD NEW CATS to the JSON
-    if (pathname === '/cats/add-cat' && req.method === 'POST') {
+    if (req.url === '/cats/add-cat' && req.method === 'POST') {
         let body = '';
 
         req.on('data', (chunk) => {
@@ -84,7 +82,7 @@ export const catHandler = async (req, res) => {
     }
 
     // ADD NEW BREEDS to the JSON
-    if (pathname === '/cats/add-breed' && req.method === 'POST') {
+    if (req.url === '/cats/add-breed' && req.method === 'POST') {
         let body = '';
 
         req.on('data', (chunk) => {
@@ -111,7 +109,12 @@ export const catHandler = async (req, res) => {
                 res.end();
             }
         });
-    } else {
-        return true;
     }
+
+    // Showing EDIT Cat Page
+    if (req.url === '/cats-edit') {
+        //
+    }
+
+    return true;
 };
