@@ -123,8 +123,12 @@ export const catHandler = async (req, res) => {
             modifiedData = modifiedData.replaceAll('{{description}}', currentCat.description);
             modifiedData = modifiedData.replaceAll('{{imageUrl}}', currentCat.imageUrl);
 
-            const breedsAsOptions = breeds.map((b) => `<option value="${b}">${b}</option>`);
-            modifiedData = modifiedData.replaceAll('{{catBreeds}}', breedsAsOptions.join('/'));
+            const breedsAsOptions = breeds.map((b) => {
+                const isSelected = b === currentCat.breed ? 'selected' : '';
+                return `<option value="${b}" ${isSelected}>${b}</option>`;
+            });
+
+            modifiedData = modifiedData.replace('{{catBreeds}}', breedsAsOptions.join(''));
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(modifiedData);
