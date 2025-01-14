@@ -2,15 +2,15 @@ import url from 'url';
 import fs from 'fs/promises';
 import path from 'path';
 
-const viewsPath = new URL('../views/home/index.html', import.meta.url);
-
-const catsPath = new URL('../data/cats.json', import.meta.url);
-const cats = JSON.parse(await fs.readFile(catsPath, 'utf-8'));
+const homeView = new URL('../views/home/index.html', import.meta.url);
 
 export const homeHandler = async (req, res) => {
     if (req.url === '/' && req.method === 'GET') {
         try {
-            const homePageHtmlData = await fs.readFile(viewsPath, { encoding: 'utf-8' });
+            const htmlData = await fs.readFile(homeView, { encoding: 'utf-8' });
+
+            const catsPath = new URL('../data/cats.json', import.meta.url);
+            const cats = JSON.parse(await fs.readFile(catsPath, { encoding: 'utf-8' }));
 
             const catsTemplate = cats
                 .map(
@@ -27,7 +27,7 @@ export const homeHandler = async (req, res) => {
                 )
                 .join('');
 
-            const modifiedHomePageHtml = homePageHtmlData.replace('{{cats}}', catsTemplate);
+            const modifiedHomePageHtml = htmlData.replace('{{cats}}', catsTemplate);
 
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(modifiedHomePageHtml);
