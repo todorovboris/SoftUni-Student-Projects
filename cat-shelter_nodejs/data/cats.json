@@ -1,9 +1,23 @@
 [
   {
-    "id": "69d34321-f0ad-48d1-af6b-4b470ce0c99c",
-    "name": "Garfield",
-    "description": "Orange crazy cat",
-    "imageUrl": "https://www.slantmagazine.com/wp-content/uploads/2004/04/garfield.jpg",
+    "id": "8c4b43ad-a7de-4ddc-bef9-1cd2144acdaa",
+    "name": "Tommy",
+    "description": "Tommy is super cute, but he is homeless...",
+    "imageUrl": "https://i.pinimg.com/originals/fe/d3/c8/fed3c8cfcb335590b751964b13bc6f20.jpg",
+    "breed": "White Cat"
+  },
+  {
+    "id": "1547fe01-9350-4b9b-ad87-f7b12f532a2d",
+    "name": "Jerry",
+    "description": "Jerry is super cute, but he is homeless...\r\n\r\n",
+    "imageUrl": "https://t4.ftcdn.net/jpg/02/33/74/55/360_F_233745552_xg2EZEJelA2klKeVwMBNiv4OikfM31xq.jpg",
+    "breed": "Black Cat"
+  },
+  {
+    "id": "8d21ebbe-5600-4c94-8dca-f71d8d8673f9",
+    "name": "LeeRoy",
+    "description": "LeeRoy is super cute, but he is homeless...",
+    "imageUrl": "https://c4.wallpaperflare.com/wallpaper/180/138/508/cute-persian-kitty-wallpaper-thumb.jpg",
     "breed": "Persian cat"
   }
 ]
