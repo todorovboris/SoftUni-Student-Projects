@@ -1,6 +1,4 @@
-import url from 'url';
 import fs from 'fs/promises';
-import path from 'path';
 
 const homeView = new URL('../views/home/index.html', import.meta.url);
 
