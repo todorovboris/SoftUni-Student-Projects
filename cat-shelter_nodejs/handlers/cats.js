@@ -172,23 +172,15 @@ export const catHandler = async (req, res) => {
         });
 
         req.on('end', async () => {
+            const formData = new URLSearchParams(body);
+
             try {
-                // Parse the incoming form data
-                const formData = new URLSearchParams(body);
-
-                console.log('Form Data Received:', Object.fromEntries(formData.entries())); // Debugging: log the form data
-
-                // Read the current cats from JSON
                 const catsFromJson = await fs.readFile('./data/cats.json', { encoding: 'utf-8' });
                 const catsArr = JSON.parse(catsFromJson);
 
-                // Extract the cat ID from the URL
                 const catId = req.url.split('/').pop();
-                console.log('Cat ID from URL:', catId); // Debugging: log the cat ID
 
-                // Find the cat to edit
                 const catIndex = catsArr.findIndex((cat) => cat.id === catId);
-
                 if (catIndex === -1) {
                     res.writeHead(404, { 'Content-Type': 'text/plain' });
                     res.write('Cat not found');
@@ -196,28 +188,17 @@ export const catHandler = async (req, res) => {
                     return;
                 }
 
-                // Create the updated cat object
-                const updatedCat = {
-                    id: catId, // Retain the same ID
-                    name: formData.get('name') || catsArr[catIndex].name,
-                    description: formData.get('description') || catsArr[catIndex].description,
-                    breed: formData.get('breed') || catsArr[catIndex].breed,
-                    imageUrl: formData.get('imageUrl') || catsArr[catIndex].imageUrl,
+                catsArr[catIndex] = {
+                    ...catsArr[catIndex],
+                    ...Object.fromEntries(formData.entries()),
                 };
 
-                console.log('Updated Cat Object:', updatedCat); // Debugging: log the updated cat object
-
-                // Replace the existing cat in the array
-                catsArr[catIndex] = updatedCat;
-
-                // Write the updated cats array back to the JSON file
                 const catsData = JSON.stringify(catsArr, null, 2);
                 await fs.writeFile('./data/cats.json', catsData, { encoding: 'utf-8' });
 
                 res.writeHead(302, { location: '/' });
                 res.end();
             } catch (err) {
-                console.error('Error:', err); // Debugging: log the error
                 res.writeHead(500, { 'Content-Type': 'text/plain' });
                 res.write('Error saving cat data');
                 res.end();
