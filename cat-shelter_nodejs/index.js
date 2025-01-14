@@ -7,13 +7,6 @@ const server = http.createServer((req, res) => {
             break;
         }
     }
-
-    // res.writeHead(200, {
-    //     'content-type': 'text/plain',
-    // });
-
-    // res.write('Hello WORLD!');
-    // res.end();
 });
 
 server.listen(4000);
