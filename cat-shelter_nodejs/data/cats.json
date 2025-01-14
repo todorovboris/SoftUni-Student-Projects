@@ -5,12 +5,5 @@
     "description": "Orange crazy cat",
     "imageUrl": "https://www.slantmagazine.com/wp-content/uploads/2004/04/garfield.jpg",
     "breed": "Persian cat"
-  },
-  {
-    "id": "b14471e9-ce16-4cc0-a4c6-0d3f7f00700c",
-    "name": "Tom and Jerry",
-    "description": "Child animation",
-    "imageUrl": "https://static.vecteezy.com/system/resources/previews/022/024/539/non_2x/tom-and-jerry-cartoon-free-vector.jpg",
-    "breed": "Unknown Breed"
   }
 ]
