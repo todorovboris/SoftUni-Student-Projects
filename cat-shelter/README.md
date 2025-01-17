@@ -1,6 +1,6 @@
 # Overview
 
-- It is JS Back-End student project, which allows us to practice and upgrade our skills with express
+- It is a JS Back-End student project, which allows us to practice and upgrade our skills with express
 - "Cat Shelter" is a very simple cat catalog that shows the "database" (JSON file) of some cat shelter and everyone (registration is not required) user can be their potential owner. The application will consist of the basic CRUD operations (Create cat, Read cat, Update cat and Delete cat). Each cat has a name, description, image and breed.
 
 
