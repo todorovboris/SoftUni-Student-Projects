@@ -1,5 +1,6 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
+import movies from './data/movies.js';
 
 const app = express();
 app.listen(5001, () => console.log('Server is listening on http://localhost:5001...'));
@@ -10,7 +11,7 @@ app.set('views', './src/views');
 app.use('/static', express.static('src/public'));
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home', { movies });
 });
 
 app.get('/about', (req, res) => {
@@ -22,7 +23,7 @@ app.get('/create', (req, res) => {
 });
 
 app.get('/search', (req, res) => {
-    res.render('search');
+    res.render('search', { movies });
 });
 
 app.get('*', (req, res) => {
