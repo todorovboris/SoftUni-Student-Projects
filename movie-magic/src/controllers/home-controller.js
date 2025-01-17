@@ -3,10 +3,6 @@ import movies from '../config/movies.js';
 
 const router = Router();
 
-router.get('/modular-router', (req, res) => {
-    res.send('WORKS!');
-});
-
 router.get('/', (req, res) => {
     res.render('home', { movies });
 });
