@@ -1,7 +1,7 @@
 export default [
     {
         id: 1,
-        name: 'Jungle Cuise',
+        title: 'Jungle Cuise',
         category: 'Movie',
         genre: 'Adventure',
         directror: 'Jaume Collet-Serra',
@@ -13,7 +13,7 @@ export default [
     },
     {
         id: 2,
-        name: 'The Little Mermaid',
+        title: 'The Little Mermaid',
         category: 'Movie',
         genre: 'Fantasy',
         directror: 'Rob Marshall',
@@ -25,7 +25,7 @@ export default [
     },
     {
         id: 3,
-        name: 'Home Alone',
+        title: 'Home Alone',
         category: 'Movie',
         genre: 'Comedy',
         directror: 'Chris Columbus',
