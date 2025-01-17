@@ -1,6 +1,6 @@
 # Overview
 
-- It is a JS back-end student project, which main goal is to practice creating a server, using 'http' module (WITHOUT Express and templating); basic communication between client and server
+- It is the same JS Back-End student project, BUT the main goal is to practice creating a server, using 'http' module (WITHOUT Express and templating); basic communication between client and server
 - "Cat Shelter" is a very simple cat catalog that shows the "database" (JSON file) of some cat shelter and everyone (registration is not required) user can be their potential owner. The application will consist of the basic CRUD operations (Create cat, Read cat, Update cat and Delete cat). Each cat has a name, description, image and breed.
 
 
