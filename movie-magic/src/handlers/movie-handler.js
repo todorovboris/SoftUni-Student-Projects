@@ -1,9 +1,18 @@
 import movies from '../config/movies.js';
 
-export function getMovie(movieId) {
-    // TODO: if movie is missing
+export default {
+    getOneMovie(movieId) {
+        // TODO: if movie is missing
 
-    const movie = movies.find((movie) => movie.id == movieId);
+        const movie = movies.find((movie) => Number(movie.id) === Number(movieId));
 
-    return movie;
-}
+        return movie;
+    },
+};
+// export function getMovie(movieId) {
+//     // TODO: if movie is missing
+
+//     const movie = movies.find((movie) => Number(movie.id) === Number(movieId));
+
+//     return movie;
+// }

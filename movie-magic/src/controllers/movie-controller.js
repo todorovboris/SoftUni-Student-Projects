@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getMovie } from '../handlers/movie-handler.js';
+import movieHandler from '../handlers/movie-handler.js';
 
 const movieController = Router();
 
@@ -9,7 +9,7 @@ movieController.get('/create', (req, res) => {
 
 movieController.get('/:movieId/details', (req, res) => {
     const movieId = req.params.movieId;
-    const movie = getMovie(movieId);
+    const movie = movieHandler.getOneMovie(movieId);
 
     res.render('details', movie);
 });
