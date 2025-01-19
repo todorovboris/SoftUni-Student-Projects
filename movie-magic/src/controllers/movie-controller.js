@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import movies from '../config/movies.js';
+import { getMovie } from '../handlers/movie-handler.js';
 
 const movieController = Router();
 
@@ -7,8 +7,11 @@ movieController.get('/create', (req, res) => {
     res.render('create');
 });
 
-movieController.get('/search', (req, res) => {
-    res.render('search', { movies });
+movieController.get('/:movieId/details', (req, res) => {
+    const movieId = req.params.movieId;
+    const movie = getMovie(movieId);
+
+    res.render('details', movie);
 });
 
 export default movieController;
