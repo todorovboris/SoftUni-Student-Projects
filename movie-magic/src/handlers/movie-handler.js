@@ -6,8 +6,11 @@ export default {
         return movies;
     },
     getOneMovie(movieId) {
-        // TODO: if movie is missing
         const movie = movies.find((movie) => movie.id == movieId);
+
+        if (!movie) {
+            return { title: 'No Movie Found!' };
+        }
 
         return movie;
     },
@@ -21,10 +24,3 @@ export default {
         return newId;
     },
 };
-// export function getMovie(movieId) {
-//     // TODO: if movie is missing
-
-//     const movie = movies.find((movie) => Number(movie.id) === Number(movieId));
-
-//     return movie;
-// }
