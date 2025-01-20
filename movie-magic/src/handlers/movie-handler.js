@@ -2,8 +2,14 @@ import { v4 as uuid } from 'uuid';
 import movies from '../config/movies.js';
 
 export default {
-    getAllMovies() {
-        return movies;
+    getAllMovies(filter = {}) {
+        let result = movies;
+
+        if (filter.search) {
+            result = result.filter((movie) => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
+        }
+
+        return result;
     },
     getOneMovie(movieId) {
         const movie = movies.find((movie) => movie.id == movieId);

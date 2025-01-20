@@ -12,8 +12,4 @@ router.get('/about', (req, res) => {
     res.render('about');
 });
 
-router.get('/search', (req, res) => {
-    res.render('search', { movies });
-});
-
 export default router;
