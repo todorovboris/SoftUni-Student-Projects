@@ -1,7 +1,7 @@
 export default [
     {
         id: '122bd8d1-51bc-4e13-afb6-6845318718p4',
-        title: 'Jungle Cuise',
+        title: 'Jungle Cruise',
         category: 'movie',
         genre: 'Adventure',
         director: 'Jaume Collet-Serra',
