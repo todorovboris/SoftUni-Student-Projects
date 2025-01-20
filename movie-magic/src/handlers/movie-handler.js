@@ -2,6 +2,9 @@ import { v4 as uuid } from 'uuid';
 import movies from '../config/movies.js';
 
 export default {
+    getAllMovies() {
+        return movies;
+    },
     getOneMovie(movieId) {
         // TODO: if movie is missing
         const movie = movies.find((movie) => movie.id == movieId);

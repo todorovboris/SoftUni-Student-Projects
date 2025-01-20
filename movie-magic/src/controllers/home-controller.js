@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import movies from '../config/movies.js';
+import movieHandler from '../handlers/movie-handler.js';
 
 const router = Router();
+const movies = movieHandler.getAllMovies();
 
 router.get('/', (req, res) => {
     res.render('home', { movies });
