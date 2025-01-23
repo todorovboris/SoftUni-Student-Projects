@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-// import movies from '../config/movies.js';
+import movies from '../config/movies.js';
 import Movie from '../models/Movie.js';
 
 export default {
