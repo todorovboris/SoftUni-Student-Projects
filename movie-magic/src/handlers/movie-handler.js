@@ -21,7 +21,6 @@ export default {
         return allMovies;
     },
     getOneMovie(movieId) {
-        // const movie = movies.find((movie) => movie.id == movieId);
         const movie = Movie.findById(movieId);
 
         return movie;
