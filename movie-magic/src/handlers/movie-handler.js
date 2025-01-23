@@ -4,21 +4,23 @@ import Movie from '../models/Movie.js';
 
 export default {
     getAllMovies(filter = {}) {
-        let allMovies = Movie.find({});
+        let moviesQuery = Movie.find({});
 
-        // if (filter.search) {
-        //     result = result.filter((movie) => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
-        // }
+        if (filter.search) {
+            // TODO: fix partial case insensitive search
+            moviesQuery = moviesQuery.where({ title: filter.search });
+        }
 
-        // if (filter.genre) {
-        //     result = result.filter((movie) => movie.genre.toLowerCase().includes(filter.genre.toLowerCase()));
-        // }
+        if (filter.genre) {
+            // TODO: fix partial case insensitive search
+            moviesQuery = moviesQuery.where({ genre: { $in: filter.genre } });
+        }
 
-        // if (filter.year) {
-        //     result = result.filter((movie) => movie.year === filter.year);
-        // }
+        if (filter.year) {
+            moviesQuery = moviesQuery.where({ year: Number(filter.year) });
+        }
 
-        return allMovies;
+        return moviesQuery;
     },
     getOneMovie(movieId) {
         const movie = Movie.findById(movieId);
