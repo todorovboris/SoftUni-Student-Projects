@@ -8,7 +8,7 @@ import showRatingHelper from './helpers/rating-helper.js';
 const app = express();
 app.listen(5001, () => console.log('Server is listening on http://localhost:5001...'));
 
-// !DB config
+// !db config
 try {
     const uri = 'mongodb://localhost:27017/movie-magic';
     await mongoose.connect(uri);
@@ -18,7 +18,7 @@ try {
     console.console.error(err.message);
 }
 
-// !Handlebars config
+// !handlebars config
 app.engine(
     'hbs',
     handlebars.engine({
