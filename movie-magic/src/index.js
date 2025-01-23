@@ -23,7 +23,9 @@ app.engine(
     'hbs',
     handlebars.engine({
         extname: 'hbs',
-        helpers: { showRating: showRatingHelper },
+        helpers: {
+            showRating: showRatingHelper,
+        },
     })
 ); // what are the extensions of pages and { layouts }; add express helpers for custom logics
 app.set('view engine', 'hbs'); // set the default engine of the app
