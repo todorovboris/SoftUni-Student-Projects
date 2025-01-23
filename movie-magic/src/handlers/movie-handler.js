@@ -4,7 +4,7 @@ import Movie from '../models/Movie.js';
 
 export default {
     getAllMovies(filter = {}) {
-        // let result = Movie.find({});
+        let allMovies = Movie.find({});
 
         // if (filter.search) {
         //     result = result.filter((movie) => movie.title.toLowerCase().includes(filter.search.toLowerCase()));
@@ -18,14 +18,11 @@ export default {
         //     result = result.filter((movie) => movie.year === filter.year);
         // }
 
-        return Movie.find({});
+        return allMovies;
     },
     getOneMovie(movieId) {
-        const movie = movies.find((movie) => movie.id == movieId);
-
-        if (!movie) {
-            return { title: 'No Movie Found!' };
-        }
+        // const movie = movies.find((movie) => movie.id == movieId);
+        const movie = Movie.findById(movieId);
 
         return movie;
     },

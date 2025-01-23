@@ -4,10 +4,7 @@ import movieHandler from '../handlers/movie-handler.js';
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const movies = await movieHandler.getAllMovies().lean();
-
-    // *1 => Convert document to plain object
-    // const plainMovies = movies.map((m) => m.toObject());
+    const movies = await movieHandler.getAllMovies();
 
     res.render('home', { movies });
 });
