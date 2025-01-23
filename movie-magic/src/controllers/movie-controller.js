@@ -7,9 +7,9 @@ movieController.get('/create', (req, res) => {
     res.render('create');
 });
 
-movieController.post('/create', (req, res) => {
+movieController.post('/create', async (req, res) => {
     const newMovie = req.body; // create object with the data from THE FORM of the POST REQUEST
-    movieHandler.createMovie(newMovie);
+    await movieHandler.createMovie(newMovie);
 
     res.redirect('/');
 });
