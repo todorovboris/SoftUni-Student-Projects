@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import movieHandler from '../handlers/movie-handler.js';
+import castHandler from '../handlers/cast-handler.js';
 
 const movieController = Router();
 
@@ -26,6 +27,14 @@ movieController.get('/search', async (req, res) => {
     const movies = await movieHandler.getAllMovies(filter);
 
     res.render('search', { movies, filter });
+});
+
+movieController.get('/:movieId/cast-attach', async (req, res) => {
+    const movieId = req.params.movieId;
+    const movie = await movieHandler.getOneMovie(movieId);
+    const casts = await castHandler.getAllCasts();
+
+    res.render('movie/cast-attach', { movie, casts });
 });
 
 export default movieController;

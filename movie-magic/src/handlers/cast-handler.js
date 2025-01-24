@@ -9,4 +9,9 @@ export default {
 
         return newCastPromise;
     },
+
+    async getAllCasts() {
+        let castsQuery = Cast.find({});
+        return castsQuery;
+    },
 };
