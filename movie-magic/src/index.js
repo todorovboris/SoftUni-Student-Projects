@@ -1,6 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoose from 'mongoose';
+import 'dotenv/config';
 
 import routes from './routes.js';
 import showRatingHelper from './helpers/rating-helper.js';
@@ -10,8 +11,9 @@ app.listen(5001, () => console.log('Server is listening on http://localhost:5001
 
 // !db config
 try {
-    const uri = 'mongodb://localhost:27017/movie-magic';
-    await mongoose.connect(uri);
+    const localUri = 'mongodb://localhost:27017/movie-magic';
+    const uri = process.env.DATABASE_URI; // !using the ENVIREMENT VARIABLES
+    await mongoose.connect(uri ?? localUri);
     console.log('DB Connected Successfully!');
 } catch (err) {
     console.log('Cannot connect to DB!');
