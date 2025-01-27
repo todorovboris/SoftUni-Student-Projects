@@ -21,8 +21,7 @@ export default {
         return moviesQuery;
     },
     getOneMovie(movieId) {
-        const movie = Movie.findById(movieId);
-
+        const movie = Movie.findById(movieId).populate('casts'); // ppopulate is function for invoking the information for related cats of each movie
         return movie;
     },
     async createMovie(movieData) {
