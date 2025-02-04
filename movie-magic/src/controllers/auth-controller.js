@@ -12,7 +12,7 @@ authController.post('/register', async (req, res) => {
 
     await authHandler.register(userData);
 
-    res.redirect('/');
+    res.redirect('/auth/login');
 });
 
 export default authController;
