@@ -32,7 +32,7 @@ export default {
             _id: user._id,
             email: user.email,
         };
-        const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '2h' });
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '2h' });
 
         //* return token
         return token;

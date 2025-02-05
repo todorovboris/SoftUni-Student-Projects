@@ -1,0 +1,22 @@
+import jwt from 'jsonwebtoken';
+
+export const authMiddleware = (req, res, next) => {
+    //* Get token
+    const token = req.cookies['auth'];
+
+    if (!token) {
+        return next();
+    }
+
+    //* Validate token
+    try {
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+        //* Attach decoded token to request
+        req.user = decodedToken;
+
+        next();
+    } catch (err) {
+        // TODO: Invalid token
+    }
+};

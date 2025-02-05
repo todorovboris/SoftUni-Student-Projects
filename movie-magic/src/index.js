@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 
 import routes from './routes.js';
+import { authMiddleware } from './middlewares/auth-middleware.js';
 import showRatingHelper from './helpers/rating-helper.js';
 
 const app = express();
@@ -41,6 +42,7 @@ app.set('views', './src/views'); // set-up where to search the template pages
 app.use('/static', express.static('src/public')); // learn express where to search for the static files(images, css, etc...)
 app.use(express.urlencoded({ extended: false })); // learn express to parse form data
 app.use(cookieParser());
+app.use(authMiddleware);
 
 // !routes setup
 app.use(routes);
