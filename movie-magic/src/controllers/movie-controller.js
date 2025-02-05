@@ -19,8 +19,7 @@ movieController.post('/create', async (req, res) => {
 movieController.get('/:movieId/details', async (req, res) => {
     const movieId = req.params.movieId; // take the query parameters
     const movie = await movieHandler.getOneMovie(movieId);
-
-    const isCreator = movie.creator.toString() === req.user._id;
+    const isCreator = movie.creator.equals(req.user?._id);
 
     res.render('movie/details', { movie, isCreator });
 });
