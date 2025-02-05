@@ -1,6 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import mongoose from 'mongoose';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 
 import routes from './routes.js';
@@ -39,6 +40,7 @@ app.set('views', './src/views'); // set-up where to search the template pages
 // !express config
 app.use('/static', express.static('src/public')); // learn express where to search for the static files(images, css, etc...)
 app.use(express.urlencoded({ extended: false })); // learn express to parse form data
+app.use(cookieParser());
 
 // !routes setup
 app.use(routes);

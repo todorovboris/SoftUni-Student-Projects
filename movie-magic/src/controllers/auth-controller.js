@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
+import cookieParser from 'cookie-parser';
 
 const authController = Router();
 
@@ -29,7 +30,6 @@ authController.post('/login', async (req, res) => {
 
     try {
         const token = await authHandler.login(email, password);
-        console.log(token);
     } catch (err) {
         console.log(err.message);
         return res.redirect('/404');
