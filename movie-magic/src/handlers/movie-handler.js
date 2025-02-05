@@ -24,11 +24,12 @@ export default {
         const movie = Movie.findById(movieId).populate('casts'); // ppopulate is function for invoking the information for related cats of each movie
         return movie;
     },
-    async createMovie(movieData) {
+    async createMovie(movieData, creatorId) {
         const newMoviePromise = Movie.create({
             ...movieData,
             rating: Number(movieData.rating),
             year: Number(movieData.year),
+            creator: creatorId,
         });
 
         return newMoviePromise;
