@@ -23,3 +23,12 @@ export const authMiddleware = (req, res, next) => {
         res.redirect('/auth/login');
     }
 };
+
+//! Route Guard
+export const isAuth = (req, res, next) => {
+    if (!req.user) {
+        return res.redirect('/404');
+    }
+
+    next();
+};
