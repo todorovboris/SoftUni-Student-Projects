@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import movieHandler from '../handlers/movie-handler.js';
 import castHandler from '../handlers/cast-handler.js';
+import getCategoriesViewData from '../helpers/categoriesViewData.js';
 
 const movieController = Router();
 
@@ -63,7 +64,9 @@ movieController.get('/:movieId/edit', async (req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieHandler.getOneMovie(movieId);
 
-    res.render('movie/edit', { movie });
+    const categories = getCategoriesViewData(movie.category);
+
+    res.render('movie/edit', { movie, categories });
 });
 
 export default movieController;
