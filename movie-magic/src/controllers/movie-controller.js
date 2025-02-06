@@ -6,7 +6,7 @@ import getCategoriesViewData from '../helpers/categoriesViewData.js';
 const movieController = Router();
 
 movieController.get('/create', (req, res) => {
-    res.render('create');
+    res.render('create', { pageTitle: 'Create Movie' });
 });
 
 movieController.post('/create', async (req, res) => {
@@ -22,7 +22,7 @@ movieController.get('/:movieId/details', async (req, res) => {
     const movie = await movieHandler.getOneMovie(movieId);
     const isCreator = movie.creator.equals(req.user?._id);
 
-    res.render('movie/details', { movie, isCreator });
+    res.render('movie/details', { movie, isCreator, pageTitle: movie.title });
 });
 
 movieController.get('/search', async (req, res) => {
