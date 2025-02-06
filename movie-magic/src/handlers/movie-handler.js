@@ -5,13 +5,11 @@ export default {
         let moviesQuery = Movie.find({});
 
         if (filter.search) {
-            // TODO: fix partial case insensitive search
-            moviesQuery = moviesQuery.where({ title: filter.search });
+            moviesQuery = moviesQuery.where({ title: { $regex: filter.search, $options: 'i' } });
         }
 
         if (filter.genre) {
-            // TODO: fix partial case insensitive search
-            moviesQuery = moviesQuery.where({ genre: { $in: filter.genre } });
+            moviesQuery = moviesQuery.where({ genre: { $regex: filter.genre, $options: 'i' } });
         }
 
         if (filter.year) {
