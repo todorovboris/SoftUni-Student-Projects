@@ -4,7 +4,9 @@ import { isAuth } from '../middlewares/auth-middleware.js';
 
 const castController = Router();
 
-castController.get('/create', isAuth, (req, res) => {
+castController.use(isAuth);
+
+castController.get('/create', (req, res) => {
     res.render('cast/create', { pageTitle: 'Create Cast' });
 });
 
