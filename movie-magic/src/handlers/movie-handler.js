@@ -44,7 +44,10 @@ export default {
         // *Attach #2
         return Movie.findByIdAndUpdate(movieId, { $push: { casts: castId } }); //*mongoDb
     },
-    async delete(movieId) {
+    delete(movieId) {
         return Movie.findByIdAndDelete(movieId);
+    },
+    update(movieId, movieData) {
+        return Movie.findByIdAndUpdate(movieId, movieData);
     },
 };
