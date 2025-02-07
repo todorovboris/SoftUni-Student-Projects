@@ -2,14 +2,46 @@ import { Schema, model, Types } from 'mongoose';
 
 // !Create Schema
 const movieSchema = new Schema({
-    title: String,
+    title: {
+        type: String,
+        required: [true, 'Title is required!'], //! default value is FALSE
+        minLength: [5, 'Title should be at least 5 characters long!'],
+        maxLength: 100,
+        match: [/^[a-zA-Z0-9 ]+$/, 'Title should includes alphanumeric, digits and whitespaces symbols only!'],
+    },
     category: String,
-    genre: String,
-    director: String,
-    year: Number,
-    imageUrl: String,
-    rating: Number,
-    description: String,
+    genre: {
+        type: String,
+        required: [true, 'Genre is required!'],
+        minLength: [5, 'Genre should be at least 5 characters long!'],
+        maxLength: 100,
+        match: [/^[a-zA-Z0-9 ]+$/, 'Genre should includes alphanumeric, digits and whitespaces symbols only!'],
+    },
+    director: {
+        type: String,
+        minLength: [5, 'Director should be at least 5 characters long!'],
+        maxLength: 100,
+        match: [/^[a-zA-Z0-9 ]+$/, 'Director should includes alphanumeric, digits and whitespaces symbols only!'],
+    },
+    year: {
+        type: Number,
+        min: 1900,
+        max: 2025,
+    },
+    imageUrl: {
+        type: String,
+        match: [/^https?:\/\//, 'Image URL should start with http:// or https://...'],
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+    },
+    description: {
+        type: String,
+        minLength: [20, 'Description should be at least 20 characters long!'],
+        match: [/^[a-zA-Z0-9 ]+$/, 'Description should includes alphanumeric, digits and whitespaces symbols only!'],
+    },
     casts: [
         {
             type: Types.ObjectId,
