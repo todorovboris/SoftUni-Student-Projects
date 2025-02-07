@@ -19,7 +19,7 @@ const movieSchema = new Schema({
         required: [true, 'Genre is required!'],
         minLength: [5, 'Genre should be at least 5 characters long!'],
         maxLength: 100,
-        match: [/^[a-zA-Z0-9 ]+$/, 'Genre should includes alphanumeric, digits and whitespaces symbols only!'],
+        match: [/^[a-zA-Z0-9, ]+$/, 'Genre should includes alphanumeric, digits and whitespaces symbols only!'],
     },
     director: {
         type: String,
@@ -39,12 +39,12 @@ const movieSchema = new Schema({
     rating: {
         type: Number,
         min: 1,
-        max: 5,
+        max: 10,
     },
     description: {
         type: String,
         minLength: [20, 'Description should be at least 20 characters long!'],
-        match: [/^[a-zA-Z0-9 ]+$/, 'Description should includes alphanumeric, digits and whitespaces symbols only!'],
+        match: [/^[a-zA-Z0-9,.\- ]+$/, 'Description should includes alphanumeric, digits and whitespaces symbols only!'],
     },
     casts: [
         {

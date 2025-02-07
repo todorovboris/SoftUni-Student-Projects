@@ -84,12 +84,11 @@ movieController.get('/:movieId/edit', isAuth, async (req, res) => {
 movieController.post('/:movieId/edit', async (req, res) => {
     const movieData = req.body;
     const movieID = req.params.movieId;
-    const creatorId = req.user?._id;
 
     try {
         await movieHandler.update(movieID, movieData);
     } catch (err) {
-        return res.render('/:movieId/edit', { error: getErrorMessage(err) });
+        return res.render('movie/edit', { movie: movieData, error: getErrorMessage(err) });
     }
 
     res.redirect(`/movies/${movieID}/details`);
