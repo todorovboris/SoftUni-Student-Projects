@@ -5,6 +5,17 @@ import 'dotenv/config';
 
 export default {
     async register(userData) {
+        //* Validation if email exists
+        const userCount = await User.countDocuments({ email: userData.email });
+        if (userCount > 0) {
+            throw new Error('Email already exists!');
+        }
+
+        //* Validation if password and repeat-password match - check in Model User for other solution!
+        // if (userData.password !== userData.rePassword) {
+        //     throw new Error('Passowrd do not match!');
+        // }
+
         //! if hash the password in the handler
         // const { email, password } = userData;
         // const salt = await bcrypt.genSalt(10);

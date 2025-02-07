@@ -15,6 +15,13 @@ const userSchema = new Schema({
     },
 });
 
+//! Validation if password and rePassword match on Model level - set virtual property:
+userSchema.virtual('rePassword').set(function (rePass) {
+    if (rePass !== this.password) {
+        throw new Error('Password do not match!');
+    }
+});
+
 userSchema.pre('save', async function () {
     // TODO: fix update user big
     this.password = await bcrypt.hash(this.password, 10);
