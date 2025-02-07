@@ -7,11 +7,13 @@ const userSchema = new Schema({
         unique: true,
         match: /\@[a-zA-Z0-9]+.[a-zA-Z0-9]+$/,
         minLength: 10,
+        lowercase: true, // Sanitizer
     },
     password: {
         type: String,
-        minLength: 6,
+        minLength: [6, 'Password should be at least 6 charecters!'],
         match: /^[a-zA-Z0-9]+$/,
+        trim: true, // Sanitizer
     },
 });
 

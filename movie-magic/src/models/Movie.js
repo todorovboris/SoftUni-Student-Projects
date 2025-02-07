@@ -9,7 +9,11 @@ const movieSchema = new Schema({
         maxLength: 100,
         match: [/^[a-zA-Z0-9 ]+$/, 'Title should includes alphanumeric, digits and whitespaces symbols only!'],
     },
-    category: String,
+    category: {
+        type: String,
+        required: true,
+        enum: ['tv-show', 'animation', 'movie', 'documentary', 'short-film'], //! enum => should be one from the presented values
+    },
     genre: {
         type: String,
         required: [true, 'Genre is required!'],
