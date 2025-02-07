@@ -88,7 +88,9 @@ movieController.post('/:movieId/edit', async (req, res) => {
     try {
         await movieHandler.update(movieID, movieData);
     } catch (err) {
-        return res.render('movie/edit', { movie: movieData, error: getErrorMessage(err) });
+        const categories = getCategoriesViewData(movieData.category);
+
+        return res.render('movie/edit', { movie: movieData, categories, error: getErrorMessage(err) });
     }
 
     res.redirect(`/movies/${movieID}/details`);
