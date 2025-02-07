@@ -3,6 +3,7 @@ import movieHandler from '../handlers/movie-handler.js';
 import castHandler from '../handlers/cast-handler.js';
 import getCategoriesViewData from '../helpers/categoriesViewData.js';
 import { isAuth } from '../middlewares/auth-middleware.js';
+import { getErrorMessage } from '../utils/error-utils.js';
 
 const movieController = Router();
 
@@ -13,7 +14,12 @@ movieController.get('/create', isAuth, (req, res) => {
 movieController.post('/create', async (req, res) => {
     const movieData = req.body; // create object with the data from THE FORM of the POST REQUEST
     const creatorId = req.user?._id;
-    await movieHandler.createMovie(movieData, creatorId);
+
+    try {
+        await movieHandler.createMovie(movieData, creatorId);
+    } catch (err) {
+        return res.render('create', { error: getErrorMessage(err) });
+    }
 
     res.redirect('/');
 });
@@ -44,7 +50,12 @@ movieController.get('/:movieId/cast-attach', isAuth, async (req, res) => {
 movieController.post('/:movieId/cast-attach', async (req, res) => {
     const castId = req.body.cast;
     const movieId = req.params.movieId;
-    await movieHandler.attachCast(movieId, castId);
+
+    try {
+        await movieHandler.attachCast(movieId, castId);
+    } catch (err) {
+        return res.render('404', { error: getErrorMessage(err) });
+    }
 
     res.redirect(`/movies/${movieId}/details`);
 });
@@ -75,7 +86,11 @@ movieController.post('/:movieId/edit', async (req, res) => {
     const movieID = req.params.movieId;
     const creatorId = req.user?._id;
 
-    await movieHandler.update(movieID, movieData);
+    try {
+        await movieHandler.update(movieID, movieData);
+    } catch (err) {
+        return res.render('/:movieId/edit', { error: getErrorMessage(err) });
+    }
 
     res.redirect(`/movies/${movieID}/details`);
 });
