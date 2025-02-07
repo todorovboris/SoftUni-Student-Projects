@@ -9,7 +9,7 @@ const castSchema = new Schema({
     },
     age: {
         type: Number,
-        min: 1,
+        min: [1, 'Age should be at least 1 year old!'],
         max: 120,
     },
     born: {
