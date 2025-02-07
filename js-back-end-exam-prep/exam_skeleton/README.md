@@ -10,13 +10,13 @@
 
 2. Express
 
--   [ ] Install `npm i express`
--   [ ] Setup inital http server
--   [ ] Add public resources (images, css...)
--   [ ] Add static middleware
--   [ ] Add body parser
--   [ ] Add routes modular router
--   [ ] Add home controller
+-   [x] Install `npm i express`
+-   [x] Setup inital http server
+-   [x] Add public resources (images, css...)
+-   [x] Add static middleware
+-   [x] Add body parser
+-   [x] Add routes modular router
+-   [x] Add home controller
 
 3. Handlebars
 
