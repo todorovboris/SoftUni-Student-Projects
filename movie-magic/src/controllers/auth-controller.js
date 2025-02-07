@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
 import cookieParser from 'cookie-parser';
+import { getErrorMessage } from '../utils/error-utils.js';
 
 const authController = Router();
 
@@ -14,8 +15,7 @@ authController.post('/register', async (req, res) => {
     try {
         await authHandler.register(userData);
     } catch (err) {
-        console.log(err.message);
-        return res.redirect('/404');
+        console.log(getErrorMessage(err));
     }
 
     res.redirect('/auth/login');
