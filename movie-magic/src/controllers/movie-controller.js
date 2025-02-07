@@ -54,7 +54,7 @@ movieController.post('/:movieId/cast-attach', async (req, res) => {
     try {
         await movieHandler.attachCast(movieId, castId);
     } catch (err) {
-        return res.render('404', { error: getErrorMessage(err) });
+        return res.render('404', { error: 'Unable to attach!' });
     }
 
     res.redirect(`/movies/${movieId}/details`);
