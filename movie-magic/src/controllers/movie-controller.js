@@ -65,10 +65,15 @@ movieController.get('/:movieId/delete', isAuth, async (req, res) => {
 
     const movie = await movieHandler.getOneMovie(movieId);
     if (!movie.creator.equals(req.user?._id)) {
-        return res.redirect('404');
+        return res.render('404', { error: 'You are not the movie owner!' });
     }
 
-    await movieHandler.delete(movieId);
+    try {
+        await movieHandler.delete(movieId);
+    } catch (err) {
+        return res.render('/404', { error: getErrorMessage(err) });
+    }
+
     res.redirect('/');
 });
 
