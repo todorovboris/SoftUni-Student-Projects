@@ -4,7 +4,7 @@ import { Schema, model } from 'mongoose';
 const userSchema = new Schema({
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required!'],
         unique: true,
         match: /\@[a-zA-Z0-9]+.[a-zA-Z0-9]+$/,
         minLength: 10,
