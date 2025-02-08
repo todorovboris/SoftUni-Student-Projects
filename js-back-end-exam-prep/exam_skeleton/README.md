@@ -31,9 +31,9 @@
 
 4. Database
 
--   [ ] Install mongoose `npm i mongoose`
--   [ ] Setup db connection
--   [ ] Add user model
+-   [x] Install mongoose `npm i mongoose`
+-   [x] Setup db connection
+-   [x] Add user model
 
 5. Register
 

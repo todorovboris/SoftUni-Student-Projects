@@ -1,9 +1,20 @@
 import express, { urlencoded } from 'express';
 import handlebars from 'express-handlebars';
+import mongoose from 'mongoose';
 
 import routes from './routes.js';
 
 const app = express();
+
+//! DB setup
+const uri = 'mongodb://localhost:27017/softuni_demo';
+try {
+    await mongoose.connect(uri);
+    console.log('Connected to DB Successfull');
+} catch (err) {
+    console.log('Cannot connect to DB!');
+    console.error(err.message);
+}
 
 //! Handlebars setup
 app.engine('hbs', handlebars.engine({ extname: 'hbs', runtimeOptions: { allowProtoPropertiesByDefault: true } }));
