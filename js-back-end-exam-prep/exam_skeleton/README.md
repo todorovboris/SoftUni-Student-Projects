@@ -25,7 +25,7 @@
 -   [x] Enable mongo documents to be passed to the view
 -   [x] Change views directory
 -   [x] Add resources to views folder
--   [x] Add layouts dir + main file
+-   [x] Add layouts dir + main file + update href of styles
 -   [x] Add partials dir
 -   [x] Add home view
 
@@ -37,17 +37,17 @@
 
 5. Register
 
--   [ ] Install bcrypt `npm i bcrypt`
--   [ ] Fix navigation links
--   [ ] Add register view
--   [ ] Add authController
--   [ ] Add register page
--   [ ] Fix register form
--   [ ] Add post register action
--   [ ] Add authService with register
--   [ ] Hash password
--   [ ] Check confirmPassword
--   [ ] Check if user exists
+-   [x] Install bcrypt `npm i bcrypt`
+-   [x] Fix navigation links
+-   [x] Add register view
+-   [x] Add authController
+-   [x] Add register page
+-   [x] Fix register form(names)
+-   [x] Add post register action
+-   [x] Add authService with register
+-   [x] Hash password
+-   [x] Check confirmPassword
+-   [x] Check if user exists
 
 6. Login
 

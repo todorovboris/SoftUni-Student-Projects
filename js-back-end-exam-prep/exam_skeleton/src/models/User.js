@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import bcrypt from 'bcrypt';
 
 // TODO: Modify according the project instructions
 const userSchema = new Schema({
@@ -14,6 +15,10 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Password is required!'],
     },
+});
+
+userSchema.pre('save', async function () {
+    this.password = await bcrypt.hash(this.password, 10);
 });
 
 const User = model('User', userSchema);
