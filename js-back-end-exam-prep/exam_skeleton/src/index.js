@@ -7,10 +7,11 @@ import routes from './routes.js';
 const app = express();
 
 //! DB setup
-const uri = 'mongodb://localhost:27017/softuni_demo';
 try {
+    const uri = 'mongodb://localhost:27017/softuni_prep';
     await mongoose.connect(uri);
-    console.log('Connected to DB Successfull');
+
+    console.log('Connected to DB Successfull!');
 } catch (err) {
     console.log('Cannot connect to DB!');
     console.error(err.message);

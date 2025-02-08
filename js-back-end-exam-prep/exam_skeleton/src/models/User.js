@@ -1,21 +1,18 @@
 import { Schema, model } from 'mongoose';
 
+// TODO: Modify according the project instructions
 const userSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Name is required!'],
-        minLength: 2,
-        maxLength: 20,
     },
     email: {
         type: String,
         required: [true, 'Email is required!'],
-        minLength: 10,
     },
     password: {
         type: String,
         required: [true, 'Password is required!'],
-        minLength: 4,
     },
 });
 
