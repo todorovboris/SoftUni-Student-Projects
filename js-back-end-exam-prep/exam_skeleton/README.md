@@ -20,14 +20,14 @@
 
 3. Handlebars
 
--   [ ] Install `npm i express-handlebars`
--   [ ] Config handlebars as view engine
--   [ ] Enable mongo documents to be passed to the view
--   [ ] Change views directory
--   [ ] Add resources to views folder
--   [ ] Add home view
--   [ ] Add layout
--   [ ] Add partials dir
+-   [x] Install `npm i express-handlebars`
+-   [x] Config handlebars as view engine
+-   [x] Enable mongo documents to be passed to the view
+-   [x] Change views directory
+-   [x] Add resources to views folder
+-   [x] Add layouts dir + main file
+-   [x] Add partials dir
+-   [x] Add home view
 
 4. Database
 
