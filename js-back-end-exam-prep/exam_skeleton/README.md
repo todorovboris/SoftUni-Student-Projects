@@ -41,9 +41,9 @@
 -   [x] Fix navigation links
 -   [x] Add register view
 -   [x] Add authController
--   [x] Add register page
+-   [x] Add GET register page
 -   [x] Fix register form(names)
--   [x] Add post register action
+-   [x] Add POST register action
 -   [x] Add authService with register
 -   [x] Hash password
 -   [x] Check confirmPassword
