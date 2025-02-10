@@ -46,7 +46,7 @@
 -   [x] Add POST register action
 -   [x] Add authService with register
 -   [x] Hash password
--   [x] Check confirmPassword
+-   [x] Check rePassword
 -   [x] Check if user exists
 
 6. Login

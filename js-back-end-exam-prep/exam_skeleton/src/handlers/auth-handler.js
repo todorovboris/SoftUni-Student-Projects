@@ -6,8 +6,8 @@ export default {
             throw new Error('Password do not match!');
         }
 
-        const usersCount = await User.countDocuments({ email: userData.email });
-        if (usersCount > 0) {
+        const user = await User.findOne({ email: userData.email }).select({ _id: true });
+        if (user) {
             throw new Error('Email already exists!');
         }
 
