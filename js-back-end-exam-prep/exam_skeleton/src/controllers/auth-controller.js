@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
 import { AUTH_COOKIE_NAME } from '../config.js';
+import { getErrorMessage } from '../utils/error-utils.js';
 
 const authController = Router();
 
@@ -17,8 +18,7 @@ authController.post('/register', async (req, res) => {
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
-        console.log(err.message);
-        return res.render('auth/register');
+        return res.render('auth/register', { error: getErrorMessage(err), user: userData });
     }
 
     // res.redirect('/auth/login');
@@ -37,8 +37,7 @@ authController.post('/login', async (req, res) => {
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
-        console.log(err.message);
-        return res.render('auth/login');
+        return res.render('auth/login', { error: getErrorMessage(err) });
     }
 });
 

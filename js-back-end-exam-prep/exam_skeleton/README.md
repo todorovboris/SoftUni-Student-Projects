@@ -84,11 +84,11 @@
 
 10. Error Handling
 
--   [ ] Add error util file
--   [ ] Add notifications
--   [ ] Extract error message
--   [ ] Add error handling for register
--   [ ] Add error handling for login
+-   [x] Add error util file
+-   [x] Add notifications
+-   [x] Extract error message
+-   [x] Add error handling for register
+-   [x] Add error handling for login
 
 11. Bonus
 
