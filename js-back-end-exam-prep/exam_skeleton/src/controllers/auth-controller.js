@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
+import { AUTH_COOKIE_NAME } from '../config.js';
 
 const authController = Router();
 
@@ -13,7 +14,7 @@ authController.post('/register', async (req, res) => {
     try {
         const token = await authHandler.register(userData);
 
-        res.cookie('auth', token, { httpOnly: true });
+        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
         console.log(err.message);
@@ -33,7 +34,7 @@ authController.post('/login', async (req, res) => {
     try {
         const token = await authHandler.login(email, password);
 
-        res.cookie('auth', token, { httpOnly: true });
+        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
         console.log(err.message);
@@ -42,7 +43,7 @@ authController.post('/login', async (req, res) => {
 });
 
 authController.get('/logout', (req, res) => {
-    res.clearCookie('auth');
+    res.clearCookie(AUTH_COOKIE_NAME);
     res.redirect('/');
 });
 
