@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
 import { AUTH_COOKIE_NAME } from '../config.js';
+import { isAuth } from '../middlewares/auth-middleware.js';
 
 const authController = Router();
 
@@ -42,7 +43,7 @@ authController.post('/login', async (req, res) => {
     }
 });
 
-authController.get('/logout', (req, res) => {
+authController.get('/logout', isAuth, (req, res) => {
     res.clearCookie(AUTH_COOKIE_NAME);
     res.redirect('/');
 });
