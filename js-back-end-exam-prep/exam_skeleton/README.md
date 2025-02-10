@@ -84,6 +84,7 @@
 
 10. Error Handling
 
+-   [ ] Add error util file
 -   [ ] Add notifications
 -   [ ] Extract error message
 -   [ ] Add error handling for register
