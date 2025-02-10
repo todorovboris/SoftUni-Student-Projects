@@ -92,7 +92,7 @@
 
 11. Bonus
 
--   [ ] Dynamic Navigation
+-   [x] Dynamic Navigation
 -   [ ] Dynamic Titles
 -   [ ] Set titles from view
 -   [ ] Async jsonwebtoken

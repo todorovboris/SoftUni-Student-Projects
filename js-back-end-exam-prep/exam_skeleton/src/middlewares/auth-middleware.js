@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { AUTH_COOKIE_NAME, JWT_SECRET } from '../config.js';
 
-export const authMiddleware = (req, res, next) => {
+export const auth = (req, res, next) => {
     const token = req.cookies[AUTH_COOKIE_NAME];
 
     if (!token) {
