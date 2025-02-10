@@ -79,7 +79,7 @@
 
 9.  Authorization
 
--   [ ] Add isAuth middleware
+-   [x] Add isAuth middleware
 -   [x] Add route guards authorization
 
 10. Error Handling
@@ -93,7 +93,7 @@
 11. Bonus
 
 -   [x] Dynamic Navigation
--   [ ] Dynamic Titles
+-   [x] Dynamic Titles
 -   [ ] Set titles from view
 -   [ ] Async jsonwebtoken
 -   [ ] Add types for jsonwebtoken lib
