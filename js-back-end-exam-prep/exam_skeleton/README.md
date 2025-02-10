@@ -71,11 +71,11 @@
 
 8. Authentication
 
--   [ ] Add auth middleware
--   [ ] Check if guest
--   [ ] Token verification
--   [ ] Attach user to request
--   [ ] Attach user to handlebars context
+-   [x] Add auth middleware
+-   [x] Check if guest(!token)
+-   [x] Token verification(validation)
+-   [x] Attach user to request
+-   [x] Attach user to handlebars context
 
 9.  Authorization
 
