@@ -80,7 +80,7 @@
 9.  Authorization
 
 -   [ ] Add isAuth middleware
--   [ ] Add route guards authorization
+-   [x] Add route guards authorization
 
 10. Error Handling
 
