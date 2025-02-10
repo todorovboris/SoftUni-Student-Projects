@@ -37,7 +37,7 @@ authController.post('/login', async (req, res) => {
         res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
         res.redirect('/');
     } catch (err) {
-        return res.render('auth/login', { error: getErrorMessage(err) });
+        return res.render('auth/login', { error: getErrorMessage(err), user: { email } });
     }
 });
 
