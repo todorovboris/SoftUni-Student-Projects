@@ -40,9 +40,9 @@
 -   [x] Install bcrypt `npm i bcrypt`
 -   [x] Fix navigation links
 -   [x] Add register view
+-   [x] Fix register form(names)
 -   [x] Add authController
 -   [x] Add GET register page
--   [x] Fix register form(names)
 -   [x] Add POST register action
 -   [x] Add authService with register
 -   [x] Hash password
@@ -51,18 +51,19 @@
 
 6. Login
 
--   [ ] Add jsonwebtoken `npm i jsonwebtoken`
--   [ ] Add cookie parser middleware
--   [ ] Add login view
--   [ ] Add get login action
--   [ ] Fix login form
--   [ ] Add post login action
--   [ ] Add login to authService
--   [ ] Validate user
--   [ ] Validate password
--   [ ] Generate token
--   [ ] Return token as cookie
--   [ ] Autologin on register
+-   [x] Add jsonwebtoken `npm i jsonwebtoken`
+-   [x] Add cookie parser `npm i cookie-parser`
+-   [x] Add cookie parser middleware in index.js
+-   [x] Add login view
+-   [x] Fix login form
+-   [x] Add GET login action
+-   [x] Add POST login action
+-   [x] Add login to auth-handler
+-   [x] Validate if user exists
+-   [x] Validate if password is correct
+-   [x] Generate token through util function
+-   [x] Return token as cookie
+-   [x] Autologin on register
 
 7. Logout
 
@@ -70,7 +71,6 @@
 
 8. Authentication
 
--   [ ] Add cookie parser `npm i cookie-parser`
 -   [ ] Add auth middleware
 -   [ ] Check if guest
 -   [ ] Token verification

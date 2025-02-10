@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 const userSchema = new Schema({
     username: {
         type: String,
-        required: [true, 'Name is required!'],
+        required: [true, 'Username is required!'],
     },
     email: {
         type: String,
