@@ -67,7 +67,7 @@
 
 7. Logout
 
--   [ ] Add get logout action
+-   [x] Add get logout action
 
 8. Authentication
 
