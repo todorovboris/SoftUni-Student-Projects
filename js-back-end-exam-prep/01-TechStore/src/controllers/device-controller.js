@@ -27,4 +27,18 @@ deviceController.get('/catalog', async (req, res) => {
     res.render('device/catalog', { devices });
 });
 
+deviceController.get('/:deviceId/prefer', async (req, res) => {
+    //
+});
+
+deviceController.get('/:deviceId/details', async (req, res) => {
+    const deviceId = req.params.deviceId;
+    const device = await deviceHandler.getOneDevice(deviceId);
+
+    const isOwner = device.owner.equals(req.user?._id);
+    const isPrefered = device.preferredList.includes(req.user?._id);
+
+    res.render('device/details', { device, isOwner, isPrefered });
+});
+
 export default deviceController;
