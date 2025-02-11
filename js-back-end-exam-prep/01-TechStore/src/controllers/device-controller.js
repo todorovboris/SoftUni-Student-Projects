@@ -49,4 +49,20 @@ deviceController.get('/:deviceId/prefer', isAuth, async (req, res) => {
     }
 });
 
+deviceController.get('/:deviceId/delete', isAuth, async (req, res) => {
+    const deviceId = req.params.deviceId;
+
+    const device = await deviceHandler.getOneDevice(deviceId);
+    if (!device.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the device owner!' });
+    }
+
+    try {
+        await deviceHandler.delete(deviceId);
+        res.redirect('device/catalog');
+    } catch (err) {
+        return res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
 export default deviceController;

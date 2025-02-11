@@ -34,4 +34,8 @@ export default {
         // return device.save();
         return Device.findByIdAndUpdate(deviceId, { preferredList: userId });
     },
+    delete(deviceId) {
+        return Device.findByIdAndDelete(deviceId);
+        // return Device.deleteOne({ _id: deviceId, owner: userId });
+    },
 };
