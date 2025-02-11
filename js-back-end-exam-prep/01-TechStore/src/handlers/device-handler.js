@@ -1,7 +1,11 @@
 import Device from '../models/Device.js';
 
 export default {
-    getAllDevices(filter = {}) {
+    getLatest() {
+        const devices = Device.find({}).sort({ _id: 'desc' }).limit(3);
+        return devices;
+    },
+    getAllDevices() {
         return Device.find({});
     },
     getOneDevice(deviceId) {
