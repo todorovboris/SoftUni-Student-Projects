@@ -15,7 +15,7 @@ deviceController.post('/create', isAuth, async (req, res) => {
 
     try {
         await deviceHandler.createDevice(deviceData, ownerId);
-        res.render('device/catalog');
+        res.redirect('/device/catalog');
     } catch (err) {
         return res.render('device/create', { device: deviceData, error: getErrorMessage(err) });
     }

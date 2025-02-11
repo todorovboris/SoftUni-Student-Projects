@@ -8,22 +8,20 @@
 <section class='catalog'>
     <div class='container'>
         <div class='product-grid'>
-            {{#if devices}}
-                {{#each devices}}
-                    <div class='product-item'>
-                        <img src='{{image}}' />
-                        <h3>{{brand}} {{model}}</h3>
-                        <h2>${{price}}</h2>
-                        <p>CPU: {{cpu}}</p>
-                        <p>GPU: {{gpu}}</p>
-                        <p>Screen: {{screenSize}} inch</p>
-                        <a href='/device/{{id}}/details' class='btn'>View Details</a>
-                    </div>
-                {{/each}}
+            {{#each devices}}
+                <div class='product-item'>
+                    <img src='{{image}}' />
+                    <h3>{{brand}} {{model}}</h3>
+                    <h2>${{price}}</h2>
+                    <p>CPU: {{cpu}}</p>
+                    <p>GPU: {{gpu}}</p>
+                    <p>Screen: {{screenSize}} inch</p>
+                    <a href='/device/{{id}}/details' class='btn'>View Details</a>
+                </div>
             {{else}}
                 <!-- Repeat product-item divs for more products -->
                 <p class='no-post'>There haven't been any devices posted yet.</p>
-            {{/if}}
+            {{/each}}
         </div>
     </div>
 </section>
