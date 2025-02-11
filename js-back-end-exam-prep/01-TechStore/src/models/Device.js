@@ -9,7 +9,7 @@ const deviceSchema = new Schema({
         type: String,
         required: [true, 'Model is required!'],
     },
-    hardDisk: {
+    hardDisc: {
         type: String,
         required: [true, 'Hard Disc is required!'],
     },
