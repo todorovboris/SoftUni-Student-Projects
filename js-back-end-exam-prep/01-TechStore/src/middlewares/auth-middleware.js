@@ -31,7 +31,7 @@ export const isAuth = (req, res, next) => {
 
 export const isGuest = (req, res, next) => {
     if (req.user) {
-        return res.redirect('/');
+        return res.redirect('/404');
     }
 
     next();

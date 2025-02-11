@@ -24,7 +24,7 @@ deviceController.post('/create', isAuth, async (req, res) => {
 deviceController.get('/catalog', async (req, res) => {
     const devices = await deviceHandler.getAllDevices();
 
-    res.render('device/catalog', { devices });
+    res.render('device/catalog', { devices, pageTitle: 'Catalog' });
 });
 
 deviceController.get('/:deviceId/prefer', async (req, res) => {
@@ -38,7 +38,7 @@ deviceController.get('/:deviceId/details', async (req, res) => {
     const isOwner = device.owner.equals(req.user?._id);
     const isPrefered = device.preferredList.includes(req.user?._id);
 
-    res.render('device/details', { device, isOwner, isPrefered });
+    res.render('device/details', { device, isOwner, isPrefered, pageTitle: `${device.brand} ${device.model} - Details` });
 });
 
 export default deviceController;
