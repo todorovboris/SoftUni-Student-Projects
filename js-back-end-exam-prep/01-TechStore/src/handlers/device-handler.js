@@ -2,8 +2,7 @@ import Device from '../models/Device.js';
 
 export default {
     getLatest() {
-        const devices = Device.find({}).sort({ _id: 'desc' }).limit(3);
-        return devices;
+        return Device.find({}).sort({ _id: 'desc' }).limit(3);
     },
     getAllDevices() {
         return Device.find({});

@@ -2,14 +2,15 @@ import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
 import { AUTH_COOKIE_NAME } from '../config.js';
 import { getErrorMessage } from '../utils/error-utils.js';
+import { isGuest } from '../middlewares/auth-middleware.js';
 
 const authController = Router();
 
-authController.get('/login', (req, res) => {
+authController.get('/login', isGuest, (req, res) => {
     res.render('auth/login', { pageTitle: 'Login' });
 });
 
-authController.post('/login', async (req, res) => {
+authController.post('/login', isGuest, async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -22,11 +23,11 @@ authController.post('/login', async (req, res) => {
     }
 });
 
-authController.get('/register', (req, res) => {
+authController.get('/register', isGuest, (req, res) => {
     res.render('auth/register', { pageTitle: 'Register' });
 });
 
-authController.post('/register', async (req, res) => {
+authController.post('/register', isGuest, async (req, res) => {
     const userData = req.body;
 
     try {

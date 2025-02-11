@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { AUTH_COOKIE_NAME, JWT_SECRET } from '../config.js';
 
-export const authMiddleware = (req, res, next) => {
+export const authMiddleware = async (req, res, next) => {
     const token = req.cookies[AUTH_COOKIE_NAME];
 
     if (!token) {
@@ -9,7 +9,7 @@ export const authMiddleware = (req, res, next) => {
     }
 
     try {
-        const decodedToken = jwt.verify(token, JWT_SECRET);
+        const decodedToken = await jwt.verify(token, JWT_SECRET);
 
         req.user = decodedToken;
         res.locals.user = decodedToken;
@@ -24,6 +24,14 @@ export const authMiddleware = (req, res, next) => {
 export const isAuth = (req, res, next) => {
     if (!req.user) {
         return res.redirect('/404');
+    }
+
+    next();
+};
+
+export const isGuest = (req, res, next) => {
+    if (req.user) {
+        return res.redirect('/');
     }
 
     next();
