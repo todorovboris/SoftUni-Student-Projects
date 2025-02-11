@@ -37,8 +37,16 @@ deviceController.get('/:deviceId/details', async (req, res) => {
     res.render('device/details', { device, isOwner, isPrefered, pageTitle: `${device.brand} ${device.model} - Details` });
 });
 
-deviceController.get('/:deviceId/prefer', async (req, res) => {
-    //
+deviceController.get('/:deviceId/prefer', isAuth, async (req, res) => {
+    const userId = req.user?._id;
+    const deviceId = req.params.deviceId;
+
+    try {
+        await deviceHandler.preferDevice(deviceId, userId);
+        res.redirect(`/device/${deviceId}/details`);
+    } catch (err) {
+        return res.render('404', { error: err.message });
+    }
 });
 
 export default deviceController;

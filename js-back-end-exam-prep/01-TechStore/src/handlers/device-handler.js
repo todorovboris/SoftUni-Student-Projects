@@ -20,6 +20,18 @@ export default {
         return promise;
     },
     async preferDevice(deviceId, userId) {
-        // const promise = Device.findByIdAndUpdate(deviceId, {})
+        const device = await Device.findById(deviceId);
+
+        if (device.owner.equals(userId)) {
+            throw new Error('Cannot prefer your own device!');
+        }
+
+        if (device.preferredList.includes(userId)) {
+            throw new Error('You already preferred this device!');
+        }
+
+        // device.preferredList.push(userId);
+        // return device.save();
+        return Device.findByIdAndUpdate(deviceId, { preferredList: userId });
     },
 };

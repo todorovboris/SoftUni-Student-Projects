@@ -36,3 +36,11 @@ export const isGuest = (req, res, next) => {
 
     next();
 };
+
+export const isOwn = (req, res, next) => {
+    // if (req.user) {
+    //     return res.redirect('/404');
+    // }
+
+    next();
+};
