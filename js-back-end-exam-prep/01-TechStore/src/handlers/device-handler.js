@@ -1,6 +1,9 @@
 import Device from '../models/Device.js';
 
 export default {
+    async getAllDevices(filter = {}) {
+        return Device.find({});
+    },
     async createDevice(deviceData, ownerId) {
         const promise = Device.create({
             ...deviceData,

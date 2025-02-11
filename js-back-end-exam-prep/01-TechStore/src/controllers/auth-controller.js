@@ -5,6 +5,23 @@ import { getErrorMessage } from '../utils/error-utils.js';
 
 const authController = Router();
 
+authController.get('/login', (req, res) => {
+    res.render('auth/login', { pageTitle: 'Login' });
+});
+
+authController.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const token = await authHandler.login(email, password);
+
+        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
+        res.redirect('/');
+    } catch (err) {
+        return res.render('auth/login', { error: getErrorMessage(err), user: { email } });
+    }
+});
+
 authController.get('/register', (req, res) => {
     res.render('auth/register', { pageTitle: 'Register' });
 });
@@ -22,23 +39,6 @@ authController.post('/register', async (req, res) => {
     }
 
     // res.redirect('/auth/login');
-});
-
-authController.get('/login', (req, res) => {
-    res.render('auth/login', { pageTitle: 'Login' });
-});
-
-authController.post('/login', async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const token = await authHandler.login(email, password);
-
-        res.cookie(AUTH_COOKIE_NAME, token, { httpOnly: true });
-        res.redirect('/');
-    } catch (err) {
-        return res.render('auth/login', { error: getErrorMessage(err), user: { email } });
-    }
 });
 
 authController.get('/logout', (req, res) => {
