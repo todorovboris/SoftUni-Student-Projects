@@ -103,3 +103,22 @@
 -   [ ] Install express session `npm i express-session`
 -   [ ] Config express session
 -   [ ] Add temp data middleware
+
+## Adapt Skeleton to New Exam
+
+-   [ ] Remove old styles and paste new styles
+-   [ ] Copy all html files into views folder
+-   [ ] Extract new layout
+    -   [ ] Add header and fix title
+    -   [ ] Fix navigation
+    -   [ ] Fix error notification
+    -   [ ] Add {{{body}}}
+    -   [ ] Add footer
+-   [ ] Switch home template
+-   [ ] Change db name
+-   [ ] Modify login page
+    -   [ ] Add values to fields
+-   [ ] Modify register page
+    -   [ ] Add values to fields
+-   [ ] Modify User model
+-   [ ] Modify token data
