@@ -2,7 +2,7 @@ import { Router } from 'express';
 import authHandler from '../handlers/auth-handler.js';
 import { AUTH_COOKIE_NAME } from '../config.js';
 import { getErrorMessage } from '../utils/error-utils.js';
-import { isGuest } from '../middlewares/auth-middleware.js';
+import { isAuth, isGuest } from '../middlewares/auth-middleware.js';
 
 const authController = Router();
 
@@ -42,7 +42,7 @@ authController.post('/register', isGuest, async (req, res) => {
     // res.redirect('/auth/login');
 });
 
-authController.get('/logout', (req, res) => {
+authController.get('/logout', isAuth, (req, res) => {
     res.clearCookie(AUTH_COOKIE_NAME);
     res.redirect('/');
 });
