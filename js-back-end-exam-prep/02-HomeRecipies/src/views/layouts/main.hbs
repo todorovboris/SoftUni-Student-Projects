@@ -3,51 +3,45 @@
     <head>
         <meta charset='UTF-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <title>TechStore | {{pageTitle}}</title>
+        <title>Home Cooking Recipes | {{pageTitle}}</title>
         <link rel='stylesheet' href='/styles/styles.css' />
     </head>
 
     <body>
         <header>
-            <div class='container'>
-                <h1>TechStore</h1>
-                <nav>
-                    <ul>
-                        {{! All users }}
-                        <li><a href='/'>Home</a></li>
-                        <li><a href='#'>Catalog</a></li>
-                        <li><a href='#'>About</a></li>
-                        {{#if user}}
-                            {{! LoggedIn users }}
-                            <li><a href='#'>Profile</a></li>
-                            <li><a href='#'>Create Offer</a></li>
-                            <li><a href='/auth/logout'>Logout</a></li>
-                        {{else}}
-                            {{! Guest users }}
-                            <li><a href='/auth/login'>Login</a></li>
-                            <li><a href='/auth/register'>Register</a></li>
-                        {{/if}}
-                    </ul>
-                </nav>
-            </div>
-        </header>
+            <nav>
+                <ul>
+                    {{! All User }}
+                    <li><a href='/'>Home</a></li>
+                    <li><a href='#'>Recipes</a></li>
+                    <li><a href='#'>Search</a></li>
+                    {{#if user}}
+                        {{! Users }}
+                        <li><a href='#'>Add Recipe</a></li>
+                        <li><a href='/auth/logout'>Logout</a></li>
+                    {{else}}
+                        {{! Guests }}
+                        <li><a href='/auth/login'>Login</a></li>
+                        <li><a href='/auth/register'>Register</a></li>
+                    {{/if}}
 
-        <!-- In case of error, you should display div with class "errorContainer" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-        {{#if error}}
-            <div>
-                <div class='errorContainer'>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <!-- In case of error, you should display div with class "error-container" -->
+            <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+            {{#if error}}
+                <div class='error-container'>
                     <p>{{error}}</p>
                 </div>
-            </div>
-        {{/if}}
+            {{/if}}
 
-        {{{body}}}
+            {{{body}}}
 
+        </main>
         <footer>
-            <div class='container'>
-                <p>&copy; 2024 TechStore. All rights reserved.</p>
-            </div>
+            <p>&copy; 2024 Home Cooking Recipes. All rights reserved.</p>
         </footer>
     </body>
 
