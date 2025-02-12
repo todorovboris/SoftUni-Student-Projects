@@ -4,8 +4,18 @@ export default {
     getLatest() {
         return Device.find({}).sort({ _id: 'desc' }).limit(3);
     },
-    getAllDevices() {
-        return Device.find({});
+    getAllDevices(filter = {}) {
+        let query = Device.find({});
+
+        if (filter.owner) {
+            query = query.find({ owner: filter.owner });
+        }
+
+        if (filter.preferred) {
+            query = query.find({ preferredList: filter.preferred });
+        }
+
+        return query;
     },
     getOneDevice(deviceId) {
         return Device.findById(deviceId);

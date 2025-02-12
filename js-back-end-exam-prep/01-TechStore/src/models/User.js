@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 
 // TODO: Modify according the project instructions
@@ -19,6 +19,18 @@ const userSchema = new Schema({
         required: [true, 'Password is required!'],
         minLength: 10,
     },
+    // ownDevices: [
+    //     {
+    //         type: Types.ObjectId,
+    //         ref: 'Device',
+    //     },
+    // ],
+    // prefDevices: [
+    //     {
+    //         type: Types.ObjectId,
+    //         ref: 'Device',
+    //     },
+    // ],
 });
 
 userSchema.pre('save', async function () {
