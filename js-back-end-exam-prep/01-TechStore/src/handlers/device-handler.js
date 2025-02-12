@@ -12,7 +12,7 @@ export default {
         }
 
         if (filter.preferred) {
-            query = query.find({ preferredList: filter.preferred });
+            query = query.in('preferredList', filter.preferred);
         }
 
         return query;
