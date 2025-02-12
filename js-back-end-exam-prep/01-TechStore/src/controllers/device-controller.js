@@ -51,10 +51,10 @@ deviceController.get('/:deviceId/prefer', isAuth, async (req, res) => {
 
 deviceController.get('/:deviceId/delete', isAuth, async (req, res) => {
     const deviceId = req.params.deviceId;
-
     const device = await deviceHandler.getOneDevice(deviceId);
+
     if (!device.owner.equals(req.user?._id)) {
-        return res.render('404', { error: 'You are not the device owner!' });
+        return res.render('404', { device, error: 'You are not the device owner!' });
     }
 
     try {
@@ -62,6 +62,31 @@ deviceController.get('/:deviceId/delete', isAuth, async (req, res) => {
         res.redirect('device/catalog');
     } catch (err) {
         return res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+deviceController.get('/:deviceId/edit', isAuth, async (req, res) => {
+    const deviceId = req.params.deviceId;
+    const device = await deviceHandler.getOneDevice(deviceId);
+    const isPrefered = device.preferredList.includes(req.user?._id);
+
+    if (!device.owner.equals(req.user?._id)) {
+        // return res.render(`device/details`, { device, isPrefered, error: 'You are not the device owner!' });
+        return res.render(`404`, { device, error: 'You are not the device owner!' });
+    }
+
+    res.render('device/edit', { device });
+});
+
+deviceController.post('/:deviceId/edit', isAuth, async (req, res) => {
+    const deviceData = req.body;
+    const deviceId = req.params.deviceId;
+
+    try {
+        await deviceHandler.updateDevice(deviceId, deviceData);
+        res.redirect(`/device/${deviceId}/details`);
+    } catch (err) {
+        return res.render('device/edit', { device: deviceData, error: getErrorMessage(err) });
     }
 });
 

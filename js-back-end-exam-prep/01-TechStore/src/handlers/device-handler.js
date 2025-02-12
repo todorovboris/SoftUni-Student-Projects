@@ -36,6 +36,8 @@ export default {
     },
     delete(deviceId) {
         return Device.findByIdAndDelete(deviceId);
-        // return Device.deleteOne({ _id: deviceId, owner: userId });
+    },
+    updateDevice(deviceId, deviceData) {
+        return Device.findByIdAndUpdate(deviceId, deviceData, { runValidators: true });
     },
 };
