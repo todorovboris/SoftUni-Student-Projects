@@ -54,12 +54,12 @@ deviceController.get('/:deviceId/delete', isAuth, async (req, res) => {
     const device = await deviceHandler.getOneDevice(deviceId);
 
     if (!device.owner.equals(req.user?._id)) {
-        return res.render('404', { device, error: 'You are not the device owner!' });
+        return res.render('404', { error: 'You are not the device owner!' });
     }
 
     try {
         await deviceHandler.delete(deviceId);
-        res.redirect('device/catalog');
+        res.redirect('/device/catalog');
     } catch (err) {
         return res.render('404', { error: getErrorMessage(err) });
     }
