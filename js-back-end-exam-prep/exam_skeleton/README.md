@@ -118,8 +118,8 @@
 -   [ ] Switch home template
 -   [ ] Change db name
 -   [ ] Modify login page
-    -   [ ] Add values to fields
+    -   [ ] Keep values to fields if error
 -   [ ] Modify register page
-    -   [ ] Add values to fields
+    -   [ ] Keep values to fields if error
 -   [ ] Modify User model
 -   [ ] Modify token data
