@@ -37,4 +37,25 @@ volcanoController.get('/:volcanoId/details', async (req, res) => {
     res.render('volcano/details', { volcano, isOwner, isVoted });
 });
 
+volcanoController.get('/:volcanoId/vote', async (req, res) => {
+    const userId = req.user?._id;
+    const volcanoId = req.params.volcanoId;
+    const volcano = await volcanoHandler.getOneVolcano(volcanoId);
+
+    if (volcano.owner.equals(userId)) {
+        return res.render('404', { error: 'Cannot vote for your own volcano!' });
+    }
+
+    if (volcano.voteList.includes(userId)) {
+        return res.render('404', { error: 'You already voted for this volcano!' });
+    }
+
+    try {
+        await volcanoHandler.voteVolcatno(volcanoId, userId);
+        res.redirect(`/volcano/${volcanoId}/details`);
+    } catch (err) {
+        res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
 export default volcanoController;

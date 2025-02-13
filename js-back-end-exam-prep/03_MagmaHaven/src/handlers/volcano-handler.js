@@ -12,4 +12,7 @@ export default {
     async createVolcano(data, ownerId) {
         return Volcano.create({ ...data, owner: ownerId });
     },
+    async voteVolcatno(volcanoId, userId) {
+        return Volcano.findByIdAndUpdate(volcanoId, { $push: { voteList: userId } });
+    },
 };
