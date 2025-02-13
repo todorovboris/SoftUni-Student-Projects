@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { isAuth } from '../middlewares/auth-middleware.js';
 import volcanoHandler from '../handlers/volcano-handler.js';
 import { getErrorMessage } from '../utils/error-utils.js';
+import getVolcanoTypesData from '../helpers/getTypesData.js';
 
 const volcanoController = Router();
 
@@ -71,6 +72,28 @@ volcanoController.get('/:volcanoId/delete', isAuth, async (req, res) => {
         res.redirect('/volcano/catalog');
     } catch (err) {
         return res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+volcanoController.get('/:volcanoId/edit', isAuth, async (req, res) => {
+    const volcanoId = req.params.volcanoId;
+    const volcano = await volcanoHandler.getOneVolcano(volcanoId);
+
+    const types = getVolcanoTypesData(volcano.typeVolcano);
+
+    res.render('volcano/edit', { volcano, types });
+});
+
+volcanoController.post('/:volcanoId/edit', isAuth, async (req, res) => {
+    const newVolcanoData = req.body;
+    const volcanoId = req.params.volcanoId;
+
+    try {
+        await volcanoHandler.editVolcano(volcanoId, newVolcanoData);
+        res.redirect(`/volcano/${volcanoId}/details`);
+    } catch (err) {
+        const types = getVolcanoTypesData(newVolcanoData.typeVolcano);
+        return res.render('volcano/edit', { volcano: newVolcanoData, types, error: getErrorMessage(err) });
     }
 });
 

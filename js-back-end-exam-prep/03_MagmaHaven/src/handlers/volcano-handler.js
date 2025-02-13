@@ -18,4 +18,7 @@ export default {
     async deleteVolcano(volcanoId) {
         return Volcano.findByIdAndDelete(volcanoId);
     },
+    async editVolcano(volcanoId, newData) {
+        return Volcano.findByIdAndUpdate(volcanoId, newData, { runValidators: true });
+    },
 };
