@@ -20,7 +20,7 @@ export default {
         return Recipe.create({ ...recipeData, owner: ownerId });
     },
     async recommendRecipe(recipeId, userId) {
-        return Recipe.findByIdAndUpdate(recipeId, { recommendList: userId });
+        return Recipe.findByIdAndUpdate(recipeId, { $push: { recommendList: userId } });
     },
     async deleteRecipe(recipeId) {
         return Recipe.findByIdAndDelete(recipeId);
