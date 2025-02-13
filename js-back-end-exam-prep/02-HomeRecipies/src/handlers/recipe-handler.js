@@ -20,4 +20,17 @@ export default {
 
         return promise;
     },
+    async recommendRecipe(recipeId, userId) {
+        const recipe = await Recipe.findById(recipeId);
+
+        if (recipe.owner.equals(userId)) {
+            throw new Error('Cannot recommend your own recipe!');
+        }
+
+        if (recipe.recommendList.includes(userId)) {
+            throw new Error('You already recommend this recipe!');
+        }
+
+        return Recipe.findByIdAndUpdate(recipeId, { recommendList: userId });
+    },
 };

@@ -23,14 +23,16 @@
 </article>
 
 <div class='command'>
-    {{#if isOwner}}
-        <a href='#'>Edit</a>
-        <a href='#'>Delete</a>
-    {{else}}
-        {{#unless isRecommend}}
-            <a href='/recipe/{{recipe._id}}/recommend'>Recommend</a>
+    {{#if user}}
+        {{#if isOwner}}
+            <a href='#'>Edit</a>
+            <a href='#'>Delete</a>
         {{else}}
-            <p>You've already recommended this recipe!</p>
-        {{/unless}}
+            {{#unless isRecommend}}
+                <a href='/recipes/{{recipe._id}}/recommend'>Recommend</a>
+            {{else}}
+                <p>You've already recommended this recipe!</p>
+            {{/unless}}
+        {{/if}}
     {{/if}}
 </div>
