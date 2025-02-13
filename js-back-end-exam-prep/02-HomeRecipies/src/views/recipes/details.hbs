@@ -25,7 +25,7 @@
 <div class='command'>
     {{#if user}}
         {{#if isOwner}}
-            <a href='#'>Edit</a>
+            <a href='/recipes/{{recipe._id}}/edit'>Edit</a>
             <a href='/recipes/{{recipe._id}}/delete'>Delete</a>
         {{else}}
             {{#unless isRecommend}}

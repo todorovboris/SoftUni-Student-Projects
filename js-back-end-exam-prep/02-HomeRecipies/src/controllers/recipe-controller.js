@@ -40,6 +40,14 @@ recipeController.get('/:recipeId/details', async (req, res) => {
 recipeController.get('/:recipeId/recommend', isAuth, async (req, res) => {
     const userId = req.user?._id;
     const recipeId = req.params.recipeId;
+    const recipe = await recipeHandler.getOneRecipe(recipeId);
+
+    if (recipe.owner.equals(userId)) {
+        return res.render('404', { error: 'Cannot recommend your own recipe!' });
+    }
+    if (recipe.recommendList.includes(userId)) {
+        return res.render('404', { error: 'You already recommend this recipe!' });
+    }
 
     try {
         await recipeHandler.recommendRecipe(recipeId, userId);
@@ -51,14 +59,29 @@ recipeController.get('/:recipeId/recommend', isAuth, async (req, res) => {
 
 recipeController.get('/:recipeId/delete', isAuth, async (req, res) => {
     const recipeId = req.params.recipeId;
-    const userId = req.user?._id;
+    const recipe = await recipeHandler.getOneRecipe(recipeId);
+
+    if (!recipe.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the device owner!' });
+    }
 
     try {
-        await recipeHandler.deleteRecipe(recipeId, userId);
+        await recipeHandler.deleteRecipe(recipeId);
         res.redirect('/recipes/catalog');
     } catch (err) {
-        res.render('404', { error: getErrorMessage(err) });
+        return res.render('404', { error: getErrorMessage(err) });
     }
+});
+
+recipeController.get('/:recipeId/edit', isAuth, async (req, res) => {
+    const recipeId = req.params.recipeId;
+    const recipe = await recipeHandler.getOneRecipe(recipeId);
+
+    if (!recipe.owner.equals(req.user?._id)) {
+        return res.render(`404`, { error: 'You are not the recipe owner!' });
+    }
+
+    res.render('recipes/edit', { recipe });
 });
 
 export default recipeController;
