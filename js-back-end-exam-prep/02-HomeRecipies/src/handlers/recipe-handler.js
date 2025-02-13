@@ -9,6 +9,9 @@ export default {
     getLatestRecipes() {
         return Recipe.find({}).sort({ _id: 'desc' }).limit(3);
     },
+    getOneRecipe(recipeId) {
+        return Recipe.findById(recipeId);
+    },
     async createRecipe(recipeData, ownerId) {
         const promise = Recipe.create({
             ...recipeData,
