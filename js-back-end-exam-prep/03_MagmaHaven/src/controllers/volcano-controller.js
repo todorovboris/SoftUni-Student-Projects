@@ -21,4 +21,10 @@ volcanoController.post('/create', isAuth, async (req, res) => {
     }
 });
 
+volcanoController.get('/catalog', async (req, res) => {
+    const volcanoes = await volcanoHandler.getAllVolcanoes();
+
+    res.render('volcano/catalog', { volcanoes });
+});
+
 export default volcanoController;
