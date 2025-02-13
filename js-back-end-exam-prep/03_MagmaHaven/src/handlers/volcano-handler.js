@@ -1,12 +1,15 @@
 import Volcano from '../models/Volcano.js';
 
 export default {
-    getAllVolcanoes(filter = {}) {
+    async getAllVolcanoes(filter = {}) {
         let query = Volcano.find({});
 
         return query;
     },
-    createVolcano(data, ownerId) {
+    async getOneVolcano(volcanoId) {
+        return Volcano.findById(volcanoId);
+    },
+    async createVolcano(data, ownerId) {
         return Volcano.create({ ...data, owner: ownerId });
     },
 };

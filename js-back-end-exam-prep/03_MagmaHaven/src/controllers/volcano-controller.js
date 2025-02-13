@@ -27,4 +27,14 @@ volcanoController.get('/catalog', async (req, res) => {
     res.render('volcano/catalog', { volcanoes });
 });
 
+volcanoController.get('/:volcanoId/details', async (req, res) => {
+    const volcanoId = req.params.volcanoId;
+    const volcano = await volcanoHandler.getOneVolcano(volcanoId);
+
+    const isOwner = volcano.owner.equals(req.user?._id);
+    const isVoted = volcano.voteList.includes(req.user?._id);
+
+    res.render('volcano/details', { volcano, isOwner, isVoted });
+});
+
 export default volcanoController;
