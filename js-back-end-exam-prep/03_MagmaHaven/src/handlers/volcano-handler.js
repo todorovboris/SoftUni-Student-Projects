@@ -15,4 +15,7 @@ export default {
     async voteVolcatno(volcanoId, userId) {
         return Volcano.findByIdAndUpdate(volcanoId, { $push: { voteList: userId } });
     },
+    async deleteVolcano(volcanoId) {
+        return Volcano.findByIdAndDelete(volcanoId);
+    },
 };

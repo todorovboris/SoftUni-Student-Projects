@@ -37,7 +37,7 @@ volcanoController.get('/:volcanoId/details', async (req, res) => {
     res.render('volcano/details', { volcano, isOwner, isVoted });
 });
 
-volcanoController.get('/:volcanoId/vote', async (req, res) => {
+volcanoController.get('/:volcanoId/vote', isAuth, async (req, res) => {
     const userId = req.user?._id;
     const volcanoId = req.params.volcanoId;
     const volcano = await volcanoHandler.getOneVolcano(volcanoId);
@@ -55,6 +55,22 @@ volcanoController.get('/:volcanoId/vote', async (req, res) => {
         res.redirect(`/volcano/${volcanoId}/details`);
     } catch (err) {
         res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+volcanoController.get('/:volcanoId/delete', isAuth, async (req, res) => {
+    const volcanoId = req.params.volcanoId;
+    const volcano = await volcanoHandler.getOneVolcano(volcanoId);
+
+    if (!volcano.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the volcano owner!' });
+    }
+
+    try {
+        await volcanoHandler.deleteVolcano(volcanoId);
+        res.redirect('/volcano/catalog');
+    } catch (err) {
+        return res.render('404', { error: getErrorMessage(err) });
     }
 });
 
