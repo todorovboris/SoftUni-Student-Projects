@@ -96,4 +96,11 @@ recipeController.post('/:recipeId/edit', isAuth, async (req, res) => {
     }
 });
 
+recipeController.get('/search', async (req, res) => {
+    const filter = req.query;
+    const recipes = await recipeHandler.getAllRecipes(filter);
+
+    res.render('recipes/search', { recipes, filter, pageTitle: 'Search' });
+});
+
 export default recipeController;

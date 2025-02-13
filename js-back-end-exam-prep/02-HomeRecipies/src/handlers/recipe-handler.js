@@ -4,6 +4,10 @@ export default {
     getAllRecipes(filter = {}) {
         let query = Recipe.find({});
 
+        if (filter.search) {
+            query = query.where({ title: { $regex: filter.search, $options: 'i' } });
+        }
+
         return query;
     },
     getLatestRecipes() {
