@@ -26,7 +26,7 @@
     {{#if user}}
         {{#if isOwner}}
             <a href='#'>Edit</a>
-            <a href='#'>Delete</a>
+            <a href='/recipes/{{recipe._id}}/delete'>Delete</a>
         {{else}}
             {{#unless isRecommend}}
                 <a href='/recipes/{{recipe._id}}/recommend'>Recommend</a>

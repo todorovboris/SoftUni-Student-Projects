@@ -45,7 +45,19 @@ recipeController.get('/:recipeId/recommend', isAuth, async (req, res) => {
         await recipeHandler.recommendRecipe(recipeId, userId);
         res.redirect(`/recipes/${recipeId}/details`);
     } catch (err) {
-        res.render('404', { error: err.message });
+        res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+recipeController.get('/:recipeId/delete', isAuth, async (req, res) => {
+    const recipeId = req.params.recipeId;
+    const userId = req.user?._id;
+
+    try {
+        await recipeHandler.deleteRecipe(recipeId, userId);
+        res.redirect('/recipes/catalog');
+    } catch (err) {
+        res.render('404', { error: getErrorMessage(err) });
     }
 });
 

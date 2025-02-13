@@ -33,4 +33,13 @@ export default {
 
         return Recipe.findByIdAndUpdate(recipeId, { recommendList: userId });
     },
+    async deleteRecipe(recipeId, userId) {
+        const recipe = await Recipe.findById(recipeId);
+
+        if (!recipe.owner.equals(userId)) {
+            throw new Error('You are not the recipe owner!');
+        }
+
+        return Recipe.findByIdAndDelete(recipeId);
+    },
 };
