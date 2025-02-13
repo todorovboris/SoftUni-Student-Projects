@@ -84,4 +84,16 @@ recipeController.get('/:recipeId/edit', isAuth, async (req, res) => {
     res.render('recipes/edit', { recipe });
 });
 
+recipeController.post('/:recipeId/edit', isAuth, async (req, res) => {
+    const newRecipeData = req.body;
+    const recipeId = req.params.recipeId;
+
+    try {
+        await recipeHandler.editRecipe(recipeId, newRecipeData);
+        res.redirect(`/recipes/${recipeId}/details`);
+    } catch (err) {
+        return res.render('recipes/edit', { recipe: newRecipeData, error: getErrorMessage(err) });
+    }
+});
+
 export default recipeController;

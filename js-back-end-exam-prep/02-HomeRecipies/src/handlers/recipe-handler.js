@@ -12,18 +12,16 @@ export default {
     getOneRecipe(recipeId) {
         return Recipe.findById(recipeId);
     },
-    async createRecipe(recipeData, ownerId) {
-        const promise = Recipe.create({
-            ...recipeData,
-            owner: ownerId,
-        });
-
-        return promise;
+    createRecipe(recipeData, ownerId) {
+        return Recipe.create({ ...recipeData, owner: ownerId });
     },
-    recommendRecipe(recipeId, userId) {
+    async recommendRecipe(recipeId, userId) {
         return Recipe.findByIdAndUpdate(recipeId, { recommendList: userId });
     },
-    deleteRecipe(recipeId) {
+    async deleteRecipe(recipeId) {
         return Recipe.findByIdAndDelete(recipeId);
+    },
+    async editRecipe(recipeId, newRecipeData) {
+        return Recipe.findByIdAndUpdate(recipeId, newRecipeData, { runValidators: true });
     },
 };
