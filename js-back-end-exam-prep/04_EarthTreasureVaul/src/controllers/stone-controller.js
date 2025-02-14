@@ -21,4 +21,9 @@ stoneController.post('/create', isAuth, async (req, res) => {
     }
 });
 
+stoneController.get('/dashboard', async (req, res) => {
+    const stones = await stoneHandler.getAllStones();
+    res.render('stones/dashboard', { stones });
+});
+
 export default stoneController;
