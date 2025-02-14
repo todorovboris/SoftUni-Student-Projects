@@ -2,38 +2,13 @@
 
     <head>
         <meta charset='UTF-8' />
+        <meta http-equiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <title>TechStore | {{pageTitle}}</title>
         <link rel='stylesheet' href='/styles/styles.css' />
+        <title>Earth Treasure | {{pageTitle}}</title>
     </head>
 
     <body>
-        <header>
-            <div class='container'>
-                <h1>TechStore</h1>
-                <nav>
-                    <ul>
-                        {{! All users }}
-                        <li><a href='/'>Home</a></li>
-                        <li><a href='#'>Catalog</a></li>
-                        <li><a href='#'>About</a></li>
-                        {{#if user}}
-                            {{! LoggedIn users }}
-                            <li><a href='#'>Profile</a></li>
-                            <li><a href='#'>Create Offer</a></li>
-                            <li><a href='/auth/logout'>Logout</a></li>
-                        {{else}}
-                            {{! Guest users }}
-                            <li><a href='/auth/login'>Login</a></li>
-                            <li><a href='/auth/register'>Register</a></li>
-                        {{/if}}
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <!-- In case of error, you should display div with class "errorContainer" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
         {{#if error}}
             <div>
                 <div class='errorContainer'>
@@ -42,13 +17,37 @@
             </div>
         {{/if}}
 
-        {{{body}}}
+        <div id='wrapper'>
+            <header>
+                <!-- Navigation -->
+                <nav>
+                    <div>
+                        <a href='/'>Home</a>
+                        <a href='#'>Dashboard</a>
+                        <a href='#'>Search</a>
+                    </div>
+                    {{#if user}}
+                        <!-- Logged-in users -->
+                        <div class='user'>
+                            <a href='#'>Add Stones</a>
+                            <a href='/auth/logout'>Logout</a>
+                        </div>
+                    {{else}}
+                        <!-- Guest users -->
+                        <div class='guest'>
+                            <a href='/auth/login'>Login</a>
+                            <a href='/auth/register'>Register</a>
+                        </div>
+                    {{/if}}
+                </nav>
+            </header>
 
-        <footer>
-            <div class='container'>
-                <p>&copy; 2024 TechStore. All rights reserved.</p>
-            </div>
-        </footer>
+            {{{body}}}
+
+            <footer>
+                <p>@EarthTreasureVaul</p>
+            </footer>
+        </div>
     </body>
 
 </html>
