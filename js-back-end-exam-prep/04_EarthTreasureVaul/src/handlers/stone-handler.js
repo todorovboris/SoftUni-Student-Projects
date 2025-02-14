@@ -14,4 +14,13 @@ export default {
     createStone(stoneData, userId) {
         return Stone.create({ ...stoneData, owner: userId });
     },
+    async likeStone(stoneId, userId) {
+        return Stone.findByIdAndUpdate(stoneId, { $push: { likedList: userId } });
+    },
+    async deleteStone(stoneId) {
+        return Stone.findByIdAndDelete(stoneId);
+    },
+    async editStone(stoneId, newStoneData) {
+        //
+    },
 };

@@ -36,11 +36,11 @@
             {{#if user}}
                 <div id='action-buttons'>
                     {{#if isOwner}}
-                        <a href='#' id='edit-btn'>Edit</a>
-                        <a href='#' id='delete-btn'>Delete</a>
+                        <a href='/stones/{{stone._id}}/edit' id='edit-btn'>Edit</a>
+                        <a href='/stones/{{stone._id}}/delete' id='delete-btn'>Delete</a>
                     {{else}}
                         {{#unless isLiked}}
-                            <a href='/stones/{{stone._id}}/vote' id='like-btn'>Like</a>
+                            <a href='/stones/{{stone._id}}/like' id='like-btn'>Like</a>
                         {{else}}
                             <p id='already-liked'>You already liked this stone!</p>
                         {{/unless}}

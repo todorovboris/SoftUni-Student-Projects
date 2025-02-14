@@ -36,4 +36,41 @@ stoneController.get('/:stoneId/details', async (req, res) => {
     res.render('stones/details', { stone, isOwner, isLiked });
 });
 
+stoneController.get('/:stoneId/like', isAuth, async (req, res) => {
+    const userId = req.user?._id;
+    const stoneId = req.params.stoneId;
+    const stone = await stoneHandler.getOneStone(stoneId);
+
+    if (stone.owner.equals(userId)) {
+        return res.render('404', { error: 'Cannot like your own stones!' });
+    }
+
+    if (stone.likedList.includes(userId)) {
+        return res.render('404', { error: 'You already liked this stone!' });
+    }
+
+    try {
+        await stoneHandler.likeStone(stoneId, userId);
+        res.redirect(`/stones/${stoneId}/details`);
+    } catch (err) {
+        res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+stoneController.get('/:stoneId/delete', isAuth, async (req, res) => {
+    const stoneId = req.params.stoneId;
+    const stone = await stoneHandler.getOneStone(stoneId);
+
+    if (!stone.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the stone owner!' });
+    }
+
+    try {
+        await stoneHandler.deleteStone(stoneId);
+        res.redirect('/stones/dashboard');
+    } catch (err) {
+        //
+    }
+});
+
 export default stoneController;
