@@ -26,4 +26,14 @@ stoneController.get('/dashboard', async (req, res) => {
     res.render('stones/dashboard', { stones });
 });
 
+stoneController.get('/:stoneId/details', async (req, res) => {
+    const stoneId = req.params.stoneId;
+    const stone = await stoneHandler.getOneStone(stoneId);
+
+    const isOwner = stone.owner.equals(req.user?._id);
+    const isLiked = stone.likedList.includes(req.user?._id);
+
+    res.render('stones/details', { stone, isOwner, isLiked });
+});
+
 export default stoneController;

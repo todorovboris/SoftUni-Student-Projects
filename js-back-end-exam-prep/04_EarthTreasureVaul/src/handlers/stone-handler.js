@@ -8,6 +8,9 @@ export default {
         let query = Stone.find({});
         return query;
     },
+    getOneStone(stoneId) {
+        return Stone.findById(stoneId);
+    },
     createStone(stoneData, userId) {
         return Stone.create({ ...stoneData, owner: userId });
     },
