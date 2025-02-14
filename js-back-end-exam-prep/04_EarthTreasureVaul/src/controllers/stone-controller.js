@@ -73,4 +73,27 @@ stoneController.get('/:stoneId/delete', isAuth, async (req, res) => {
     }
 });
 
+stoneController.get('/:stoneId/edit', isAuth, async (req, res) => {
+    const stoneId = req.params.stoneId;
+    const stone = await stoneHandler.getOneStone(stoneId);
+
+    if (!stone.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the stone owner!' });
+    }
+
+    res.render('stones/edit', { stone });
+});
+
+stoneController.post('/:stoneId/edit', isAuth, async (req, res) => {
+    const newData = req.body;
+    const stoneId = req.params.stoneId;
+
+    try {
+        await stoneHandler.editStone(stoneId, newData);
+        res.redirect(`/stones/${stoneId}/details`);
+    } catch (err) {
+        return res.render('stones/edit', { stone: newData, error: getErrorMessage(err) });
+    }
+});
+
 export default stoneController;

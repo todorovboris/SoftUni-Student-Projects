@@ -21,6 +21,6 @@ export default {
         return Stone.findByIdAndDelete(stoneId);
     },
     async editStone(stoneId, newStoneData) {
-        //
+        return Stone.findByIdAndUpdate(stoneId, newStoneData, { runValidators: true });
     },
 };
