@@ -23,13 +23,13 @@
                 <nav>
                     <div>
                         <a href='/'>Home</a>
-                        <a href='#'>Dashboard</a>
+                        <a href='/stones/dashboard'>Dashboard</a>
                         <a href='#'>Search</a>
                     </div>
                     {{#if user}}
                         <!-- Logged-in users -->
                         <div class='user'>
-                            <a href='#'>Add Stones</a>
+                            <a href='/stones/create'>Add Stones</a>
                             <a href='/auth/logout'>Logout</a>
                         </div>
                     {{else}}
