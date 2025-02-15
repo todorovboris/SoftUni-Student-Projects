@@ -57,4 +57,43 @@ courseController.get('/:courseId/sign', isAuth, async (req, res) => {
     }
 });
 
+courseController.get('/:courseId/delete', isAuth, async (req, res) => {
+    const courseId = req.params.courseId;
+    const course = await courseHandler.getOneCourse(courseId);
+
+    if (!course.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the course owner!' });
+    }
+
+    try {
+        await courseHandler.deleteCrourse(courseId);
+        res.redirect('/courses/catalog');
+    } catch (err) {
+        return res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+courseController.get('/:courseId/edit', isAuth, async (req, res) => {
+    const courseId = req.params.courseId;
+    const course = await courseHandler.getOneCourse(courseId);
+
+    if (!course.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You are not the course owner!' });
+    }
+
+    res.render('courses/edit', { course });
+});
+
+courseController.post('/:courseId/edit', isAuth, async (req, res) => {
+    const newData = req.body;
+    const courseId = req.params.courseId;
+
+    try {
+        await courseHandler.editCourse(courseId, newData);
+        res.redirect(`/courses/${courseId}/details`);
+    } catch (err) {
+        return res.render('courses/edit', { course: newData, error: getErrorMessage(err) });
+    }
+});
+
 export default courseController;

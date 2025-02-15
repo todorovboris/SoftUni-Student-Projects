@@ -17,4 +17,10 @@ export default {
     async signCourse(courseId, userId) {
         return Course.findByIdAndUpdate(courseId, { $push: { signUpList: userId } });
     },
+    async deleteCrourse(courseId) {
+        return Course.findByIdAndDelete(courseId);
+    },
+    async editCourse(courseId, newCourseData) {
+        return Course.findByIdAndUpdate(courseId, newCourseData, { runValidators: true });
+    },
 };

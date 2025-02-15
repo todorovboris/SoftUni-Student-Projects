@@ -26,8 +26,8 @@
         <div class='btn-container'>
             {{#if isOwner}}
                 <!-- Only for registered user and creator of the course-->
-                <a href='#'>Edit</a>
-                <a href='#'>Delete</a>
+                <a href='/courses/{{course._id}}/edit'>Edit</a>
+                <a href='/courses/{{course._id}}/delete'>Delete</a>
             {{else}}
                 <!-- logged in user who has not yet sign up for the course-->
                 {{#unless isSigned}}
