@@ -21,4 +21,9 @@ courseController.post('/create', isAuth, async (req, res) => {
     }
 });
 
+courseController.get('/catalog', async (req, res) => {
+    const courses = await courseHandler.getAllCourses();
+    res.render('courses/catalog', { courses });
+});
+
 export default courseController;

@@ -26,10 +26,10 @@
                 <ul>
                     <!-- Guest users and Logged users -->
                     <li><a href='/'>Home</a></li>
-                    <li><a href='#'>All Courses</a></li>
+                    <li><a href='/courses/catalog'>All Courses</a></li>
                     {{#if user}}
                         <!--For loggin users-->
-                        <li><a href='#'>Profile</a></li>
+                        <li><a href='/profile'>Profile</a></li>
                         <li><a href='/courses/create'>Create Course Offers</a></li>
                         <li><a href='/auth/logout'>Logout</a></li>
                     {{else}}
