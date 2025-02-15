@@ -115,11 +115,11 @@
     -   [x] Fix error notification
     -   [x] Add {{{body}}}
     -   [x] Add footer
--   [ ] Switch home template
--   [ ] Change db name
--   [ ] Modify login page
-    -   [ ] Keep values to fields if error
--   [ ] Modify register page
-    -   [ ] Keep values to fields if error
--   [ ] Modify User model
--   [ ] Modify token data
+-   [x] Switch home template
+-   [x] Change db name
+-   [x] Modify login page
+    -   [x] Keep values to fields if error
+-   [x] Modify register page
+    -   [x] Keep values to fields if error
+-   [x] Modify User model
+-   [x] Modify token data
