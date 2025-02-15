@@ -10,7 +10,7 @@ const app = express();
 
 //! DB setup
 try {
-    const uri = 'mongodb://localhost:27017/softuni_prep';
+    const uri = 'mongodb://localhost:27017/course-book';
     await mongoose.connect(uri);
 
     console.log('Connected to DB Successfull!');
