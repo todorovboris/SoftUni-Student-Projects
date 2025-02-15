@@ -26,4 +26,35 @@ courseController.get('/catalog', async (req, res) => {
     res.render('courses/catalog', { courses });
 });
 
+courseController.get('/:courseId/details', async (req, res) => {
+    const courseId = req.params.courseId;
+    const course = await courseHandler.getOneCourse(courseId);
+
+    const isOwner = course.owner.equals(req.user?._id);
+    const isSigned = course.signUpList.some((obj) => obj._id.equals(req.user?._id));
+
+    res.render('courses/details', { course, isOwner, isSigned });
+});
+
+courseController.get('/:courseId/sign', isAuth, async (req, res) => {
+    const userId = req.user?._id;
+    const courseId = req.params.courseId;
+    const course = await courseHandler.getOneCourse(courseId);
+
+    if (course.owner.equals(userId)) {
+        return res.render('404', { error: 'Cannot sign your own course!' });
+    }
+
+    if (course.signUpList.some((obj) => obj._id.equals(req.user?._id))) {
+        return res.render('404', { error: 'You already signed this course!' });
+    }
+
+    try {
+        await courseHandler.signCourse(courseId, userId);
+        res.redirect(`/courses/${courseId}/details`);
+    } catch (err) {
+        res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
 export default courseController;
