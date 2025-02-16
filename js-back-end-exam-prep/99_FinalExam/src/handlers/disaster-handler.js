@@ -14,4 +14,7 @@ export default {
     async interestDisaster(disasterId, userId) {
         return Disaster.findByIdAndUpdate(disasterId, { $push: { interestedList: userId } });
     },
+    async deleteDisaster(disasterId) {
+        return Disaster.findByIdAndDelete(disasterId);
+    },
 };

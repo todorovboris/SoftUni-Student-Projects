@@ -36,7 +36,7 @@ disasterController.get('/:disasterId/details', async (req, res) => {
     res.render('disasters/details', { disaster, isOwner, isInterested });
 });
 
-disasterController.get('/:disasterId/interest', async (req, res) => {
+disasterController.get('/:disasterId/interest', isAuth, async (req, res) => {
     const disasterId = req.params.disasterId;
     const disaster = await disasterHandler.getOneDisaster(disasterId);
     const userId = req.user?._id;
@@ -56,4 +56,37 @@ disasterController.get('/:disasterId/interest', async (req, res) => {
         res.render('404', { error: getErrorMessage(err) });
     }
 });
+
+disasterController.get('/:disasterId/delete', isAuth, async (req, res) => {
+    const disasterId = req.params.disasterId;
+    const disaster = await disasterHandler.getOneDisaster(disasterId);
+
+    if (!disaster.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You dont have permission for deleting!' });
+    }
+
+    try {
+        await disasterHandler.deleteDisaster(disasterId);
+        res.redirect('/disasters/catalog');
+    } catch (err) {
+        return res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
+disasterController.get('/:disasterId/edit', isAuth, async (req, res) => {
+    const disasterId = req.params.disasterId;
+    const disaster = await disasterHandler.getOneDisaster(disasterId);
+
+    if (!disaster.owner.equals(req.user?._id)) {
+        return res.render('404', { error: 'You dont have permission for editing!' });
+    }
+
+    try {
+        await disasterHandler.deleteDisaster(disasterId);
+        res.redirect('/disasters/catalog');
+    } catch (err) {
+        return res.render('404', { error: getErrorMessage(err) });
+    }
+});
+
 export default disasterController;
