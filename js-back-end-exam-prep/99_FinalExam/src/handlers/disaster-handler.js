@@ -3,6 +3,15 @@ import Disaster from '../models/Disaster.js';
 export default {
     async getAllDisasters(filter = {}) {
         let query = Disaster.find({});
+
+        if (filter.search) {
+            query = query.where({ name: { $regex: filter.search, $options: 'i' } });
+        }
+
+        if (filter.type) {
+            query = query.where({ type: { $regex: filter.type, $options: 'i' } });
+        }
+
         return query;
     },
     async getOneDisaster(disasterId) {
