@@ -5,6 +5,9 @@ export default {
         let query = Disaster.find({});
         return query;
     },
+    async getOneDisaster(disasterId) {
+        return Disaster.findById(disasterId);
+    },
     async createDisaster(data, userId) {
         return Disaster.create({ ...data, owner: userId });
     },

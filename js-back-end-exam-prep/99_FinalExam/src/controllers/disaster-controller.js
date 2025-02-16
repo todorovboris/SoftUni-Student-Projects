@@ -26,4 +26,14 @@ disasterController.get('/catalog', async (req, res) => {
     res.render('disasters/catalog', { disasters });
 });
 
+disasterController.get('/:disasterId/details', async (req, res) => {
+    const disasterId = req.params.disasterId;
+    const disaster = await disasterHandler.getOneDisaster(disasterId);
+
+    const isOwner = disaster.owner.equals(req.user?._id);
+    const isInterested = disaster.interestedList.includes(req.user?._id);
+
+    res.render('disasters/details', { disaster, isOwner });
+});
+
 export default disasterController;
