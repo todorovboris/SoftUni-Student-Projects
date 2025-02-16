@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { isAuth } from '../middlewares/auth-middleware.js';
 import disasterHandler from '../handlers/disaster-handler.js';
 import { getErrorMessage } from '../utils/error-utils.js';
+import getDisasterTypesData from '../helpers/getTypesData.js';
 
 const disasterController = Router();
 
@@ -81,11 +82,21 @@ disasterController.get('/:disasterId/edit', isAuth, async (req, res) => {
         return res.render('404', { error: 'You dont have permission for editing!' });
     }
 
+    const types = getDisasterTypesData(disaster.type);
+
+    res.render('disasters/edit', { disaster, types });
+});
+
+disasterController.post('/:disasterId/edit', isAuth, async (req, res) => {
+    const newData = req.body;
+    const disasterId = req.params.disasterId;
+
     try {
-        await disasterHandler.deleteDisaster(disasterId);
-        res.redirect('/disasters/catalog');
+        await disasterHandler.editDisaster(disasterId, newData);
+        res.redirect(`/disasters/${disasterId}/details`);
     } catch (err) {
-        return res.render('404', { error: getErrorMessage(err) });
+        const types = getDisasterTypesData(newData.type);
+        res.render('disasters/edit', { disaster: newData, types, error: getErrorMessage(err) });
     }
 });
 

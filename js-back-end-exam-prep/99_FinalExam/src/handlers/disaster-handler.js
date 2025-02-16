@@ -17,4 +17,7 @@ export default {
     async deleteDisaster(disasterId) {
         return Disaster.findByIdAndDelete(disasterId);
     },
+    async editDisaster(disasterId, newData) {
+        return Disaster.findByIdAndUpdate(disasterId, newData, { runValidators: true });
+    },
 };
