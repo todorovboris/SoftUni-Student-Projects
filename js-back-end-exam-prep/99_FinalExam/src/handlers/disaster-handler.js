@@ -11,4 +11,7 @@ export default {
     async createDisaster(data, userId) {
         return Disaster.create({ ...data, owner: userId });
     },
+    async interestDisaster(disasterId, userId) {
+        return Disaster.findByIdAndUpdate(disasterId, { $push: { interestedList: userId } });
+    },
 };

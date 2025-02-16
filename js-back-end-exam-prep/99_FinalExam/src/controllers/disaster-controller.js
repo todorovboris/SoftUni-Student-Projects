@@ -33,7 +33,27 @@ disasterController.get('/:disasterId/details', async (req, res) => {
     const isOwner = disaster.owner.equals(req.user?._id);
     const isInterested = disaster.interestedList.includes(req.user?._id);
 
-    res.render('disasters/details', { disaster, isOwner });
+    res.render('disasters/details', { disaster, isOwner, isInterested });
 });
 
+disasterController.get('/:disasterId/interest', async (req, res) => {
+    const disasterId = req.params.disasterId;
+    const disaster = await disasterHandler.getOneDisaster(disasterId);
+    const userId = req.user?._id;
+
+    if (disaster.owner.equals(userId)) {
+        return res.render('404', { error: 'Cannot be interested for your own disaster!' });
+    }
+
+    if (disaster.interestedList.includes(userId)) {
+        return res.render('404', { error: 'You are alerady interested for this disaster!' });
+    }
+
+    try {
+        await disasterHandler.interestDisaster(disasterId, userId);
+        res.redirect(`/disasters/${disasterId}/details`);
+    } catch (err) {
+        res.render('404', { error: getErrorMessage(err) });
+    }
+});
 export default disasterController;

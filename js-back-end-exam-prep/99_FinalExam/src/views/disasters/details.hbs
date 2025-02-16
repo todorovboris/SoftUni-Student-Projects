@@ -24,7 +24,7 @@
                 {{else}}
                     {{#unless isInterested}}
                         <!-- Logged in user who has not yet interested for this post-->
-                        <a href='#' class='btn-interested'>Interested</a>
+                        <a href='/disasters/{{disaster._id}}/interest' class='btn-interested'>Interested</a>
                     {{else}}
                         <!-- Logged in user who has already interested for this post-->
                         <p class='interested-message'>You've already been interested in this event!</p>
