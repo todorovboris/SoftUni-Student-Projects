@@ -21,4 +21,9 @@ disasterController.post('/create', isAuth, async (req, res) => {
     }
 });
 
+disasterController.get('/catalog', async (req, res) => {
+    const disasters = await disasterHandler.getAllDisasters();
+    res.render('disasters/catalog', { disasters });
+});
+
 export default disasterController;
