@@ -1,5 +1,7 @@
 import './App.css';
+import Footer from './components/Footer.jsx';
 import Header from './components/Header.jsx';
+import Searchbar from './components/Searchbar.jsx';
 
 function App() {
     return (
@@ -10,49 +12,7 @@ function App() {
             <main className="main">
                 {/* <!-- Section component  --> */}
                 <section className="card users-container">
-                    {/* <!-- Search bar component --> */}
-                    <form className="search-form">
-                        <h2>
-                            <svg
-                                aria-hidden="true"
-                                focusable="false"
-                                data-prefix="fas"
-                                data-icon="user"
-                                className="svg-inline--fa fa-user SearchBar_icon__cXpTg"
-                                role="img"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
-                            >
-                                <path
-                                    fill="currentColor"
-                                    d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"
-                                ></path>
-                            </svg>
-                            <span>Users</span>
-                        </h2>
-                        <div className="search-input-container">
-                            <input type="text" placeholder="Please, select the search criteria" name="search" />
-                            {/* <!-- Show the clear button only if input field length !== 0 --> */}
-                            <button className="btn close-btn">
-                                <i className="fa-solid fa-xmark"></i>
-                            </button>
-
-                            <button className="btn" title="Please, select the search criteria">
-                                <i className="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
-
-                        <div className="filter">
-                            <span>Search Criteria:</span>
-                            <select name="criteria" className="criteria">
-                                <option value="">Not selected</option>
-                                <option value="">First Name</option>
-                                <option value="">Last Name</option>
-                                <option value="">Email</option>
-                                <option value="">Phone</option>
-                            </select>
-                        </div>
-                    </form>
+                    <Searchbar />
 
                     {/* <!-- Table component --> */}
                     <div className="table-wrapper">
@@ -63,68 +23,66 @@ function App() {
                         {/* <!-- <div className="spinner"></div> --> */}
                         {/* <!--         No users added yet  --> */}
 
-                        {/* <!-- <div className="table-overlap">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="triangle-exclamation"
-                className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
-                ></path>
-              </svg>
-              <h2>There is no users yet.</h2>
-            </div> --> */}
+                        {/* <div className="table-overlap">
+                            <svg
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fas"
+                                data-icon="triangle-exclamation"
+                                className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
+                                ></path>
+                            </svg>
+                            <h2>There is no users yet.</h2>
+                        </div> */}
 
                         {/* <!-- No content overlap component  --> */}
-
-                        {/* <!-- <div className="table-overlap">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="triangle-exclamation"
-                className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
-                ></path>
-              </svg>
-              <h2>Sorry, we couldn't find what you're looking for.</h2>
-            </div> --> */}
+                        {/* <div className="table-overlap">
+                            <svg
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fas"
+                                data-icon="triangle-exclamation"
+                                className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
+                                ></path>
+                            </svg>
+                            <h2>Sorry, we couldn't find what you're looking for.</h2>
+                        </div> */}
 
                         {/* <!-- On error overlap component  --> */}
+                        {/* <div className="table-overlap">
+                            <svg
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fas"
+                                data-icon="triangle-exclamation"
+                                className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
+                                ></path>
+                            </svg>
+                            <h2>Failed to fetch</h2>
+                        </div> */}
 
-                        {/* <!-- <div className="table-overlap">
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="triangle-exclamation"
-                className="svg-inline--fa fa-triangle-exclamation Table_icon__+HHgn"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"
-                ></path>
-              </svg>
-              <h2>Failed to fetch</h2>
-            </div> --> */}
                         {/* <!-- </div> --> */}
-
                         <table className="table">
                             <thead>
                                 <tr>
@@ -168,7 +126,7 @@ function App() {
                                     <th>
                                         Email
                                         <svg
-                                            className="icon"
+                                            className="icon svg-inline--fa fa-arrow-down Table_icon__+HHgn"
                                             aria-hidden="true"
                                             focusable="false"
                                             data-prefix="fas"
@@ -387,182 +345,238 @@ function App() {
                 </section>
 
                 {/* <!-- User details component  --> */}
-                {/* <!-- <div className="overlay">
-      <div className="backdrop"></div>
-      <div className="modal">
-        <div className="detail-container">
-          <header className="headers">
-            <h2>User Detail</h2>
-            <button className="btn close">
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
-                className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                <path fill="currentColor"
-                  d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z">
-                </path>
-              </svg>
-            </button>
-          </header>
-          <div className="content">
-            <div className="image-container">
-              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
-                className="image" />
-            </div>
-            <div className="user-details">
-              <p>User Id: <strong>62bb0c0eda039e2fdccba57b</strong></p>
-              <p>
-                Full Name:
-                <strong> Peter Johnson </strong>
-              </p>
-              <p>Email: <strong>peter@abv.bg</strong></p>
-              <p>Phone Number: <strong>0812345678</strong></p>
-              <p>
-                Address:
-                <strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
-              </p>
+                {/* <div className="overlay">
+                    <div className="backdrop"></div>
+                    <div className="modal">
+                        <div className="detail-container">
+                            <header className="headers">
+                                <h2>User Detail</h2>
+                                <button className="btn close">
+                                    <svg
+                                        aria-hidden="true"
+                                        focusable="false"
+                                        data-prefix="fas"
+                                        data-icon="xmark"
+                                        className="svg-inline--fa fa-xmark"
+                                        role="img"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 320 512"
+                                    >
+                                        <path
+                                            fill="currentColor"
+                                            d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </header>
+                            <div className="content">
+                                <div className="image-container">
+                                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" className="image" />
+                                </div>
+                                <div className="user-details">
+                                    <p>
+                                        User Id: <strong>62bb0c0eda039e2fdccba57b</strong>
+                                    </p>
+                                    <p>
+                                        Full Name:
+                                        <strong> Peter Johnson </strong>
+                                    </p>
+                                    <p>
+                                        Email: <strong>peter@abv.bg</strong>
+                                    </p>
+                                    <p>
+                                        Phone Number: <strong>0812345678</strong>
+                                    </p>
+                                    <p>
+                                        Address:
+                                        <strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
+                                    </p>
 
-              <p>Created on: <strong>Wednesday, June 28, 2022</strong></p>
-              <p>Modified on: <strong>Thursday, June 29, 2022</strong></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --> */}
+                                    <p>
+                                        Created on: <strong>Wednesday, June 28, 2022</strong>
+                                    </p>
+                                    <p>
+                                        Modified on: <strong>Thursday, June 29, 2022</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
 
                 {/* <!-- Create/Edit Form component  --> */}
-                {/* <!-- <div className="overlay">
-      <div className="backdrop"></div>
-      <div className="modal">
-        <div className="user-container">
-          <header className="headers">
-            <h2>Edit User/Add User</h2>
-            <button className="btn close">
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
-                className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                <path fill="currentColor"
-                  d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z">
-                </path>
-              </svg>
-            </button>
-          </header>
-          <form>
-            <div className="form-row">
-              <div className="form-group">
-                <label for="firstName">First name</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-user"></i></span>
-                  <input id="firstName" name="firstName" type="text" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label for="lastName">Last name</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-user"></i></span>
-                  <input id="lastName" name="lastName" type="text" />
-                </div>
-              </div>
-            </div>
+                {/* <div className="overlay">
+                    <div className="backdrop"></div>
+                    <div className="modal">
+                        <div className="user-container">
+                            <header className="headers">
+                                <h2>Edit User/Add User</h2>
+                                <button className="btn close">
+                                    <svg
+                                        aria-hidden="true"
+                                        focusable="false"
+                                        data-prefix="fas"
+                                        data-icon="xmark"
+                                        className="svg-inline--fa fa-xmark"
+                                        role="img"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 320 512"
+                                    >
+                                        <path
+                                            fill="currentColor"
+                                            d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </header>
+                            <form>
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label for="firstName">First name</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-user"></i>
+                                            </span>
+                                            <input id="firstName" name="firstName" type="text" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="lastName">Last name</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-user"></i>
+                                            </span>
+                                            <input id="lastName" name="lastName" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label for="email">Email</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-envelope"></i></span>
-                  <input id="email" name="email" type="text" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label for="phoneNumber">Phone number</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-phone"></i></span>
-                  <input id="phoneNumber" name="phoneNumber" type="text" />
-                </div>
-              </div>
-            </div>
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label for="email">Email</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-envelope"></i>
+                                            </span>
+                                            <input id="email" name="email" type="text" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="phoneNumber">Phone number</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-phone"></i>
+                                            </span>
+                                            <input id="phoneNumber" name="phoneNumber" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div className="form-group long-line">
-              <label for="imageUrl">Image Url</label>
-              <div className="input-wrapper">
-                <span><i className="fa-solid fa-image"></i></span>
-                <input id="imageUrl" name="imageUrl" type="text" />
-              </div>
-            </div>
+                                <div className="form-group long-line">
+                                    <label for="imageUrl">Image Url</label>
+                                    <div className="input-wrapper">
+                                        <span>
+                                            <i className="fa-solid fa-image"></i>
+                                        </span>
+                                        <input id="imageUrl" name="imageUrl" type="text" />
+                                    </div>
+                                </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label for="country">Country</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-map"></i></span>
-                  <input id="country" name="country" type="text" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label for="city">City</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-city"></i></span>
-                  <input id="city" name="city" type="text" />
-                </div>
-              </div>
-            </div>
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label for="country">Country</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-map"></i>
+                                            </span>
+                                            <input id="country" name="country" type="text" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="city">City</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-city"></i>
+                                            </span>
+                                            <input id="city" name="city" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div className="form-row">
-              <div className="form-group">
-                <label for="street">Street</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-map"></i></span>
-                  <input id="street" name="street" type="text" />
-                </div>
-              </div>
-              <div className="form-group">
-                <label for="streetNumber">Street number</label>
-                <div className="input-wrapper">
-                  <span><i className="fa-solid fa-house-chimney"></i></span>
-                  <input id="streetNumber" name="streetNumber" type="text" />
-                </div>
-              </div>
-            </div>
-            <div id="form-actions">
-              <button id="action-save" className="btn" type="submit">Save</button>
-              <button id="action-cancel" className="btn" type="button">
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div> --> */}
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label for="street">Street</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-map"></i>
+                                            </span>
+                                            <input id="street" name="street" type="text" />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label for="streetNumber">Street number</label>
+                                        <div className="input-wrapper">
+                                            <span>
+                                                <i className="fa-solid fa-house-chimney"></i>
+                                            </span>
+                                            <input id="streetNumber" name="streetNumber" type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="form-actions">
+                                    <button id="action-save" className="btn" type="submit">
+                                        Save
+                                    </button>
+                                    <button id="action-cancel" className="btn" type="button">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> */}
 
                 {/* <!-- Delete user component  --> */}
-                {/* <!-- <div className="overlay">
-      <div className="backdrop"></div>
-      <div className="modal">
-        <div className="confirm-container">
-          <header className="headers">
-            <h2>Are you sure you want to delete this account?</h2>
-            <button className="btn close">
-              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark"
-                className="svg-inline--fa fa-xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-                <path fill="currentColor"
-                  d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z">
-                </path>
-              </svg>
-            </button>
-          </header>
-          <div className="actions">
-            <div id="form-actions">
-              <button id="action-save" className="btn" type="submit">Delete</button>
-              <button id="action-cancel" className="btn" type="button">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --> */}
+                {/* <div className="overlay">
+                    <div className="backdrop"></div>
+                    <div className="modal">
+                        <div className="confirm-container">
+                            <header className="headers">
+                                <h2>Are you sure you want to delete this account?</h2>
+                                <button className="btn close">
+                                    <svg
+                                        aria-hidden="true"
+                                        focusable="false"
+                                        data-prefix="fas"
+                                        data-icon="xmark"
+                                        className="svg-inline--fa fa-xmark"
+                                        role="img"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 320 512"
+                                    >
+                                        <path
+                                            fill="currentColor"
+                                            d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"
+                                        ></path>
+                                    </svg>
+                                </button>
+                            </header>
+                            <div className="actions">
+                                <div id="form-actions">
+                                    <button id="action-save" className="btn" type="submit">
+                                        Delete
+                                    </button>
+                                    <button id="action-cancel" className="btn" type="button">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
             </main>
-            {/* <!-- Footer component  --> */}
-            <footer className="footer">
-                <p>This site is designed to be used for training purposes at SoftUni.</p>
-            </footer>
+
+            <Footer />
         </>
     );
 }
