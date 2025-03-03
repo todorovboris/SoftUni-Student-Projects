@@ -1,19 +1,10 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import Header from './components/Header.jsx';
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
         <>
-            {/* <!-- Header component --> */}
-            <header className="header">
-                <div className="logo">
-                    <span className="course">React Workshop - February 2025</span>
-                </div>
-            </header>
+            <Header />
 
             {/* <!-- Main component  --> */}
             <main className="main">
