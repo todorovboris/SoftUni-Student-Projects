@@ -6,10 +6,12 @@ import UserListItem from './UserListItem.jsx';
 import Pagination from './Pagination.jsx';
 import SearchBar from './Searchbar.jsx';
 import UserCreate from './UserCreate.jsx';
+import UserDetails from './UserDetails.jsx';
 
 export default function UserList() {
     const [users, setUsers] = useState([]);
     const [showCreateUser, setShowCreateUser] = useState(false);
+    const [userIdDetail, setUserIdDetail] = useState();
 
     useEffect(() => {
         userService.getAll().then((result) => {
@@ -42,6 +44,10 @@ export default function UserList() {
         setShowCreateUser(false);
     };
 
+    const showUserDetailsClickHandler = async (userId) => {
+        setUserIdDetail(userId);
+    };
+
     return (
         <>
             {/* <!-- Section component  --> */}
@@ -49,6 +55,8 @@ export default function UserList() {
                 <SearchBar />
 
                 {showCreateUser && <UserCreate onClose={closeCreateUserClickHandler} onSave={saveCreateUserClickHandler} />}
+
+                {userIdDetail && <UserDetails userId={userIdDetail} />}
 
                 {/* <!-- Table component --> */}
                 <div className="table-wrapper">
@@ -218,7 +226,7 @@ export default function UserList() {
                         </thead>
                         <tbody>
                             {users.map((user) => (
-                                <UserListItem key={user._id} {...user} />
+                                <UserListItem key={user._id} onInfoClick={showUserDetailsClickHandler} {...user} />
                             ))}
                         </tbody>
                     </table>
