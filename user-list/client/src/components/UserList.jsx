@@ -11,7 +11,7 @@ import UserDetails from './UserDetails.jsx';
 export default function UserList() {
     const [users, setUsers] = useState([]);
     const [showCreateUser, setShowCreateUser] = useState(false);
-    const [userIdDetail, setUserIdDetail] = useState();
+    const [userIdDetail, setUserIdDetail] = useState(null);
 
     useEffect(() => {
         userService.getAll().then((result) => {
@@ -48,6 +48,10 @@ export default function UserList() {
         setUserIdDetail(userId);
     };
 
+    const closeUserDetailsClickHandler = () => {
+        setUserIdDetail(null);
+    };
+
     return (
         <>
             {/* <!-- Section component  --> */}
@@ -56,7 +60,7 @@ export default function UserList() {
 
                 {showCreateUser && <UserCreate onClose={closeCreateUserClickHandler} onSave={saveCreateUserClickHandler} />}
 
-                {userIdDetail && <UserDetails userId={userIdDetail} />}
+                {userIdDetail && <UserDetails userId={userIdDetail} onClose={closeUserDetailsClickHandler} />}
 
                 {/* <!-- Table component --> */}
                 <div className="table-wrapper">
@@ -226,7 +230,7 @@ export default function UserList() {
                         </thead>
                         <tbody>
                             {users.map((user) => (
-                                <UserListItem key={user._id} onInfoClick={showUserDetailsClickHandler} {...user} />
+                                <UserListItem key={user._id} onDetailsClick={showUserDetailsClickHandler} {...user} />
                             ))}
                         </tbody>
                     </table>
