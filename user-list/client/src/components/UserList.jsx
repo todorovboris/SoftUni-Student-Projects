@@ -7,11 +7,13 @@ import Pagination from './Pagination.jsx';
 import SearchBar from './Searchbar.jsx';
 import UserCreate from './UserCreate.jsx';
 import UserDetails from './UserDetails.jsx';
+import UserDelete from './UserDelete.jsx';
 
 export default function UserList() {
     const [users, setUsers] = useState([]);
     const [showCreateUser, setShowCreateUser] = useState(false);
     const [userIdDetail, setUserIdDetail] = useState(null);
+    const [userIdDelete, setUserIdDelete] = useState(null);
 
     useEffect(() => {
         userService.getAll().then((result) => {
@@ -35,7 +37,6 @@ export default function UserList() {
 
         //* 1) create new user on server
         const newUser = await userService.create(userData);
-        console.log(newUser);
 
         //* 2) update local state
         setUsers((oldState) => [...oldState, newUser]);
@@ -52,6 +53,25 @@ export default function UserList() {
         setUserIdDetail(null);
     };
 
+    const deleteUserClickHandler = async (userId) => {
+        setUserIdDelete(userId);
+    };
+
+    const cancelDeleteUserClickHandler = () => {
+        setUserIdDelete(null);
+    };
+
+    const deleteUserHandler = async () => {
+        //* delete request to server
+        await userService.delete(userIdDelete);
+
+        //* delete from local state
+        setUsers((oldState) => oldState.filter((user) => user._id !== userIdDelete));
+
+        //* close modal
+        setUserIdDelete(null);
+    };
+
     return (
         <>
             {/* <!-- Section component  --> */}
@@ -61,6 +81,8 @@ export default function UserList() {
                 {showCreateUser && <UserCreate onClose={closeCreateUserClickHandler} onSave={saveCreateUserClickHandler} />}
 
                 {userIdDetail && <UserDetails userId={userIdDetail} onClose={closeUserDetailsClickHandler} />}
+
+                {userIdDelete && <UserDelete userId={userIdDelete} onCancel={cancelDeleteUserClickHandler} onDelete={deleteUserHandler} />}
 
                 {/* <!-- Table component --> */}
                 <div className="table-wrapper">
@@ -230,7 +252,7 @@ export default function UserList() {
                         </thead>
                         <tbody>
                             {users.map((user) => (
-                                <UserListItem key={user._id} onDetailsClick={showUserDetailsClickHandler} {...user} />
+                                <UserListItem key={user._id} onDetailsClick={showUserDetailsClickHandler} onDeleteClick={deleteUserClickHandler} {...user} />
                             ))}
                         </tbody>
                     </table>

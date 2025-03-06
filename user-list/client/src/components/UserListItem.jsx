@@ -1,6 +1,6 @@
 import { fromIsoDate } from '../utils/datetimeUtil.js';
 
-export default function UserListItem({ _id, imageUrl, firstName, lastName, email, phoneNumber, createdAt, onDetailsClick }) {
+export default function UserListItem({ _id, imageUrl, firstName, lastName, email, phoneNumber, createdAt, onDetailsClick, onDeleteClick }) {
     return (
         <>
             {/* <!-- Table row component --> */}
@@ -32,7 +32,7 @@ export default function UserListItem({ _id, imageUrl, firstName, lastName, email
                             ></path>
                         </svg>
                     </button>
-                    <button className="btn delete-btn" title="Delete">
+                    <button className="btn delete-btn" title="Delete" onClick={() => onDeleteClick(_id)}>
                         <svg
                             aria-hidden="true"
                             focusable="false"
