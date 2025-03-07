@@ -40,7 +40,7 @@ export default {
         postData._id = userId;
 
         const response = await fetch(`${baseUrl}/${userId}`, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -56,8 +56,8 @@ function transofrmUserData(userData) {
     const { country, city, street, streetNumber, ...transformedData } = userData;
 
     transformedData.address = { country, city, street, streetNumber };
-    transformedData.createdAt = new Date().toISOString();
     transformedData.updatedAt = new Date().toISOString();
+    transformedData.createdAt = new Date().toISOString();
 
     return transformedData;
 }
