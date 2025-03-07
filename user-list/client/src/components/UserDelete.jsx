@@ -1,14 +1,14 @@
-export default function UserDelete({ userId, onCancel, onDelete }) {
+export default function UserDelete({ userId, onClose, onDelete }) {
     return (
         <>
             {/* <!-- Delete user component  --> */}
             <div className="overlay">
-                <div className="backdrop" onClick={onCancel}></div>
+                <div className="backdrop" onClick={onClose}></div>
                 <div className="modal">
                     <div className="confirm-container">
                         <header className="headers">
                             <h2>Are you sure you want to delete this account?</h2>
-                            <button className="btn close" onClick={onCancel}>
+                            <button className="btn close" onClick={onClose}>
                                 <svg
                                     aria-hidden="true"
                                     focusable="false"
@@ -31,7 +31,7 @@ export default function UserDelete({ userId, onCancel, onDelete }) {
                                 <button id="action-save" className="btn" type="submit" onClick={onDelete}>
                                     Delete
                                 </button>
-                                <button id="action-cancel" className="btn" type="button" onClick={onCancel}>
+                                <button id="action-cancel" className="btn" type="button" onClick={onClose}>
                                     Cancel
                                 </button>
                             </div>

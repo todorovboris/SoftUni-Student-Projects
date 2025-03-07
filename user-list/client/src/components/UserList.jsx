@@ -14,6 +14,7 @@ export default function UserList() {
     const [showCreateUser, setShowCreateUser] = useState(false);
     const [userIdDetail, setUserIdDetail] = useState(null);
     const [userIdDelete, setUserIdDelete] = useState(null);
+    const [userIdEdit, setUserIdEdit] = useState(null);
 
     useEffect(() => {
         userService.getAll().then((result) => {
@@ -27,12 +28,13 @@ export default function UserList() {
 
     const closeCreateUserClickHandler = () => {
         setShowCreateUser(false);
+        setUserIdEdit(null);
     };
 
     const saveCreateUserClickHandler = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData(e.target);
+        const formData = new FormData(e.target.parentElement.parentElement);
         const userData = Object.fromEntries(formData);
 
         //* 1) create new user on server
@@ -72,6 +74,28 @@ export default function UserList() {
         setUserIdDelete(null);
     };
 
+    const editUserClickHandler = (userId) => {
+        setUserIdEdit(userId);
+    };
+
+    const saveEditUserClickHandler = async (e) => {
+        e.preventDefault();
+
+        const userId = userIdEdit;
+
+        const formData = new FormData(e.target.parentElement.parentElement);
+        const userData = Object.fromEntries(formData);
+
+        //* 1) create new user on server
+        const updatedUser = await userService.update(userId, userData);
+
+        //* 2) update local state
+        setUsers((oldState) => oldState.map((user) => (user._id === userId ? updatedUser : user)));
+
+        //* 3) close modal
+        setUserIdEdit(null);
+    };
+
     return (
         <>
             {/* <!-- Section component  --> */}
@@ -82,7 +106,16 @@ export default function UserList() {
 
                 {userIdDetail && <UserDetails userId={userIdDetail} onClose={closeUserDetailsClickHandler} />}
 
-                {userIdDelete && <UserDelete userId={userIdDelete} onCancel={cancelDeleteUserClickHandler} onDelete={deleteUserHandler} />}
+                {userIdDelete && <UserDelete userId={userIdDelete} onClose={cancelDeleteUserClickHandler} onDelete={deleteUserHandler} />}
+
+                {userIdEdit && (
+                    <UserCreate
+                        userId={userIdEdit}
+                        onClose={closeCreateUserClickHandler}
+                        onSave={saveCreateUserClickHandler}
+                        onEdit={saveEditUserClickHandler}
+                    />
+                )}
 
                 {/* <!-- Table component --> */}
                 <div className="table-wrapper">
@@ -252,7 +285,13 @@ export default function UserList() {
                         </thead>
                         <tbody>
                             {users.map((user) => (
-                                <UserListItem key={user._id} onDetailsClick={showUserDetailsClickHandler} onDeleteClick={deleteUserClickHandler} {...user} />
+                                <UserListItem
+                                    key={user._id}
+                                    onDetailsClick={showUserDetailsClickHandler}
+                                    onDeleteClick={deleteUserClickHandler}
+                                    onEditClick={editUserClickHandler}
+                                    {...user}
+                                />
                             ))}
                         </tbody>
                     </table>

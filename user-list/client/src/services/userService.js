@@ -9,11 +9,7 @@ export default {
         return users;
     },
     async create(userData) {
-        const { country, city, street, streetNumber, ...postData } = userData;
-
-        postData.address = { country, city, street, streetNumber };
-        postData.createdAt = new Date().toISOString();
-        postData.updatedAt = new Date().toISOString();
+        const postData = transofrmUserData(userData);
 
         const response = await fetch(baseUrl, {
             method: 'POST',
@@ -39,4 +35,29 @@ export default {
         const result = await response.json();
         return result;
     },
+    async update(userId, userData) {
+        const postData = transofrmUserData(userData);
+        postData._id = userId;
+
+        const response = await fetch(`${baseUrl}/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(postData),
+        });
+
+        const result = await response.json();
+        return result;
+    },
 };
+
+function transofrmUserData(userData) {
+    const { country, city, street, streetNumber, ...transformedData } = userData;
+
+    transformedData.address = { country, city, street, streetNumber };
+    transformedData.createdAt = new Date().toISOString();
+    transformedData.updatedAt = new Date().toISOString();
+
+    return transformedData;
+}
