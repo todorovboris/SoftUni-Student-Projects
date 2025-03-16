@@ -11,6 +11,12 @@ export default {
         const games = Object.values(result);
         return games;
     },
+    async getOne(gameId) {
+        const game = request.get(`${baseUrl}/${gameId}`);
+        console.log(game);
+
+        return request.get(`${baseUrl}/${gameId}`);
+    },
     create(gameData) {
         return request.post(baseUrl, gameData);
     },
