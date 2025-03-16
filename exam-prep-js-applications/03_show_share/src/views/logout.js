@@ -1,5 +1,5 @@
 import { logout } from '../api/auth.js';
-import page from '../../node_modules/page/page.mjs';
+import page from 'page/page.mjs';
 
 export default async function logoutView(ctx) {
     const token = localStorage.getItem('accessToken');

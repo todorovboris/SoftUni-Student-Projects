@@ -1,6 +1,6 @@
 import { editShow, getOne } from '../api/shows.js';
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
-import page from '../../node_modules/page/page.mjs';
+import { html, render } from 'lit-html/lit-html.js';
+import page from 'page/page.mjs';
 
 const tempalte = (show, onSubmit) => html`<!-- Edit Page (Only for logged-in users) -->
     <section id="edit">

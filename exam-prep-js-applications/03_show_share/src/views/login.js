@@ -1,6 +1,6 @@
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from 'lit-html/lit-html.js';
 import { login } from '../api/auth.js';
-import page from '../../node_modules/page/page.mjs';
+import page from 'page/page.mjs';
 
 const tempalte = (onSubmit) => html` <!-- Login Page (Only for Guest users) -->
     <section id="login">

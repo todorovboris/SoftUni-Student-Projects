@@ -1,4 +1,4 @@
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from 'lit-html/lit-html.js';
 import { getAll } from '../api/shows.js';
 
 const tempalte = (shows, isShowAvailable) => html`<!-- Dashboard page -->

@@ -1,6 +1,6 @@
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from 'lit-html/lit-html.js';
 import { deleteShow } from '../api/shows.js';
-import page from '../../node_modules/page/page.mjs';
+import page from 'page/page.mjs';
 
 export default async function deleteView(ctx) {
     const showId = ctx.params.showId;

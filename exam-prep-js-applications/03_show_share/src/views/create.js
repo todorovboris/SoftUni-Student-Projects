@@ -1,6 +1,6 @@
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from 'lit-html/lit-html.js';
 import { createShow } from '../api/shows.js';
-import page from '../../node_modules/page/page.mjs';
+import page from 'page/page.mjs';
 
 const tempalte = (onSubmit) => html`<!-- Create Page (Only for logged-in users) -->
     <section id="create">

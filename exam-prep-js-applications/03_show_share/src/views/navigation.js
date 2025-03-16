@@ -1,4 +1,4 @@
-import { html, render } from '../../node_modules/lit-html/lit-html.js';
+import { html, render } from 'lit-html/lit-html.js';
 
 const tempalte = (isAuthenticated) => html`<!-- Navigation -->
     <a id="logo" href="/"><img id="logo-img" src="./images/show_logo.png" alt="logo" /> </a>

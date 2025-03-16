@@ -1,4 +1,4 @@
-import page from '../node_modules/page/page.mjs';
+import page from 'page/page.mjs';
 
 import homeView from './views/home.js';
 import loginView from './views/login.js';
