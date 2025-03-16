@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import CommentsShow from '../comments-show/CommentsShow.jsx';
 import CommentsCreate from '../comments-create/CommentsCreate.jsx';
 
-export default function GameDetails() {
+export default function GameDetails({ email }) {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function GameDetails() {
                 </div>
             </div>
 
-            <CommentsCreate />
+            <CommentsCreate email={email} />
         </section>
     );
 }
