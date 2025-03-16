@@ -1,73 +1,74 @@
 {
-    "7ae9b63e-a309-4c09-9f8d-f802cfdcddb5": {
-        "_id": "7ae9b63e-a309-4c09-9f8d-f802cfdcddb5",
-        "title": "test",
-        "category": "category",
-        "maxLevel": "123",
-        "imageUrl": "asda",
-        "summary": "asssss"
-    },
     "b23f47ac-1d5f-4c6d-9b52-11f4e1b0b4a3": {
         "_id": "b23f47ac-1d5f-4c6d-9b52-11f4e1b0b4a3",
         "title": "Super Mario Bros.",
         "category": "Platformer",
         "maxLevel": 32,
-        "imageUrl": "https://cdn.ozone.bg/media/catalog/product/cache/1/image/400x498/a4e40ebdc3e371adff845072e1c73f37/s/u/c7fbcb162af3acdbeb0221d678eaba7c/super-mario-bros-wonder-nintendo-switch-30.jpg"
+        "imageUrl": "https://cdn.ozone.bg/media/catalog/product/cache/1/image/400x498/a4e40ebdc3e371adff845072e1c73f37/s/u/c7fbcb162af3acdbeb0221d678eaba7c/super-mario-bros-wonder-nintendo-switch-30.jpg",
+        "summary": "An iconic Nintendo platformer where players guide Mario through various worlds to rescue Princess Peach from Bowser."
     },
     "9a0c67d2-5f2d-4b86-88f1-6b3d9f68dbf7": {
         "_id": "9a0c67d2-5f2d-4b86-88f1-6b3d9f68dbf7",
         "title": "Tetris",
         "category": "Puzzle",
         "maxLevel": 999,
-        "imageUrl": "https://m.media-amazon.com/images/I/61M3rDwh4qL.png"
+        "imageUrl": "https://m.media-amazon.com/images/I/61M3rDwh4qL.png",
+        "summary": "A timeless puzzle game where players stack falling blocks to clear lines and earn points."
     },
     "3c5e9d72-8e29-4f47-b7a1-9e3a5f734c6d": {
         "_id": "3c5e9d72-8e29-4f47-b7a1-9e3a5f734c6d",
         "title": "Doom",
         "category": "Shooter",
         "maxLevel": 30,
-        "imageUrl": "https://gaming-cdn.com/images/products/2581/orig/doom-xbox-one-game-microsoft-store-europe-cover.jpg?v=1732007825"
+        "imageUrl": "https://gaming-cdn.com/images/products/2581/orig/doom-xbox-one-game-microsoft-store-europe-cover.jpg?v=1732007825",
+        "summary": "A groundbreaking first-person shooter where players battle demons from hell on Mars."
     },
     "f1a8b6de-3d57-42d3-86b9-5e9e8c2b1ad1": {
         "_id": "f1a8b6de-3d57-42d3-86b9-5e9e8c2b1ad1",
         "title": "Minecraft",
         "category": "Sandbox",
         "maxLevel": "Unlimited",
-        "imageUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202407/0401/670c294ded3baf4fa11068db2ec6758c63f7daeb266a35a1.png"
+        "imageUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202407/0401/670c294ded3baf4fa11068db2ec6758c63f7daeb266a35a1.png",
+        "summary": "An open-world sandbox game that allows players to build, explore, and survive in an infinite procedurally generated world."
     },
     "5e4f9d91-6b2a-4c4a-83c5-2e2c9b7f8a30": {
         "_id": "5e4f9d91-6b2a-4c4a-83c5-2e2c9b7f8a30",
         "title": "Pac-Man",
         "category": "Arcade",
         "maxLevel": 256,
-        "imageUrl": "https://store-images.s-microsoft.com/image/apps.39946.64038775097837221.dc6e1021-8d55-4bb8-acc7-b88fb8d47e71.39720284-ef60-49fd-bf78-a0c4938a9442?q=90&w=480&h=270"
+        "imageUrl": "https://store-images.s-microsoft.com/image/apps.39946.64038775097837221.dc6e1021-8d55-4bb8-acc7-b88fb8d47e71.39720284-ef60-49fd-bf78-a0c4938a9442?q=90&w=480&h=270",
+        "summary": "A classic arcade game where players guide Pac-Man through a maze while avoiding ghosts and eating pellets."
     },
     "d4c89a1f-3a62-4c3b-a671-2e35b4c3a1b9": {
         "_id": "d4c89a1f-3a62-4c3b-a671-2e35b4c3a1b9",
         "title": "Half-Life 2",
         "category": "Shooter",
         "maxLevel": 14,
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/25/Half-Life_2_cover.jpg",
+        "summary": "A critically acclaimed first-person shooter following scientist Gordon Freeman as he battles an alien-controlled dystopia."
     },
     "a7e3b4f9-2c47-4d7b-81b5-6e2a8c9f7e41": {
         "_id": "a7e3b4f9-2c47-4d7b-81b5-6e2a8c9f7e41",
         "title": "Grand Theft Auto: San Andreas",
         "category": "Action",
         "maxLevel": 100,
-        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg"
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
+        "summary": "An open-world action game where players control CJ as he navigates gang warfare and corruption in the state of San Andreas."
     },
     "c1b2a3f4-5d6e-7f8g-9h10-1i2j3k4l5m6n": {
         "_id": "c1b2a3f4-5d6e-7f8g-9h10-1i2j3k4l5m6n",
         "title": "The Elder Scrolls V: Skyrim",
         "category": "RPG",
         "maxLevel": "Unlimited",
-        "imageUrl": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000001369/3a41386d4b0999365727a21cc5c13853cfc244abca39b689bb79a339601e48c3"
+        "imageUrl": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000001369/3a41386d4b0999365727a21cc5c13853cfc244abca39b689bb79a339601e48c3",
+        "summary": "An epic RPG set in a vast open world where players take on the role of the Dragonborn to battle dragons and shape their destiny."
     },
     "e4d5c6b7-a8f9-0g1h-2i3j-4k5l6m7n8o9p": {
         "_id": "e4d5c6b7-a8f9-0g1h-2i3j-4k5l6m7n8o9p",
         "title": "Counter-Strike",
         "category": "Shooter",
         "maxLevel": "Competitive",
-        "imageUrl": "https://developer.valvesoftware.com/w/images/0/05/Counter-Strike_-_Background.jpg"
+        "imageUrl": "https://developer.valvesoftware.com/w/images/0/05/Counter-Strike_-_Background.jpg",
+        "summary": "A tactical first-person shooter where teams of terrorists and counter-terrorists compete in intense combat scenarios."
     }
 }
