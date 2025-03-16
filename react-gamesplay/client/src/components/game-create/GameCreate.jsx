@@ -1,7 +1,15 @@
+import gameService from '../../services/gameService.js';
+
 export default function GameCreate() {
+    const submitAction = async (formData) => {
+        const gameData = Object.fromEntries(formData);
+
+        const result = await gameService.create(gameData);
+    };
+
     return (
         <section id="create-page" className="auth">
-            <form id="create">
+            <form action={submitAction} id="create">
                 <div className="container">
                     <h1>Create Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>

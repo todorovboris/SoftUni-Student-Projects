@@ -11,5 +11,6 @@ export default {
         });
 
         const result = await response.json();
+        return result;
     },
 };
