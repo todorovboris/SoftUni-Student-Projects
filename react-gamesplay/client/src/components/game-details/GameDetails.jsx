@@ -1,14 +1,26 @@
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import gameService from '../../services/gameService.js';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 export default function GameDetails() {
     const { gameId } = useParams();
     const [game, setGame] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         gameService.getOne(gameId).then(setGame);
     }, [gameId]);
+
+    const deleteGameClickHandler = async () => {
+        const confirmForDelete = confirm(`Are you want to delete ${game.title} game?`);
+
+        if (confirmForDelete) {
+            await gameService.delete(gameId);
+
+            navigate('/games');
+        }
+    };
 
     return (
         <section id="game-details">
@@ -41,12 +53,12 @@ export default function GameDetails() {
 
                 {/*<!-- Edit/Delete buttons ( Only for creator of this game )  -->*/}
                 <div className="buttons">
-                    <a href="#" className="button">
+                    <Link to={`/games/${gameId}/edit`} className="button">
                         Edit
-                    </a>
-                    <a href="#" className="button">
+                    </Link>
+                    <button onClick={deleteGameClickHandler} className="button">
                         Delete
-                    </a>
+                    </button>
                 </div>
             </div>
 
