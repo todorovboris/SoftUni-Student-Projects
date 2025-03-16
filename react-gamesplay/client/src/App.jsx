@@ -1,10 +1,15 @@
-import { useState } from 'react';
 import './App.css';
+import Header from './components/header/Header.jsx';
+import Home from './components/home/Home.jsx';
 
 function App() {
     return (
         <div id="box">
-            <h1>Games Play</h1>
+            <Header />
+
+            <main id="main-content">
+                <Home />
+            </main>
         </div>
     );
 }
