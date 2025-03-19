@@ -1,9 +1,9 @@
 import { useLatestGames } from '../../api/gameApi.js';
+import { Link } from 'react-router';
+import HomeItem from './home-item/HomeItem.jsx';
 
 export default function Home() {
     const { latestGames } = useLatestGames();
-
-    console.log(latestGames);
 
     return (
         <section id="welcome-world">
@@ -16,30 +16,7 @@ export default function Home() {
             <div id="home-page">
                 <h1>Latest Games</h1>
 
-                {/* <!-- Display div: with information about every game (if any) --> */}
-                {latestGames.map((game) => (
-                    <div className="game">
-                        <div className="image-wrap">
-                            <img src={game.imageUrl} />
-                        </div>
-                        <h3>{game.title}</h3>
-                        <div className="rating">
-                            <span>☆</span>
-                            <span>☆</span>
-                            <span>☆</span>
-                            <span>☆</span>
-                            <span>☆</span>
-                        </div>
-                        <div className="data-buttons">
-                            <a href={`/games/${game._id}/details`} className="btn details-btn">
-                                Details
-                            </a>
-                        </div>
-                    </div>
-                ))}
-
-                {/*<!-- Display paragraph: If there is no games  -->*/}
-                {latestGames.length == 0 && <p className="no-articles">No games yet</p>}
+                {latestGames.length > 0 ? latestGames.map((game) => <HomeItem key={game._id} {...game} />) : <p className="no-articles">No games yet</p>}
             </div>
         </section>
     );
