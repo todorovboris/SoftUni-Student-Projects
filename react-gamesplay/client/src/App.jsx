@@ -2,6 +2,8 @@ import './App.css';
 import { Routes, Route } from 'react-router';
 import { useState } from 'react';
 
+import { UserContext } from './contexts/UserContext.js';
+
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
 import Login from './components/login/Login.jsx';
@@ -19,22 +21,24 @@ function App() {
     };
 
     return (
-        <div id="box">
-            <Header user={authData} />
+        <UserContext.Provider value={{ ...authData, userLoginHandler }}>
+            <div id="box">
+                <Header user={authData} />
 
-            <main id="main-content">
-                <Routes>
-                    {/* <Route path="/" element={<Home />} /> */}
-                    <Route index element={<Home />} /> //! alternative with index
-                    <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/games" element={<GameCatalog />} />
-                    <Route path="/games/create" element={<GameCreate />} />
-                    <Route path="/games/:gameId/edit" element={<GameEdit />} />
-                    <Route path="/games/:gameId/details" element={<GameDetails email={authData.email} />} />
-                </Routes>
-            </main>
-        </div>
+                <main id="main-content">
+                    <Routes>
+                        {/* <Route path="/" element={<Home />} /> */}
+                        <Route index element={<Home />} /> //! alternative with index
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/games" element={<GameCatalog />} />
+                        <Route path="/games/create" element={<GameCreate />} />
+                        <Route path="/games/:gameId/edit" element={<GameEdit />} />
+                        <Route path="/games/:gameId/details" element={<GameDetails />} />
+                    </Routes>
+                </main>
+            </div>
+        </UserContext.Provider>
     );
 }
 
