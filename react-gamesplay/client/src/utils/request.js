@@ -1,7 +1,10 @@
 const request = async (method, url, data = null, options = {}) => {
     const configOptions = {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers,
+        },
         ...options,
     };
 
