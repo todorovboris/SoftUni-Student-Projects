@@ -1,5 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router';
+import { useState } from 'react';
+
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
 import Login from './components/login/Login.jsx';
@@ -8,7 +10,6 @@ import GameCatalog from './components/game-catalog/GameCatalog.jsx';
 import GameCreate from './components/game-create/GameCreate.jsx';
 import GameEdit from './components/game-edit/GameEdit.jsx';
 import GameDetails from './components/game-details/GameDetails.jsx';
-import { useState } from 'react';
 
 function App() {
     const [email, setEmail] = useState('');

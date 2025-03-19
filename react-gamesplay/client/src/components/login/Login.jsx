@@ -1,18 +1,24 @@
+import { useActionState } from 'react';
 import { Link, useNavigate } from 'react-router';
 
 export default function Login({ onLogin }) {
     const navigate = useNavigate();
 
-    const loginAction = (formData) => {
-        const email = formData.get('email');
-        onLogin(email);
+    const loginHandler = (previousSate, formData) => {
+        const values = Object.fromEntries(formData);
 
-        navigate('/games');
+        onLogin(values.email);
+
+        // navigate('/games');
+
+        return values;
     };
+
+    const [formValues, loginACtion, isPending] = useActionState(loginHandler, { email: '', password: '' });
 
     return (
         <section id="login-page" className="auth">
-            <form id="login" action={loginAction}>
+            <form id="login" action={loginACtion}>
                 <div className="container">
                     <div className="brand-logo"></div>
                     <h1>Login</h1>
