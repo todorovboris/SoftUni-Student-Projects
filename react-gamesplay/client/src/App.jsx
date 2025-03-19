@@ -15,14 +15,18 @@ import GameDetails from './components/game-details/GameDetails.jsx';
 import Logout from './components/logout/Logout.jsx';
 
 function App() {
-    const [authData, setAuthData] = useState('');
+    const [authData, setAuthData] = useState({});
 
     const userLoginHandler = (userData) => {
         setAuthData(userData);
     };
 
+    const userLogoutHandler = () => {
+        setAuthData({});
+    };
+
     return (
-        <UserContext.Provider value={{ ...authData, userLoginHandler }}>
+        <UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler }}>
             <div id="box">
                 <Header user={authData} />
 
