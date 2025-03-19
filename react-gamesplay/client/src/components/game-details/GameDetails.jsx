@@ -1,12 +1,11 @@
 import { useParams, useNavigate } from 'react-router';
-import gameService from '../../services/gameService.js';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import CommentsShow from '../comments-show/CommentsShow.jsx';
 import CommentsCreate from '../comments-create/CommentsCreate.jsx';
 import commentService from '../../services/commentService.js';
 import { UserContext } from '../../contexts/UserContext.js';
-import { useGame } from '../../api/gameApi.js';
+import { useGame, useGameDelete } from '../../api/gameApi.js';
 
 export default function GameDetails() {
     const navigate = useNavigate();
@@ -15,6 +14,7 @@ export default function GameDetails() {
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
     const { game } = useGame(gameId);
+    const { deleteGame } = useGameDelete();
 
     useEffect(() => {
         commentService.getAll(gameId).then(setComments);
@@ -24,7 +24,7 @@ export default function GameDetails() {
         const confirmForDelete = confirm(`Are you want to delete ${game.title} game?`);
 
         if (confirmForDelete) {
-            await gameService.delete(gameId);
+            await deleteGame(gameId);
 
             navigate('/games');
         }

@@ -1,19 +1,16 @@
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import gameService from '../../services/gameService.js';
+import { useGame, useGameEdit } from '../../api/gameApi.js';
 
 export default function GameEdit() {
     const navigate = useNavigate();
     const { gameId } = useParams();
-    const [game, setGame] = useState({});
-
-    useEffect(() => {
-        gameService.getOne(gameId).then(setGame);
-    }, [gameId]);
+    const { game } = useGame(gameId);
+    const { edit } = useGameEdit();
 
     const formAction = async (formData) => {
         const newGameData = Object.fromEntries(formData);
-        await gameService.edit(gameId, newGameData);
+
+        await edit(gameId, newGameData);
 
         navigate(`/games/${gameId}/details`);
     };

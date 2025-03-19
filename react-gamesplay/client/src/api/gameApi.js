@@ -1,22 +1,36 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import request from '../utils/request.js';
-import { UserContext } from '../contexts/UserContext.js';
+import useAuthorization from '../hooks/useAuth.js';
 
 const baseUrl = 'http://localhost:3030/data/games';
 
 export default {
-    async getOne(gameId) {
-        const game = request.get(`${baseUrl}/${gameId}`);
+    // delete(gameId) {
+    //     return request.delete(`${baseUrl}/${gameId}`);
+    // },
+    // edit(gameId, newGameData) {
+    //     return request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId });
+    // },
+};
 
-        return request.get(`${baseUrl}/${gameId}`);
-    },
+export const useGameDelete = () => {
+    const { options } = useAuthorization();
 
-    delete(gameId) {
-        return request.delete(`${baseUrl}/${gameId}`);
-    },
-    edit(gameId, newGameData) {
-        return request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId });
-    },
+    const deleteGame = (gameId) => {
+        request.delete(`${baseUrl}/${gameId}`, options);
+    };
+
+    return { deleteGame };
+};
+
+export const useGameEdit = () => {
+    const { options } = useAuthorization();
+
+    const edit = (gameId, newGameData) => {
+        request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId }, options);
+    };
+
+    return { edit };
 };
 
 export const useGame = (gameId) => {
@@ -41,14 +55,8 @@ export const useGames = () => {
 };
 
 //* hook on event
-export const useCreateGame = () => {
-    const { accessToken } = useContext(UserContext);
-
-    const options = {
-        headers: {
-            'X-Authorization': accessToken,
-        },
-    };
+export const useGameCreate = () => {
+    const { options } = useAuthorization();
 
     const create = (gameData) => {
         return request.post(baseUrl, gameData, options);
