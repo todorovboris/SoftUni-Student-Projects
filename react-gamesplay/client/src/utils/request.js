@@ -12,12 +12,6 @@ const request = async (method, url, data = null, options = {}) => {
         configOptions.body = JSON.stringify(data);
     }
 
-    try {
-        //
-    } catch (err) {
-        //
-    }
-
     const response = await fetch(url, configOptions);
     const responseContentType = response.headers.get('Content-Type');
 
