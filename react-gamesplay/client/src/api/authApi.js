@@ -8,9 +8,7 @@ export const useLogin = () => {
     const abortRef = useRef(new AbortController());
 
     const login = async (email, password) => {
-        const result = await request.post(`${baseUrl}/login`, { email, password }, { signal: abortRef.current.signal });
-
-        return result;
+        return request.post(`${baseUrl}/login`, { email, password }, { signal: abortRef.current.signal });
     };
 
     useEffect(() => {
