@@ -9,7 +9,7 @@ import { useGame, useGameDelete } from '../../api/gameApi.js';
 
 export default function GameDetails() {
     const navigate = useNavigate();
-    const { email } = useContext(UserContext);
+    const { email, _id: userId } = useContext(UserContext);
 
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
@@ -34,6 +34,10 @@ export default function GameDetails() {
         setComments((state) => [...state, newComment]);
     };
 
+    const isOwner = userId === game._ownerId;
+    // console.log(userId);
+    console.log(game._ownerId);
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -50,14 +54,16 @@ export default function GameDetails() {
                 <CommentsShow comments={comments} />
 
                 {/*<!-- Edit/Delete buttons ( Only for creator of this game )  -->*/}
-                <div className="buttons">
-                    <Link to={`/games/${gameId}/edit`} className="button">
-                        Edit
-                    </Link>
-                    <button onClick={deleteGameClickHandler} className="button">
-                        Delete
-                    </button>
-                </div>
+                {isOwner && (
+                    <div className="buttons">
+                        <Link to={`/games/${gameId}/edit`} className="button">
+                            Edit
+                        </Link>
+                        <button onClick={deleteGameClickHandler} className="button">
+                            Delete
+                        </button>
+                    </div>
+                )}
             </div>
 
             <CommentsCreate email={email} gameId={gameId} onCreate={commentCreateHandler} />
