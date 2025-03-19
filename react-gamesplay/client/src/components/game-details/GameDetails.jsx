@@ -35,8 +35,6 @@ export default function GameDetails() {
     };
 
     const isOwner = userId === game._ownerId;
-    // console.log(userId);
-    console.log(game._ownerId);
 
     return (
         <section id="game-details">
