@@ -1,30 +1,55 @@
-const request = async (method, url, data) => {
-    let options = {};
-
-    if (method != 'GET') {
-        options = {
-            method,
-        };
-    }
+const request = async (method, url, data = null, options = {}) => {
+    const config = {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        ...options,
+    };
 
     if (data) {
-        options = {
-            ...options,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        };
+        config.body = JSON.stringify(data);
     }
 
-    const response = await fetch(url, options);
-    const result = await response.json();
-    return result;
+    const response = await fetch(url, config);
+    return response.json();
 };
 
 export default {
-    get: request.bind(null, 'GET'),
-    post: request.bind(null, 'POST'),
-    put: request.bind(null, 'PUT'),
-    delete: request.bind(null, 'DELETE'),
+    get: (url, options) => request('GET', url, null, options),
+    post: (url, data, options) => request('POST', url, data, options),
+    put: (url, data, options) => request('PUT', url, data, options),
+    delete: (url, options) => request('DELETE', url, null, options),
 };
+
+// const api = {
+//     get: (url, options) => request('GET', url, null, options),
+//     post: (url, data, options) => request('POST', url, data, options),
+//     put: (url, data, options) => request('PUT', url, data, options),
+//     delete: (url, options) => request('DELETE', url, null, options),
+// };
+
+// const request = async (method, url, data, options = {}) => {
+//     if (method != 'GET') {
+//         options.method = method;
+//     }
+
+//     if (data) {
+//         options = {
+//             ...options,
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(data),
+//         };
+//     }
+
+//     const response = await fetch(url, options);
+//     const result = await response.json();
+//     return result;
+// };
+
+// export default {
+//     get: request.bind(null, 'GET'),
+//     post: request.bind(null, 'POST'),
+//     put: request.bind(null, 'PUT'),
+//     delete: request.bind(null, 'DELETE'),
+// };
