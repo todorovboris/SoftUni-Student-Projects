@@ -1,5 +1,5 @@
 const request = async (method, url, data = null, options = {}) => {
-    const configOptions = {
+    const updatedOptions = {
         method,
         headers: {
             'Content-Type': 'application/json',
@@ -9,10 +9,10 @@ const request = async (method, url, data = null, options = {}) => {
     };
 
     if (data) {
-        configOptions.body = JSON.stringify(data);
+        updatedOptions.body = JSON.stringify(data);
     }
 
-    const response = await fetch(url, configOptions);
+    const response = await fetch(url, updatedOptions);
     const responseContentType = response.headers.get('Content-Type');
 
     if (!responseContentType) return;

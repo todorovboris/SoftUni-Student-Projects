@@ -28,7 +28,7 @@ function App() {
     return (
         <UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler }}>
             <div id="box">
-                <Header user={authData} />
+                <Header />
 
                 <main id="main-content">
                     <Routes>
