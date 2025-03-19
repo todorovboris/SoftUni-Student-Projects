@@ -4,15 +4,6 @@ import useAuthorization from '../hooks/useAuth.js';
 
 const baseUrl = 'http://localhost:3030/data/games';
 
-export default {
-    // delete(gameId) {
-    //     return request.delete(`${baseUrl}/${gameId}`);
-    // },
-    // edit(gameId, newGameData) {
-    //     return request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId });
-    // },
-};
-
 export const useGameDelete = () => {
     const { options } = useAuthorization();
 
