@@ -4,24 +4,15 @@ import useAuthorization from '../hooks/useAuth.js';
 
 const baseUrl = 'http://localhost:3030/data/games';
 
-export const useGameDelete = () => {
-    const { options } = useAuthorization();
+//* hook on mount
+export const useGames = () => {
+    const [games, setGames] = useState([]);
 
-    const deleteGame = (gameId) => {
-        request.delete(`${baseUrl}/${gameId}`, options);
-    };
+    useEffect(() => {
+        request.get(baseUrl).then(setGames);
+    }, []);
 
-    return { deleteGame };
-};
-
-export const useGameEdit = () => {
-    const { options } = useAuthorization();
-
-    const edit = (gameId, newGameData) => {
-        request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId }, options);
-    };
-
-    return { edit };
+    return { games };
 };
 
 export const useGame = (gameId) => {
@@ -34,17 +25,6 @@ export const useGame = (gameId) => {
     return { game };
 };
 
-//* hook on mount
-export const useGames = () => {
-    const [games, setGames] = useState([]);
-
-    useEffect(() => {
-        request.get(baseUrl).then(setGames);
-    }, []);
-
-    return { games };
-};
-
 //* hook on event
 export const useGameCreate = () => {
     const { options } = useAuthorization();
@@ -54,4 +34,24 @@ export const useGameCreate = () => {
     };
 
     return { create };
+};
+
+export const useGameEdit = () => {
+    const { options } = useAuthorization();
+
+    const edit = (gameId, newGameData) => {
+        request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId }, options);
+    };
+
+    return { edit };
+};
+
+export const useGameDelete = () => {
+    const { options } = useAuthorization();
+
+    const deleteGame = (gameId) => {
+        request.delete(`${baseUrl}/${gameId}`, options);
+    };
+
+    return { deleteGame };
 };
