@@ -1,15 +1,15 @@
 const request = async (method, url, data = null, options = {}) => {
-    const config = {
+    const configOptions = {
         method,
         headers: { 'Content-Type': 'application/json' },
         ...options,
     };
 
     if (data) {
-        config.body = JSON.stringify(data);
+        configOptions.body = JSON.stringify(data);
     }
 
-    const response = await fetch(url, config);
+    const response = await fetch(url, configOptions);
     return response.json();
 };
 
