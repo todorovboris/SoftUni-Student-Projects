@@ -10,18 +10,18 @@ export default function Login() {
 
     const loginHandler = async (previousSate, formData) => {
         const values = Object.fromEntries(formData);
-        const authData = await login(values.email, values.password);
 
+        const authData = await login(values.email, values.password);
         userLoginHandler(authData);
 
-        navigate('/games');
+        navigate('/');
     };
 
-    const [formValues, loginACtion, isPending] = useActionState(loginHandler, { email: '', password: '' });
+    const [formValues, loginAction, isPending] = useActionState(loginHandler, { email: '', password: '' });
 
     return (
         <section id="login-page" className="auth">
-            <form id="login" action={loginACtion}>
+            <form id="login" action={loginAction}>
                 <div className="container">
                     <div className="brand-logo"></div>
                     <h1>Login</h1>
