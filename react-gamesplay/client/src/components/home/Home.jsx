@@ -1,6 +1,5 @@
 import { useLatestGames } from '../../api/gameApi.js';
-import { Link } from 'react-router';
-import HomeItem from './home-item/HomeItem.jsx';
+import HomeLatestItem from './home-latest-item/HomeLatestItem.jsx';
 
 export default function Home() {
     const { latestGames } = useLatestGames();
@@ -16,7 +15,7 @@ export default function Home() {
             <div id="home-page">
                 <h1>Latest Games</h1>
 
-                {latestGames.length > 0 ? latestGames.map((game) => <HomeItem key={game._id} {...game} />) : <p className="no-articles">No games yet</p>}
+                {latestGames.length > 0 ? latestGames.map((game) => <HomeLatestItem key={game._id} {...game} />) : <p className="no-articles">No games yet</p>}
             </div>
         </section>
     );

@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
 
-export default function HomeItem({ _id, title, imageUrl }) {
+export default function HomeLatestItem({ _id, title, imageUrl }) {
     return (
         <div className="game">
             <div className="image-wrap">
