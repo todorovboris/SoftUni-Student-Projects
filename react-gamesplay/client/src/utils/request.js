@@ -26,4 +26,5 @@ export default {
     post: (url, data, options) => request('POST', url, data, options),
     put: (url, data, options) => request('PUT', url, data, options),
     delete: (url, options) => request('DELETE', url, null, options),
+    baseRequest: request,
 };

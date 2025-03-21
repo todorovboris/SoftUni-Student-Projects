@@ -6,10 +6,12 @@ import CommentsCreate from '../comments-create/CommentsCreate.jsx';
 import commentService from '../../services/commentService.js';
 import { UserContext } from '../../contexts/UserContext.js';
 import { useGame, useGameDelete } from '../../api/gameApi.js';
+import useAuthorization from '../../hooks/useAuth.js';
 
 export default function GameDetails() {
     const navigate = useNavigate();
     const { email, _id: userId } = useContext(UserContext);
+    // const { email } = useAuthorization(); //! alternative way to take the email
 
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
@@ -24,10 +26,11 @@ export default function GameDetails() {
         const confirmForDelete = confirm(`Are you want to delete ${game.title} game?`);
 
         if (confirmForDelete) {
-            await deleteGame(gameId);
-
-            navigate('/games');
+            return;
         }
+
+        await deleteGame(gameId);
+        navigate('/games');
     };
 
     const commentCreateHandler = (newComment) => {

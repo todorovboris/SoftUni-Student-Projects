@@ -43,30 +43,30 @@ export const useLatestGames = () => {
 
 //* hook on event
 export const useGameCreate = () => {
-    const { options } = useAuthorization();
+    const { request } = useAuthorization();
 
     const create = (gameData) => {
-        return request.post(baseUrl, gameData, options);
+        return request.post(baseUrl, gameData);
     };
 
     return { create };
 };
 
 export const useGameEdit = () => {
-    const { options } = useAuthorization();
+    const { request } = useAuthorization();
 
     const edit = (gameId, newGameData) => {
-        request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId }, options);
+        request.put(`${baseUrl}/${gameId}`, { ...newGameData, _id: gameId });
     };
 
     return { edit };
 };
 
 export const useGameDelete = () => {
-    const { options } = useAuthorization();
+    const { request } = useAuthorization();
 
     const deleteGame = (gameId) => {
-        request.delete(`${baseUrl}/${gameId}`, options);
+        request.delete(`${baseUrl}/${gameId}`);
     };
 
     return { deleteGame };
