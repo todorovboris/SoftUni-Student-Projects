@@ -26,11 +26,11 @@ export default function GameDetails() {
         const confirmForDelete = confirm(`Are you want to delete ${game.title} game?`);
 
         if (confirmForDelete) {
-            return;
+            await deleteGame(gameId);
+            navigate('/games');
         }
 
-        await deleteGame(gameId);
-        navigate('/games');
+        return;
     };
 
     const commentCreateHandler = (newComment) => {
