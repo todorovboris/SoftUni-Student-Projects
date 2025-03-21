@@ -7,6 +7,7 @@ import commentService from '../../services/commentService.js';
 import { UserContext } from '../../contexts/UserContext.js';
 import { useGame, useGameDelete } from '../../api/gameApi.js';
 import useAuthorization from '../../hooks/useAuth.js';
+import { useComments } from '../../api/commentsApi.js';
 
 export default function GameDetails() {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ export default function GameDetails() {
     const { gameId } = useParams();
     const { game } = useGame(gameId);
     const { deleteGame } = useGameDelete();
+    // const { comments } = useComments(gameId);
 
     useEffect(() => {
         commentService.getAll(gameId).then(setComments);
