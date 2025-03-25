@@ -19,6 +19,7 @@ export default function useAuthorization() {
 
     return {
         ...authData,
+        isAuthenticated: !!authData.accessToken,
         request: {
             get: (url, options) => requestWrapper('GET', url, null, options),
             post: (url, data, options) => requestWrapper('POST', url, data, options),
