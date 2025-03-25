@@ -1,6 +1,5 @@
 import './App.css';
 import { Routes, Route } from 'react-router';
-import { useState } from 'react';
 
 import { UserContext } from './contexts/UserContext.js';
 
@@ -13,9 +12,10 @@ import GameCreate from './components/game-create/GameCreate.jsx';
 import GameEdit from './components/game-edit/GameEdit.jsx';
 import GameDetails from './components/game-details/GameDetails.jsx';
 import Logout from './components/logout/Logout.jsx';
+import usePersistedState from './hooks/usePersistedState.js';
 
 function App() {
-    const [authData, setAuthData] = useState({});
+    const [authData, setAuthData] = usePersistedState('auth', {});
 
     const userLoginHandler = (userData) => {
         setAuthData(userData);
