@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { UserContext } from '../contexts/UserContext.js';
+import { UserContext, useUserContext } from '../contexts/UserContext.js';
 import request from '../utils/request.js';
 
 export default function useAuthorization() {
-    const authData = useContext(UserContext);
+    const authData = useUserContext();
 
     const requestWrapper = (method, url, data, options = {}) => {
         const authOptions = {

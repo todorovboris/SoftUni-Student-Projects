@@ -1,9 +1,8 @@
 import { Link } from 'react-router';
-import { UserContext } from '../../contexts/UserContext.js';
-import { useContext } from 'react';
+import { useUserContext } from '../../contexts/UserContext.js';
 
 export default function Header() {
-    const { email } = useContext(UserContext);
+    const { email } = useUserContext();
 
     return (
         <header>

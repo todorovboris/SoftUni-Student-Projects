@@ -1,7 +1,6 @@
-import './App.css';
 import { Routes, Route } from 'react-router';
 
-import { UserContext } from './contexts/UserContext.js';
+import { UserProvider } from './components/providers/UserProvider.jsx';
 
 import Header from './components/header/Header.jsx';
 import Home from './components/home/Home.jsx';
@@ -12,21 +11,11 @@ import GameCreate from './components/game-create/GameCreate.jsx';
 import GameEdit from './components/game-edit/GameEdit.jsx';
 import GameDetails from './components/game-details/GameDetails.jsx';
 import Logout from './components/logout/Logout.jsx';
-import usePersistedState from './hooks/usePersistedState.js';
+import './App.css';
 
 function App() {
-    const [authData, setAuthData] = usePersistedState('auth', {});
-
-    const userLoginHandler = (userData) => {
-        setAuthData(userData);
-    };
-
-    const userLogoutHandler = () => {
-        setAuthData({});
-    };
-
     return (
-        <UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler }}>
+        <UserProvider>
             <div id="box">
                 <Header />
 
@@ -44,7 +33,7 @@ function App() {
                     </Routes>
                 </main>
             </div>
-        </UserContext.Provider>
+        </UserProvider>
     );
 }
 
