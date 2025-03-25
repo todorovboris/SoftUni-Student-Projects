@@ -19,6 +19,7 @@ export default function useAuthorization() {
 
     return {
         ...authData,
+        userId: authData._id,
         isAuthenticated: !!authData.accessToken,
         request: {
             get: (url, options) => requestWrapper('GET', url, null, options),

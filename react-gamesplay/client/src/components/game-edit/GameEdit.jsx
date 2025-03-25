@@ -1,7 +1,9 @@
-import { useNavigate, useParams } from 'react-router';
+import { Navigate, useNavigate, useParams } from 'react-router';
 import { useGame, useGameEdit } from '../../api/gameApi.js';
+import useAuthorization from '../../hooks/useAuth.js';
 
 export default function GameEdit() {
+    const { userId } = useAuthorization();
     const navigate = useNavigate();
     const { gameId } = useParams();
     const { game } = useGame(gameId);
@@ -14,6 +16,11 @@ export default function GameEdit() {
 
         navigate(`/games/${gameId}/details`);
     };
+
+    const isOwner = userId === game._ownerId;
+    if (!isOwner) {
+        return <Navigate to="/games" />;
+    }
 
     return (
         <section ac id="edit-page" className="auth">
