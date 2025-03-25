@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
 export default function usePersistedState(stateKey, initState) {
-    const [state, setState] = useState(() => {
+    const setStateFunction = () => {
         const persistedStateJson = localStorage.getItem(stateKey);
+
         if (!persistedStateJson) {
             return typeof initState === 'function' ? initState() : initState;
         }
@@ -10,7 +11,9 @@ export default function usePersistedState(stateKey, initState) {
         const persistedStateData = JSON.parse(persistedStateJson);
 
         return persistedStateData;
-    });
+    };
+
+    const [state, setState] = useState(setStateFunction);
 
     const setPersistedState = (input) => {
         const data = typeof input === 'function' ? input(state) : input;
