@@ -14,6 +14,7 @@ import Logout from './components/logout/Logout.jsx';
 import AuthGuardBasic from './components/guards/AuthGuardBasic.jsx';
 import AuthGuard from './components/guards/AuthGuard.jsx';
 import './App.css';
+import GuestGuard from './components/guards/GuestGuard.jsx';
 
 function App() {
     return (
@@ -40,8 +41,10 @@ function App() {
                                 </AuthGuardBasic>
                                 }
                                 /> */}
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route element={<GuestGuard />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
                     </Routes>
                 </main>
             </div>
