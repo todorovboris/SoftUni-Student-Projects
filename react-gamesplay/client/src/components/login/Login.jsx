@@ -14,7 +14,8 @@ export default function Login() {
         const authData = await login(values.email, values.password);
         userLoginHandler(authData);
 
-        navigate('/');
+        // navigate('/');
+        navigate(-1);
     };
 
     const [formValues, loginAction, isPending] = useActionState(loginHandler, { email: '', password: '' });
