@@ -28,7 +28,22 @@ export const useComments = (gameId) => {
         });
 
         request.get(`${baseUrl}?${searchParams.toString()}`).then(setComments);
-    }, [request, gameId]);
+    }, [gameId]);
 
-    return { comments };
+    return { comments, setComments };
+};
+
+export const useCreateComment = () => {
+    const { userId, request } = useAuthorization();
+
+    const create = (gameId, comment) => {
+        const commentData = {
+            gameId,
+            comment,
+        };
+
+        return request.post(baseUrl, commentData);
+    };
+
+    return { create };
 };

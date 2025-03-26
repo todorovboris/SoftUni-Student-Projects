@@ -6,10 +6,10 @@ export default function CommentsShow({ comments }) {
             <h2>Comments:</h2>
             <ul>
                 {comments.length > 0 ? (
-                    comments.map(({ _id, email, comment }) => (
+                    comments.map(({ _id, _ownerId, comment }) => (
                         <li key={_id} className="comment">
                             <p>
-                                {email}: {comment}
+                                {_ownerId}: {comment}
                             </p>
                         </li>
                     ))

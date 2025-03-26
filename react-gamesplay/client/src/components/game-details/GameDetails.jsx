@@ -1,28 +1,22 @@
 import { useParams, useNavigate } from 'react-router';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import CommentsShow from '../comments-show/CommentsShow.jsx';
 import CommentsCreate from '../comments-create/CommentsCreate.jsx';
-import commentService from '../../services/commentService.js';
 import { useUserContext } from '../../contexts/UserContext.js';
 import { useGame, useGameDelete } from '../../api/gameApi.js';
 import useAuthorization from '../../hooks/useAuth.js';
-import { useComments } from '../../api/commentsApi.js';
+import { useComments, useCreateComment } from '../../api/commentsApi.js';
 
 export default function GameDetails() {
     const navigate = useNavigate();
-    const { email, _id: userId } = useUserContext();
-    // const { email } = useAuthorization(); //! alternative way to take the email
+    // const { email, _id: userId } = useUserContext();
+    const { email, userId } = useAuthorization(); //! alternative way to take the email
 
-    const [comments, setComments] = useState([]);
     const { gameId } = useParams();
     const { game } = useGame(gameId);
     const { deleteGame } = useGameDelete();
-    // const { comments } = useComments(gameId);
-
-    useEffect(() => {
-        commentService.getAll(gameId).then(setComments);
-    }, [gameId]);
+    const { comments, setComments } = useComments(gameId);
+    const { create } = useCreateComment();
 
     const deleteGameClickHandler = async () => {
         const confirmForDelete = confirm(`Are you want to delete ${game.title} game?`);
@@ -35,7 +29,9 @@ export default function GameDetails() {
         return;
     };
 
-    const commentCreateHandler = (newComment) => {
+    const commentCreateHandler = async (comment) => {
+        const newComment = await create(gameId, comment);
+
         setComments((state) => [...state, newComment]);
     };
 
