@@ -40,7 +40,10 @@ export const useComments = (gameId) => {
             load: `author=_ownerId:users`,
         });
 
-        request.get(`${baseUrl}?${searchParams.toString()}`).then((result) => dispatch({ type: 'GET_ALL', payload: result }));
+        request.get(`${baseUrl}?${searchParams.toString()}`).then((result) => {
+            const commentsArray = Array.isArray(result) ? result : Object.values(result);
+            dispatch({ type: 'GET_ALL', payload: commentsArray });
+        });
     }, [gameId]);
 
     return { comments, addComment: (commentData) => dispatch({ type: 'ADD_COMMENT', payload: commentData }) };
