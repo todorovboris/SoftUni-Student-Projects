@@ -18,7 +18,7 @@ const baseUrl = 'http://localhost:3030/data/comments';
 //     },
 // };
 
-function commentsReducer(state, action) {
+function commentsReducer(state = [], action) {
     switch (action.type) {
         case 'ADD_COMMENT':
             return [...state, action.payload];
@@ -40,10 +40,10 @@ export const useComments = (gameId) => {
             load: `author=_ownerId:users`,
         });
 
-        request.get(`${baseUrl}?${searchParams.toString()}`).then((result) => {
-            const commentsArray = Array.isArray(result) ? result : Object.values(result);
-            dispatch({ type: 'GET_ALL', payload: commentsArray });
-        });
+        request
+            .get(`${baseUrl}?${searchParams.toString()}`)
+            .then((result) => dispatch({ type: 'GET_ALL', payload: Array.isArray(result) ? result : [] }))
+            .catch((error) => console.error('Failed to fetch comments:', error));
     }, [gameId]);
 
     return { comments, addComment: (commentData) => dispatch({ type: 'ADD_COMMENT', payload: commentData }) };

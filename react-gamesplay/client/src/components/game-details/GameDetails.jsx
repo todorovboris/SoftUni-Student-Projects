@@ -21,8 +21,6 @@ export default function GameDetails() {
     const { comments, addComment } = useComments(gameId);
     const [optimisticComments, setOptimisticComments] = useOptimistic(comments);
 
-    console.log(comments);
-
     const deleteGameClickHandler = async () => {
         const confirmForDelete = confirm(`Are you want to delete ${game.title} game?`);
 
