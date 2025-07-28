@@ -6,7 +6,7 @@ export interface Theme {
   _id: string;
   themeName: string;
   userId: User;
-  created_at: Date;
-  updatedAt: Date;
+  created_at: string;
+  updatedAt: string;
   __v: 0;
 }
