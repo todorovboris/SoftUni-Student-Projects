@@ -6,7 +6,7 @@ export interface User {
   email: string;
   username: string;
   password: string;
-  created_at: Date;
-  updatedAt: Date;
+  created_at: string;
+  updatedAt: string;
   __v: number;
 }
