@@ -16,9 +16,20 @@ export class PostsListComponent implements OnInit {
   constructor(private api: PostsService) {}
 
   ngOnInit(): void {
-    this.api.getPosts(5).subscribe((posts) => {
-      this.posts = posts;
-      this.isLoading = false;
+    // this.api.getPosts(5).subscribe((posts) => {
+    //   this.posts = posts;
+    //   this.isLoading = false;
+    // });
+
+    this.api.getPosts(5).subscribe({
+      next: (posts) => {
+        this.posts = posts;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        console.error('Error:', err);
+      },
     });
   }
 }
