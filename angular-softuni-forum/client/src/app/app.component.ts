@@ -9,6 +9,7 @@ import { MainComponent } from './components/main/main.component';
   imports: [RouterOutlet, MainComponent, FooterComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
+  standalone: true,
 })
 export class AppComponent {
   title = 'client';
