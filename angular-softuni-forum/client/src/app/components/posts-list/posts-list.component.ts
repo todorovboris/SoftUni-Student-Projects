@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../../services';
+import { Post } from '../../types';
 
 @Component({
   selector: 'app-posts-list',
@@ -7,10 +8,14 @@ import { PostsService } from '../../services';
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.css',
 })
-export class PostsListComponent {
-  constructor(private api: PostsService) {
-    this.api.getPosts().subscribe((posts) => {
-      console.log(posts);
+export class PostsListComponent implements OnInit {
+  posts: Post[] = [];
+
+  constructor(private api: PostsService) {}
+
+  ngOnInit(): void {
+    this.api.getPosts(5).subscribe((posts) => {
+      this.posts = posts;
     });
   }
 }
