@@ -1,4 +1,9 @@
 <main>
+  @if (isLoading) {
+  <div>
+    <app-loader />
+  </div>
+  } @else {
   <div class="theme-title">
     <!-- theme component  -->
     @for (theme of themes; track $index) {
@@ -31,4 +36,6 @@
     </div>
     }
   </div>
+
+  }
 </main>

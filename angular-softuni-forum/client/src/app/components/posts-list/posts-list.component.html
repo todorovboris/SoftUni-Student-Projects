@@ -1,4 +1,9 @@
 <aside>
+  @if (isLoading) {
+  <div>
+    <app-loader />
+  </div>
+  }@else {
   <div class="aside">
     <h2 class="title">Recent posts</h2>
     <div>
@@ -15,4 +20,6 @@
       }
     </div>
   </div>
+
+  }
 </aside>
