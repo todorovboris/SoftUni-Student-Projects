@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css',
   standalone: true,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  isLoggedIn = false;
+}
