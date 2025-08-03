@@ -43,9 +43,10 @@ export class AuthService {
     username: string,
     email: string,
     password: string,
+    phone: string,
     rePassword: string
   ): boolean {
-    if (username && email && password && rePassword) {
+    if (username && email && phone && password && rePassword) {
       const newUser: User = { id: `user_${Date.now()}`, username: username };
 
       this._users.push(newUser);
