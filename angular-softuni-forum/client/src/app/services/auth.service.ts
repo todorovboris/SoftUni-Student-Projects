@@ -14,7 +14,7 @@ export class AuthService {
   ];
 
   public isLoggedIn = this._isLoggedIn.asReadonly();
-  public currentUser = this._isLoggedIn.asReadonly();
+  public currentUser = this._currentUser.asReadonly();
 
   constructor() {
     const savedUser = localStorage.getItem('currentUser');
