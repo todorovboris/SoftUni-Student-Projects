@@ -36,11 +36,17 @@ export const routes: Routes = [
   {
     path: 'themes',
     loadComponent: () =>
-      import('./components/themes-list/themes-list.component').then(
+      import('./components/themes/themes-list/themes-list.component').then(
         (c) => c.ThemesListComponent
       ),
   },
-
+  {
+    path: 'create-theme',
+    loadComponent: () =>
+      import('./components/themes/create-theme/create-theme.component').then(
+        (c) => c.CreateThemeComponent
+      ),
+  },
   {
     path: '**',
     component: NotFoundComponent,

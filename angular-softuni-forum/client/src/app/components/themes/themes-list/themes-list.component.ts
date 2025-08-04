@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthService, PostsService, ThemesService } from '../../services';
-import { Post, Theme } from '../../types';
-import { LoaderComponent } from '../shared/loader/loader.component';
+import { AuthService, PostsService, ThemesService } from '../../../services';
+import { Post, Theme } from '../../../types';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
-import { PostsListComponent } from '../posts-list/posts-list.component';
+import { PostsListComponent } from '../../posts-list/posts-list.component';
 
 @Component({
   selector: 'app-themes-list',
