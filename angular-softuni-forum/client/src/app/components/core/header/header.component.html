@@ -4,18 +4,25 @@
       <img src="logo.png" />
       <p class="logo">SoftUni Forum</p>
     </div>
-    @if (!isLoggedIn) {
     <div class="mini-navbar">
       <ul>
+        @if (isLoggedIn()) {
+        <li>
+          <a routerLink="/profile">{{ currentUser()?.username }}</a>
+        </li>
+        <li>
+          <a routerLink="#" (click)="logout()">Logout</a>
+        </li>
+        } @else {
         <li>
           <a routerLink="/login">Login</a>
         </li>
         <li>
           <a routerLink="/register">Register</a>
         </li>
+        }
       </ul>
     </div>
-    }
   </div>
   <nav>
     <ul>
@@ -23,11 +30,13 @@
         <a routerLink="/home">Home</a>
       </li>
       <li>
-        <a routerLink="#">Themes</a>
+        <a routerLink="/themese">Themes</a>
       </li>
+      @if (isLoggedIn()) {
       <li>
-        <a routerLink="#">New Theme</a>
+        <a routerLink="/add-theme">New Theme</a>
       </li>
+      }
     </ul>
   </nav>
 </header>
