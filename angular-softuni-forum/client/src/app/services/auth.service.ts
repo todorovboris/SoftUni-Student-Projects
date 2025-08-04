@@ -42,16 +42,16 @@ export class AuthService {
   register(
     username: string,
     email: string,
-    password: string,
     phone: string,
+    password: string,
     rePassword: string
   ): boolean {
     if (username && email && phone && password && rePassword) {
       const newUser: User = { id: `user_${Date.now()}`, username: username };
 
       this._users.push(newUser);
-      this._isLoggedIn.set(true);
       this._currentUser.set(newUser);
+      this._isLoggedIn.set(true);
 
       localStorage.setItem('currentUser', JSON.stringify(newUser));
 
