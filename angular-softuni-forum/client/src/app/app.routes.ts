@@ -39,4 +39,12 @@ export const routes: Routes = [
         (c) => c.ThemesListComponent
       ),
   },
+
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./components/shared/not-found/not-found.component').then(
+        (c) => c.NotFoundComponent
+      ),
+  },
 ];
