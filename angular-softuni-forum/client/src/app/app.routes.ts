@@ -25,4 +25,11 @@ export const routes: Routes = [
         (c) => c.RegisterComponent
       ),
   },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./components/shared/profile/profile.component').then(
+        (c) => c.ProfileComponent
+      ),
+  },
 ];
