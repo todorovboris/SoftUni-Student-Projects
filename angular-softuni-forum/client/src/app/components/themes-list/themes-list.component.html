@@ -1,41 +1,72 @@
-<main>
-  @if (isLoading) {
-  <div>
-    <app-loader />
+@if (!isLoggedIn()) {
+<div class="welcome">
+  <h3>Welcome!</h3>
+  <p>
+    SoftUni forum is a place, where you can post your questions, comment, and
+    discuss problems, which you have in your programming language or in your
+    study in SoftUni.
+  </p>
+  <div class="logged">
+    <ul>
+      <li>
+        <a routerLink="/login">
+          <i class="fas fa-sign-in-alt"></i>
+          Login
+        </a>
+      </li>
+      <li>
+        <a routerLink="/register">
+          <i class="fas fa-user-plus"></i>
+          Register
+        </a>
+      </li>
+    </ul>
   </div>
-  } @else {
-  <div class="theme-title">
-    <!-- theme component  -->
-    @for (theme of themes; track $index) {
-    <div class="theme-container">
-      <div class="theme-name-wrapper">
-        <div class="theme-name">
-          <a href="#" class="normal">
-            <h2>{{ theme.themeName }}</h2>
-          </a>
-          <div class="columns">
-            <div>
-              <p>
-                Date: <time>{{ theme.created_at }}</time>
-              </p>
-              <div class="nick-name">
+</div>
+}
+
+<br />
+
+@if (isLoading) {
+<div>
+  <app-loader />
+</div>
+} @else {
+
+<div class="container">
+  <main>
+    <div class="theme-title">
+      <!-- theme component  -->
+      @for (theme of themes; track theme._id) {
+      <div class="theme-container">
+        <div class="theme-name-wrapper">
+          <div class="theme-name">
+            <a href="#" class="normal">
+              <h2>{{ theme.themeName }}</h2>
+            </a>
+            <div class="columns">
+              <div>
                 <p>
-                  Username: <span>{{ theme.userId.username }}</span>
+                  Date: <time>{{ theme.created_at }}</time>
+                </p>
+                <div class="nick-name">
+                  <p>
+                    Username: <span>{{ theme.userId.username }}</span>
+                  </p>
+                </div>
+              </div>
+              <div class="subscribers">
+                <!-- <button class="subscribe">Subscribe</button> -->
+                <p>
+                  Subscribers: <span>{{ theme.subscribers.length || 0 }}</span>
                 </p>
               </div>
-            </div>
-            <div class="subscribers">
-              <!-- <button class="subscribe">Subscribe</button> -->
-              <p>
-                Subscribers: <span>{{ theme.subscribers.length || 0 }}</span>
-              </p>
             </div>
           </div>
         </div>
       </div>
+      }
     </div>
-    }
-  </div>
-
-  }
-</main>
+  </main>
+</div>
+}

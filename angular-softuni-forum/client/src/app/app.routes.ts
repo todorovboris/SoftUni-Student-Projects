@@ -32,4 +32,11 @@ export const routes: Routes = [
         (c) => c.ProfileComponent
       ),
   },
+  {
+    path: 'themes',
+    loadComponent: () =>
+      import('./components/themes-list/themes-list.component').then(
+        (c) => c.ThemesListComponent
+      ),
+  },
 ];
