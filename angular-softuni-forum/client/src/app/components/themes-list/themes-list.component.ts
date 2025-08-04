@@ -4,10 +4,11 @@ import { Theme } from '../../types';
 import { LoaderComponent } from '../shared/loader/loader.component';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { PostsListComponent } from '../posts-list/posts-list.component';
 
 @Component({
   selector: 'app-themes-list',
-  imports: [LoaderComponent, RouterLink],
+  imports: [LoaderComponent, RouterLink, PostsListComponent],
   templateUrl: './themes-list.component.html',
   styleUrl: './themes-list.component.css',
 })
